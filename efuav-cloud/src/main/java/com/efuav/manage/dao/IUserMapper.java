@@ -1,0 +1,8 @@
+package com.efuav.manage.dao;
+
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.efuav.manage.model.entity.UserEntity;
+
+public interface IUserMapper extends BaseMapper<UserEntity> {
+
+}
