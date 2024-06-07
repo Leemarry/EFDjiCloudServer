@@ -93,7 +93,7 @@ public class FlightTaskServiceImpl extends AbstractWaylineService implements IFl
         if (Objects.isNull(jobIdValue)) {
             return;
         }
-        log.info("Check the timed tasks of the wayline. {}", jobIdValue);
+        log.info("检查航线的定时任务。 {}", jobIdValue);
         // format: {workspace_id}:{dock_sn}:{job_id}
         String[] jobArr = String.valueOf(jobIdValue).split(RedisConst.DELIMITER);
         double time = RedisOpsUtils.zScore(RedisConst.WAYLINE_JOB_TIMED_EXECUTE, jobIdValue);
@@ -116,7 +116,7 @@ public class FlightTaskServiceImpl extends AbstractWaylineService implements IFl
             try {
                 this.executeFlightTask(jobArr[0], jobArr[2]);
             } catch (Exception e) {
-                log.info("The scheduled task delivery failed.");
+                log.info("计划的任务传递失败。");
                 waylineJobService.updateJob(WaylineJobDTO.builder()
                         .jobId(jobArr[2])
                         .status(WaylineJobStatusEnum.FAILED.getVal())
@@ -136,7 +136,7 @@ public class FlightTaskServiceImpl extends AbstractWaylineService implements IFl
             return;
         }
         ConditionalWaylineJobKey jobKey = jobKeyOpt.get();
-        log.info("Check the conditional tasks of the wayline. {}", jobKey.toString());
+        log.info("检查航线的条件任务。 {}", jobKey.toString());
         // format: {workspace_id}:{dock_sn}:{job_id}
         double time = waylineRedisService.getConditionalWaylineJobTime(jobKey);
         long now = System.currentTimeMillis();
@@ -180,7 +180,7 @@ public class FlightTaskServiceImpl extends AbstractWaylineService implements IFl
             this.retryPrepareJob(jobKey, waylineJob);
 
         } catch (Exception e) {
-            log.info("Failed to prepare the conditional task.");
+            log.info("无法准备条件任务。");
             waylineJobService.updateJob(job);
         }
 
@@ -220,7 +220,7 @@ public class FlightTaskServiceImpl extends AbstractWaylineService implements IFl
         // key: wayline_job_condition, value: {workspace_id}:{dock_sn}:{job_id}
         boolean isAdd = waylineRedisService.addPrepareConditionalWaylineJob(waylineJob);
         if (!isAdd) {
-            throw new RuntimeException("Failed to create conditional job.");
+            throw new RuntimeException("无法创建有条件的作业。");
         }
     }
 
@@ -242,10 +242,10 @@ public class FlightTaskServiceImpl extends AbstractWaylineService implements IFl
 
                 Optional<WaylineJobDTO> waylineJobOpt = waylineJobService.createWaylineJob(param, customClaim.getWorkspaceId(), customClaim.getUsername(), beginTime, endTime);
                 if (waylineJobOpt.isEmpty()) {
-                    throw new SQLException("Failed to create wayline job.");
+                    throw new SQLException("无法创建航线作业。");
                 }
                 WaylineJobDTO waylineJob = waylineJobOpt.get();
-                // 如果是条件任务类型，请将条件添加到作业参数中。
+                // 如果是条件任务类型，请将条件添加到航线作业任务参数中。
                 addConditions(waylineJob, param, beginTime, endTime);
 
                 HttpResultResponse response = this.publishOneFlightTask(waylineJob);
@@ -257,22 +257,23 @@ public class FlightTaskServiceImpl extends AbstractWaylineService implements IFl
         return HttpResultResponse.success();
     }
 
+    @Override
     public HttpResultResponse publishOneFlightTask(WaylineJobDTO waylineJob) throws SQLException {
 
         boolean isOnline = deviceRedisService.checkDeviceOnline(waylineJob.getDockSn());
         if (!isOnline) {
-            throw new RuntimeException("Dock is offline.");
+            throw new RuntimeException("机场处于离线状态.");
         }
 
         boolean isSuccess = this.prepareFlightTask(waylineJob);
         if (!isSuccess) {
-            return HttpResultResponse.error("Failed to prepare job.");
+            return HttpResultResponse.error("无法准备航线作业任务。");
         }
 
         // 发出立即任务执行命令。
         if (TaskTypeEnum.IMMEDIATE == waylineJob.getTaskType()) {
             if (!executeFlightTask(waylineJob.getWorkspaceId(), waylineJob.getJobId())) {
-                return HttpResultResponse.error("Failed to execute job.");
+                return HttpResultResponse.error("无法执行航线作业任务。");
             }
         }
 
@@ -282,7 +283,7 @@ public class FlightTaskServiceImpl extends AbstractWaylineService implements IFl
                     waylineJob.getWorkspaceId() + RedisConst.DELIMITER + waylineJob.getDockSn() + RedisConst.DELIMITER + waylineJob.getJobId(),
                     waylineJob.getBeginTime().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
             if (!isAdd) {
-                return HttpResultResponse.error("Failed to create scheduled job.");
+                return HttpResultResponse.error("无法创建计划航线作业任务。");
             }
         }
 
@@ -293,7 +294,7 @@ public class FlightTaskServiceImpl extends AbstractWaylineService implements IFl
         // 获取航线文件
         Optional<GetWaylineListResponse> waylineFile = waylineFileService.getWaylineByWaylineId(waylineJob.getWorkspaceId(), waylineJob.getFileId());
         if (waylineFile.isEmpty()) {
-            throw new SQLException("Wayline file doesn't exist.");
+            throw new SQLException("航线文件不存在。");
         }
 
         // 获取文件url
@@ -322,7 +323,7 @@ public class FlightTaskServiceImpl extends AbstractWaylineService implements IFl
         TopicServicesResponse<ServicesReplyData> serviceReply = abstractWaylineService.flighttaskPrepare(
                 SDKManager.getDeviceSDK(waylineJob.getDockSn()), flightTask);
         if (!serviceReply.getData().getResult().isSuccess()) {
-            log.info("Prepare task ====> Error code: {}", serviceReply.getData().getResult());
+            log.info("准备任务 ====> Error code: {}", serviceReply.getData().getResult());
             waylineJobService.updateJob(WaylineJobDTO.builder()
                     .workspaceId(waylineJob.getWorkspaceId())
                     .jobId(waylineJob.getJobId())
@@ -341,12 +342,12 @@ public class FlightTaskServiceImpl extends AbstractWaylineService implements IFl
         // 得到任务
         Optional<WaylineJobDTO> waylineJob = waylineJobService.getJobByJobId(workspaceId, jobId);
         if (waylineJob.isEmpty()) {
-            throw new IllegalArgumentException("Job doesn't exist.");
+            throw new IllegalArgumentException("航线作业任务不存在。");
         }
 
         boolean isOnline = deviceRedisService.checkDeviceOnline(waylineJob.get().getDockSn());
         if (!isOnline) {
-            throw new RuntimeException("Dock is offline.");
+            throw new RuntimeException("机场处于离线状态。");
         }
 
         WaylineJobDTO job = waylineJob.get();
@@ -354,7 +355,7 @@ public class FlightTaskServiceImpl extends AbstractWaylineService implements IFl
         TopicServicesResponse<ServicesReplyData> serviceReply = abstractWaylineService.flighttaskExecute(
                 SDKManager.getDeviceSDK(job.getDockSn()), new FlighttaskExecuteRequest().setFlightId(jobId));
         if (!serviceReply.getData().getResult().isSuccess()) {
-            log.info("Execute job ====> Error: {}", serviceReply.getData().getResult());
+            log.info("执行航线作业任务 ====> Error: {}", serviceReply.getData().getResult());
             waylineJobService.updateJob(WaylineJobDTO.builder()
                     .jobId(jobId)
                     .executeTime(LocalDateTime.now())
@@ -386,10 +387,10 @@ public class FlightTaskServiceImpl extends AbstractWaylineService implements IFl
         // 检查任务状态是否正确。
         boolean isErr = !jobIds.removeAll(waylineJobIds) || !jobIds.isEmpty();
         if (isErr) {
-            throw new IllegalArgumentException("These tasks have an incorrect status and cannot be canceled. " + Arrays.toString(jobIds.toArray()));
+            throw new IllegalArgumentException("这些任务的状态不正确，无法取消。 " + Arrays.toString(jobIds.toArray()));
         }
 
-        // 按dock sn对作业id进行分组。
+        // 按dock sn对航线作业任务id进行分组。
         Map<String, List<String>> dockJobs = waylineJobs.stream()
                 .collect(Collectors.groupingBy(WaylineJobDTO::getDockSn,
                         Collectors.mapping(WaylineJobDTO::getJobId, Collectors.toList())));
@@ -400,14 +401,14 @@ public class FlightTaskServiceImpl extends AbstractWaylineService implements IFl
     public void publishCancelTask(String workspaceId, String dockSn, List<String> jobIds) {
         boolean isOnline = deviceRedisService.checkDeviceOnline(dockSn);
         if (!isOnline) {
-            throw new RuntimeException("Dock is offline.");
+            throw new RuntimeException("机场处于离线状态.");
         }
 
         TopicServicesResponse<ServicesReplyData> serviceReply = abstractWaylineService.flighttaskUndo(SDKManager.getDeviceSDK(dockSn),
                 new FlighttaskUndoRequest().setFlightIds(jobIds));
         if (!serviceReply.getData().getResult().isSuccess()) {
-            log.info("Cancel job ====> Error: {}", serviceReply.getData().getResult());
-            throw new RuntimeException("Failed to cancel the wayline job of " + dockSn);
+            log.info("取消航线作业任务 ====> Error: {}", serviceReply.getData().getResult());
+            throw new RuntimeException("未能取消的航线航线作业任务 " + dockSn);
         }
 
         for (String jobId : jobIds) {
@@ -438,7 +439,7 @@ public class FlightTaskServiceImpl extends AbstractWaylineService implements IFl
         TopicServicesResponse<ServicesReplyData> reply = abstractMediaService.uploadFlighttaskMediaPrioritize(
                 SDKManager.getDeviceSDK(dockSn), new UploadFlighttaskMediaPrioritize().setFlightId(jobId));
         if (!reply.getData().getResult().isSuccess()) {
-            throw new RuntimeException("Failed to set media job upload priority. Error: " + reply.getData().getResult());
+            throw new RuntimeException("无法设置媒体作业上传优先级。 Error: " + reply.getData().getResult());
         }
     }
 
@@ -446,12 +447,12 @@ public class FlightTaskServiceImpl extends AbstractWaylineService implements IFl
     public void updateJobStatus(String workspaceId, String jobId, UpdateJobParam param) {
         Optional<WaylineJobDTO> waylineJobOpt = waylineJobService.getJobByJobId(workspaceId, jobId);
         if (waylineJobOpt.isEmpty()) {
-            throw new RuntimeException("The job does not exist.");
+            throw new RuntimeException("航线作业任务不存在。");
         }
         WaylineJobDTO waylineJob = waylineJobOpt.get();
         WaylineJobStatusEnum statusEnum = waylineJobService.getWaylineState(waylineJob.getDockSn());
         if (statusEnum.getEnd() || WaylineJobStatusEnum.PENDING == statusEnum) {
-            throw new RuntimeException("The wayline job status does not match, and the operation cannot be performed.");
+            throw new RuntimeException("航线作业任务状态不匹配，因此无法执行该操作。");
         }
 
         switch (param.getStatus()) {
@@ -473,7 +474,7 @@ public class FlightTaskServiceImpl extends AbstractWaylineService implements IFl
 
         TopicServicesResponse<ServicesReplyData> reply = abstractWaylineService.flighttaskPause(SDKManager.getDeviceSDK(dockSn));
         if (!reply.getData().getResult().isSuccess()) {
-            throw new RuntimeException("Failed to pause wayline job. Error: " + reply.getData().getResult());
+            throw new RuntimeException("无法暂停航线作业任务。 Error: " + reply.getData().getResult());
         }
         waylineRedisService.delRunningWaylineJob(dockSn);
         waylineRedisService.setPausedWaylineJob(dockSn, jobId);
@@ -487,7 +488,7 @@ public class FlightTaskServiceImpl extends AbstractWaylineService implements IFl
         }
         TopicServicesResponse<ServicesReplyData> reply = abstractWaylineService.flighttaskRecovery(SDKManager.getDeviceSDK(dockSn));
         if (!reply.getData().getResult().isSuccess()) {
-            throw new RuntimeException("Failed to resume wayline job. Error: " + reply.getData().getResult());
+            throw new RuntimeException("无法恢复航线作业任务。 Error: " + reply.getData().getResult());
         }
 
         runningDataOpt.ifPresent(runningData -> waylineRedisService.setRunningWaylineJob(dockSn, runningData));
@@ -498,7 +499,7 @@ public class FlightTaskServiceImpl extends AbstractWaylineService implements IFl
     public void retryPrepareJob(ConditionalWaylineJobKey jobKey, WaylineJobDTO waylineJob) {
         Optional<WaylineJobDTO> childJobOpt = waylineJobService.createWaylineJobByParent(jobKey.getWorkspaceId(), jobKey.getJobId());
         if (childJobOpt.isEmpty()) {
-            log.error("Failed to create wayline job.");
+            log.error("无法创建航线作业任务。");
             return;
         }
 
@@ -506,7 +507,7 @@ public class FlightTaskServiceImpl extends AbstractWaylineService implements IFl
         newJob.setBeginTime(LocalDateTime.now().plusSeconds(RedisConst.WAYLINE_JOB_BLOCK_TIME));
         boolean isAdd = waylineRedisService.addPrepareConditionalWaylineJob(newJob);
         if (!isAdd) {
-            log.error("Failed to create wayline job. {}", newJob.getJobId());
+            log.error("无法创建航线作业任务。 {}", newJob.getJobId());
             return;
         }
 
@@ -519,7 +520,7 @@ public class FlightTaskServiceImpl extends AbstractWaylineService implements IFl
     public TopicEventsResponse<MqttReply> flighttaskReady(TopicEventsRequest<FlighttaskReady> response, MessageHeaders headers) {
         List<String> flightIds = response.getData().getFlightIds();
 
-        log.info("ready task list：{}", Arrays.toString(flightIds.toArray()));
+        log.info("就绪任务列表：{}", Arrays.toString(flightIds.toArray()));
         // 检查条件任务阻止状态。
         String blockedId = waylineRedisService.getBlockedWaylineJobId(response.getGateway());
         if (!StringUtils.hasText(blockedId)) {
@@ -540,7 +541,7 @@ public class FlightTaskServiceImpl extends AbstractWaylineService implements IFl
                 }
                 Optional<WaylineJobDTO> waylineJobOpt = waylineRedisService.getConditionalWaylineJob(jobId);
                 if (waylineJobOpt.isEmpty()) {
-                    log.info("The conditional job has expired and will no longer be executed.");
+                    log.info("条件航线作业任务已过期，将不再执行。");
                     return new TopicEventsResponse<>();
                 }
                 WaylineJobDTO waylineJob = waylineJobOpt.get();
@@ -548,7 +549,7 @@ public class FlightTaskServiceImpl extends AbstractWaylineService implements IFl
                 return new TopicEventsResponse<>();
             }
         } catch (Exception e) {
-            log.error("Failed to execute conditional task.");
+            log.error("未能执行航线条件任务。");
             e.printStackTrace();
         }
         return new TopicEventsResponse<>();

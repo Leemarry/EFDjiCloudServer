@@ -8,17 +8,17 @@ package com.efuav.sdk.cloudapi.device;
 public class EsimInfo {
 
     /**
-     * esim supported operators
+     * esim支持的运算符
      */
     private TelecomOperatorEnum telecomOperator;
 
     /**
-     * In esim infos, only one esim can be enabled at the same time.
+     * 在esim-info中，只能同时启用一个esim。
      */
     private Boolean enabled;
 
     /**
-     * The unique identification mark of the sim card can be used to purchase physical sim card packages.
+     * sim卡的唯一识别标记可用于购买实体sim卡包。
      */
     private String iccid;
 

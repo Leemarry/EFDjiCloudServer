@@ -32,9 +32,10 @@ public abstract class AbstractInterconnectionService {
     private ServicesPublish servicesPublish;
 
     /**
-     * cloud-custom data transmit from esdk
-     * @param request  data
-     * @param headers  The headers for a {@link Message}.
+     * 从esdk传输云自定义数据
+     *
+     * @param request data
+     * @param headers The headers for a {@link Message}.
      * @return events_reply
      */
     @ServiceActivator(inputChannel = ChannelName.INBOUND_EVENTS_CUSTOM_DATA_TRANSMISSION_FROM_ESDK, outputChannel = ChannelName.OUTBOUND_EVENTS)
@@ -44,9 +45,10 @@ public abstract class AbstractInterconnectionService {
     }
 
     /**
-     * cloud-custom data transmit to esdk
-     * @param gateway   gateway device
-     * @return  services_reply
+     * 云自定义数据传输到esdk
+     *
+     * @param gateway gateway device
+     * @return services_reply
      */
     @CloudSDKVersion(since = CloudSDKVersionEnum.V1_0_0, exclude = GatewayTypeEnum.RC)
     public TopicServicesResponse<ServicesReplyData> customDataTransmissionToEsdk(GatewayManager gateway, CustomDataTransmissionToEsdkRequest request) {
@@ -57,9 +59,10 @@ public abstract class AbstractInterconnectionService {
     }
 
     /**
-     * cloud-custom data transmit from psdk
-     * @param request  data
-     * @param headers  The headers for a {@link Message}.
+     * 云自定义数据从psdk传输
+     *
+     * @param request data
+     * @param headers The headers for a {@link Message}.
      * @return events_reply
      */
     @ServiceActivator(inputChannel = ChannelName.INBOUND_EVENTS_CUSTOM_DATA_TRANSMISSION_FROM_PSDK, outputChannel = ChannelName.OUTBOUND_EVENTS)
@@ -69,9 +72,10 @@ public abstract class AbstractInterconnectionService {
     }
 
     /**
-     * cloud-custom data transmit to psdk
-     * @param gateway   gateway device
-     * @return  services_reply
+     * 云自定义数据传输到psdk
+     *
+     * @param gateway gateway device
+     * @return services_reply
      */
     @CloudSDKVersion(since = CloudSDKVersionEnum.V1_0_0, exclude = GatewayTypeEnum.RC)
     public TopicServicesResponse<ServicesReplyData> customDataTransmissionToPsdk(GatewayManager gateway, CustomDataTransmissionToPsdkRequest request) {

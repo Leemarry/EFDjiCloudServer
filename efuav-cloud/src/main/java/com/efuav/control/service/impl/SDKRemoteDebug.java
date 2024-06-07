@@ -42,7 +42,7 @@ public class SDKRemoteDebug extends AbstractDebugService {
         eventsReceiver.setBid(request.getBid());
         eventsReceiver.setSn(sn);
 
-        log.info("SN: {}, {} ===> Control progress: {}", sn, request.getMethod(), eventsReceiver.getOutput().getProgress());
+        log.info("SN: {}, {} ===> 控制进度: {}", sn, request.getMethod(), eventsReceiver.getOutput().getProgress());
 
         if (!eventsReceiver.getResult().isSuccess()) {
             log.error("SN: {}, {} ===> Error: {}", sn, request.getMethod(), eventsReceiver.getResult());
@@ -51,7 +51,7 @@ public class SDKRemoteDebug extends AbstractDebugService {
         Optional<DeviceDTO> deviceOpt = deviceRedisService.getDeviceOnline(sn);
 
         if (deviceOpt.isEmpty()) {
-            throw new RuntimeException("The device is offline.");
+            throw new RuntimeException("设备处于离线状态。");
         }
 
         DeviceDTO device = deviceOpt.get();

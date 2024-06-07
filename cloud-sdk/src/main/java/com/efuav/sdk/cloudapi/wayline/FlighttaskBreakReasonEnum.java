@@ -13,161 +13,161 @@ import java.util.Arrays;
  */
 public enum FlighttaskBreakReasonEnum {
 
-    NORMAL(0, "No abnormalities"),
+    NORMAL(0, "无异常"),
 
-    NOT_ID(1, "Mission ID does not exist. The wayline mission has not been executed."),
+    NOT_ID(1, "任务ID不存在。航线任务尚未执行。"),
 
-    UNCOMMON_ERROR(2, "Uncommon error, please contact technical support."),
+    UNCOMMON_ERROR(2, "异常错误，请联系技术支持。"),
 
-    ERROR_LOADING_FILE(4, "Error loading wayline file when requesting to start/resume the wayline mission, please try uploading the file again or contact technical support."),
+    ERROR_LOADING_FILE(4, "请求启动/恢复航线任务时加载航线文件时出错，请尝试再次上传文件或联系技术支持。"),
 
-    ERROR_BREAKPOINT_FILE(5, "Failed to query breakpoint file when requesting breakpoint information. Failed to parse breakpoint type when requesting to resume the wayline mission."),
+    ERROR_BREAKPOINT_FILE(5, "请求断点信息时查询断点文件失败。请求恢复航线任务时，无法分析断点类型。"),
 
-    INCORRECT_PARAMETER(6, "Incorrect cmd parameter when requesting to start/end the wayline mission, incorrect protocol command in the request. Failed to parse breakpoint type when requesting to resume the wayline mission."),
+    INCORRECT_PARAMETER(6, "请求启动/结束航线任务时cmd参数不正确，请求中的协议命令不正确。请求恢复航线任务时，无法分析断点类型。"),
 
-    PARSING_FILE_TIMEOUT(7, "Timeout parsing the WPMZ file when requesting to start/resume the wayline mission, please retry."),
+    PARSING_FILE_TIMEOUT(7, "请求启动/恢复航线任务时，解析WPMZ文件超时，请重试。"),
 
-    ALREADY_STARTED(257, "Wayline has already started, cannot start again."),
+    ALREADY_STARTED(257, "航线已启动，无法重新启动。"),
 
-    UNABLE_TO_INTERRUPT_WAYLINE(258, "Unable to interrupt the wayline in this state, only allowed to pause the wayline in the executing state."),
+    UNABLE_TO_INTERRUPT_WAYLINE(258, "在此状态下无法中断航线，只允许在执行状态下暂停航线。"),
 
-    NOT_STARTED(259, "Wayline has not started, cannot end the wayline."),
+    NOT_STARTED(259, "航线尚未开始，无法结束航线。"),
 
-    FLIGHT_MISSION_CONFLICT(261, "Flight mission conflict, unable to obtain control of the aircraft, not allowed to start the wayline during landing and return."),
+    FLIGHT_MISSION_CONFLICT(261, "飞行任务冲突，无法获得对飞机的控制，在降落和返回期间不允许启动航线。"),
 
-    UNABLE_TO_RESUME_WAYLINE(262, "Unable to resume wayline in this state, only allowed when the wayline is paused."),
+    UNABLE_TO_RESUME_WAYLINE(262, "无法在此状态下恢复航线，只有当航线暂停时才允许。"),
 
-    MAXIMUM_ALTITUDE_LIMIT(513, "Aircraft exceeded the maximum altitude limit."),
+    MAXIMUM_ALTITUDE_LIMIT(513, "飞机超过了最高高度限制。"),
 
-    MAXIMUM_DISTANCE_LIMIT(514, "Aircraft exceeded the maximum distance limit."),
+    MAXIMUM_DISTANCE_LIMIT(514, "飞机超过了最大距离限制。"),
 
-    TOO_LOW_HEIGHT(516, "The height of the drone is too low."),
+    TOO_LOW_HEIGHT(516, "无人机的高度太低。"),
 
-    OBSTACLE_AVOIDANCE(517, "Aircraft triggered obstacle sensing."),
+    OBSTACLE_AVOIDANCE(517, "飞机触发障碍物感应。"),
 
-    POOR_RTK(518, "Poor RTK signal"),
+    POOR_RTK(518, "RTK信号差"),
 
-    BOUNDARY_OF_RESTRICTED_ZONE(519, "Approaching the boundary of Restricted Zone."),
+    BOUNDARY_OF_RESTRICTED_ZONE(519, "接近禁区边界。"),
 
-    GEO_ALTITUDE_LIMIT(521, "Exceeded the dock's GEO zone altitude limit."),
+    GEO_ALTITUDE_LIMIT(521, "超过了机场的GEO区域高度限制。"),
 
-    TAKEOFF_REQUEST_FAILED(522, "Failed to request takeoff for the wayline."),
+    TAKEOFF_REQUEST_FAILED(522, "请求航线起飞失败。"),
 
-    TAKEOFF_EXECUTION_FAILED(523, "Takeoff mission execution failed."),
+    TAKEOFF_EXECUTION_FAILED(523, "起飞任务执行失败。"),
 
-    WAYLINE_MISSION_REQUEST_FAILED(524, "Failed to request wayline mission."),
+    WAYLINE_MISSION_REQUEST_FAILED(524, "请求航线任务失败。"),
 
-    RTK_FIXING_REQUEST_FAILED(526, "Failed to request wayline RTK fixing mission."),
+    RTK_FIXING_REQUEST_FAILED(526, "未能请求航线RTK修复任务。"),
 
-    RTK_FIXING_EXECUTION_FAILED(527, "Wayline RTK fixing mission failed to run."),
+    RTK_FIXING_EXECUTION_FAILED(527, "线路RTK修复任务未能运行。"),
 
-    WEAK_GPS(769, "Weak GPS signal."),
+    WEAK_GPS(769, "GPS信号微弱。"),
 
-    ERROR_RC_MODE(770, "Remote controller not in N mode, unable to start the task."),
+    ERROR_RC_MODE(770, "遥控器未处于N模式，无法启动任务。"),
 
-    HOME_POINT_NOT_REFRESHED(771, "Home point not refreshed."),
+    HOME_POINT_NOT_REFRESHED(771, "返航点未刷新。"),
 
-    LOW_BATTERY(772, "Unable to start the mission due to low current battery level."),
+    LOW_BATTERY(772, "由于电池电量不足，无法启动任务。"),
 
-    LOW_BATTERY_RTH(773, "Wayline interrupted due to low battery causing return to home."),
+    LOW_BATTERY_RTH(773, "线路因电池电量不足而中断，导致返回起始点。"),
 
-    RC_DISCONNECTION(775, "Disconnection between the remote controller and the aircraft."),
+    RC_DISCONNECTION(775, "遥控器和飞机之间的断开连接。"),
 
-    ON_THE_GROUND(778, "Aircraft is on the ground with propellers spinning, not allowed to start the wayline."),
+    ON_THE_GROUND(778, "飞机在地面上螺旋桨旋转，不允许启动航线。"),
 
-    ABNORMAL_VISUAL_STATUS(779, "Abnormal visual status (for example, too bright, too dark, inconsistent brightness on both sides) during real-time terrain follow."),
+    ABNORMAL_VISUAL_STATUS(779, "实时地形跟随过程中的异常视觉状态（例如，太亮、太暗、两侧亮度不一致）。"),
 
-    INVALID_ALTITUDE(780, "Real-time terrain-following altitude set by the user is invalid (greater than 200m or less than 30m)."),
+    INVALID_ALTITUDE(780, "用户设置的实时地形跟随高度无效（大于200米或小于30米）。"),
 
-    CALCULATION_ERROR(781, "Global map calculation error during real-time terrain follow."),
+    CALCULATION_ERROR(781, "实时地形跟踪过程中的全局地图计算错误。"),
 
-    STRONG_WINDS_RTH(784, "Wayline interrupted due to strong winds causing return to home."),
+    STRONG_WINDS_RTH(784, "由于强风导致线路中断，导致返回起始点。"),
 
-    USER_EXIT(1281, "User exit."),
+    USER_EXIT(1281, "用户退出。"),
 
-    USER_INTERRUPTION(1282, "User interruption."),
+    USER_INTERRUPTION(1282, "用户中断。"),
 
-    USER_TRIGGERED_RTH(1283, "User triggered return to home."),
+    USER_TRIGGERED_RTH(1283, "用户触发返回主页。"),
 
-    INCORRECT_START_INFORMATION(1539, "Incorrect start information (waypoint index or progress)."),
+    INCORRECT_START_INFORMATION(1539, "起始信息不正确（航路点索引或进度）。"),
 
-    UNSUPPORTED_COORDINATE_SYSTEM(1540, "Using an unsupported coordinate system."),
+    UNSUPPORTED_COORDINATE_SYSTEM(1540, "使用不受支持的坐标系。"),
 
-    UNSUPPORTED_ALTITUDE_MODE(1541, "Using an unsupported altitude mode."),
+    UNSUPPORTED_ALTITUDE_MODE(1541, "使用不受支持的海拔模式。"),
 
-    UNSUPPORTED_TRANSITIONAL_WAYLINE_MODE(1542, "Using an unsupported transitional wayline mode."),
+    UNSUPPORTED_TRANSITIONAL_WAYLINE_MODE(1542, "使用不受支持的过渡航线模式。"),
 
-    UNSUPPORTED_YAW_MODE(1543, "Using an unsupported yaw mode."),
+    UNSUPPORTED_YAW_MODE(1543, "使用不受支持的偏航模式。"),
 
-    UNSUPPORTED_YAW_DIRECTION_REVERSAL_MODE(1544, "Using an unsupported yaw direction reversal mode."),
+    UNSUPPORTED_YAW_DIRECTION_REVERSAL_MODE(1544, "使用不受支持的偏航方向反转模式。"),
 
-    UNSUPPORTED_WAYPOINT_TYPE(1545, "Using an unsupported waypoint type."),
+    UNSUPPORTED_WAYPOINT_TYPE(1545, "使用不支持的航路点类型。"),
 
-    INVALID_COORDINATED_TURNING_TYPE(1546, "Coordinated turning type cannot be used for the start and end points."),
+    INVALID_COORDINATED_TURNING_TYPE(1546, "协调转弯类型不能用于起点和终点。"),
 
-    INVALID_GLOBAL_SPEED(1547, "Wayline global speed exceeds a reasonable range."),
+    INVALID_GLOBAL_SPEED(1547, "航线全局速度超过合理范围。"),
 
-    WAYPOINT_NUMBER_ABNORMAL(1548, "Waypoint number abnormal."),
+    WAYPOINT_NUMBER_ABNORMAL(1548, "航路点编号异常。"),
 
-    INVALID_LATITUDE_AND_LONGITUDE(1549, "Abnormal latitude and longitude data."),
+    INVALID_LATITUDE_AND_LONGITUDE(1549, "经纬度数据异常。"),
 
-    ABNORMAL_TURNING_INTERCEPT(1550, "Abnormal turning intercept."),
+    ABNORMAL_TURNING_INTERCEPT(1550, "转弯截距异常。"),
 
-    INVALID_SEGMENT_MAXIMUM_SPEED(1551, "Maximum speed of wayline segment exceeds a reasonable range."),
+    INVALID_SEGMENT_MAXIMUM_SPEED(1551, "航线线段的最大速度超过合理范围。"),
 
-    INVALID_TARGET_SPEED(1552, "Wayline segment target speed exceeds a reasonable range."),
+    INVALID_TARGET_SPEED(1552, "线路段目标速度超过合理范围。"),
 
-    INVALID_YAW_ANGLE(1553, "Waypoint yaw angle exceeds a reasonable range."),
+    INVALID_YAW_ANGLE(1553, "航点偏航角超出合理范围。"),
 
-    BREAKPOINT_INVALID_MISSION_ID(1555, "Input mission_id of resuming from breakpoint is wrong."),
+    BREAKPOINT_INVALID_MISSION_ID(1555, "从断点恢复的输入mission_id错误。"),
 
-    BREAKPOINT_INVALID_PROGRESS_INFORMATION(1556, "Progress information of resuming from breakpoint input error."),
+    BREAKPOINT_INVALID_PROGRESS_INFORMATION(1556, "从断点输入错误恢复的进度信息。"),
 
-    BREAKPOINT_ERROR_MISSION_STATE(1557, "Mission state of resuming from breakpoint is abnormal."),
+    BREAKPOINT_ERROR_MISSION_STATE(1557, "从断点恢复的任务状态异常。"),
 
-    BREAKPOINT_INVALID_INDEX_INFORMATION(1558, "Wapoint index information of resuming from breakpoint input error."),
+    BREAKPOINT_INVALID_INDEX_INFORMATION(1558, "断点恢复的Wapoint索引信息输入错误。"),
 
-    BREAKPOINT_INCORRECT_LATITUDE_AND_LONGITUDE(1559, "Incorrect latitude and longitude information for resuming from breakpoint."),
+    BREAKPOINT_INCORRECT_LATITUDE_AND_LONGITUDE(1559, "用于从断点恢复的纬度和经度信息不正确。"),
 
-    BREAKPOINT_INVALID_YAW(1560, "Yaw input error for waypoints during resuming from breakpoint."),
+    BREAKPOINT_INVALID_YAW(1560, "从断点恢复期间，航路点的偏航输入错误。"),
 
-    BREAKPOINT_INCORRECT_FLAG_SETTING(1561, "Incorrect flag setting for resuming from breakpoint."),
+    BREAKPOINT_INCORRECT_FLAG_SETTING(1561, "从断点恢复的标志设置不正确。"),
 
-    WAYLINE_GENERATION_FAILED(1563, "Wayline generation failed."),
+    WAYLINE_GENERATION_FAILED(1563, "航线生成失败。"),
 
-    WAYLINE_EXECUTION_FAILED(1564, "Wayline execution failed."),
+    WAYLINE_EXECUTION_FAILED(1564, "航线执行失败。"),
 
-    WAYLINE_OBSTACLE_SENSING(1565, "Emergency stop due to wayline obstacle sensing."),
+    WAYLINE_OBSTACLE_SENSING(1565, "线路障碍物感应导致紧急悬停。"),
 
-    UNRECOGNIZED_ACTION_TYPE(1588, "Unrecognized action type."),
+    UNRECOGNIZED_ACTION_TYPE(1588, "无法识别的操作类型。"),
 
-    DUPLICATE_ACTION_ID(1595, "Action ID of same action group can not be the same."),
+    DUPLICATE_ACTION_ID(1595, "同一操作组的操作ID不能相同。"),
 
-    ACTION_ID_NOT_65535(1598, "Action ID value cannot be 65535."),
+    ACTION_ID_NOT_65535(1598, "操作ID值不能为65535。"),
 
-    INVALID_NUMBER_OF_ACTION_GROUPS(1602, "Number of action groups exceeds a reasonable range."),
+    INVALID_NUMBER_OF_ACTION_GROUPS(1602, "操作组的数量超出了合理范围。"),
 
-    ERROR_EFFECTIVE_RANGE(1603, "Error in action group effective range."),
+    ERROR_EFFECTIVE_RANGE(1603, "操作组有效范围错误。"),
 
-    BREAKPOINT_INVALID_ACTION_INDEX(1606, "Action index exceeds a reasonable range during resuming from breakpoint."),
+    BREAKPOINT_INVALID_ACTION_INDEX(1606, "从断点恢复期间，操作索引超出了合理范围。"),
 
-    BREAKPOINT_TRIGGER_RUNNING_ABNORMAL(1608, "Trigger running result of breakpoint information is abnormal."),
+    BREAKPOINT_TRIGGER_RUNNING_ABNORMAL(1608, "断点信息触发运行结果异常。"),
 
-    BREAKPOINT_DUPLICATE_ACTION_GROUP_ID(1609, "Action group ID information can not be duplicated during resume from breakpoint."),
+    BREAKPOINT_DUPLICATE_ACTION_GROUP_ID(1609, "在从断点恢复的过程中，操作组ID信息不能重复。"),
 
-    BREAKPOINT_DUPLICATE_ACTION_GROUP_POSITION(1610, "Action group positions cannot be repeated during resuming from breakpoint."),
+    BREAKPOINT_DUPLICATE_ACTION_GROUP_POSITION(1610, "从断点恢复期间，不能重复操作组位置。"),
 
-    BREAKPOINT_INVALID_ACTION_GROUP_POSITION(1611, "Action group positions exceed a reasonable range during resuming from breakpoint."),
+    BREAKPOINT_INVALID_ACTION_GROUP_POSITION(1611, "在从断点恢复的过程中，操作组位置超出了合理范围。"),
 
-    BREAKPOINT_INVALID_ACTION_ID(1612, "Action ID is not in the breakpoint information during resuming."),
+    BREAKPOINT_INVALID_ACTION_ID(1612, "在恢复过程中，操作ID不在断点信息中。"),
 
-    BREAKPOINT_UNABLE_TO_INTERRUPT(1613, "Cannot modify the action state to interrupt during resuming."),
+    BREAKPOINT_UNABLE_TO_INTERRUPT(1613, "无法将操作状态修改为在恢复过程中中断。"),
 
-    INCORRECT_BREAKPOINT_INFORMATION(1614, "Resume failure due to incorrect breakpoint information."),
+    INCORRECT_BREAKPOINT_INFORMATION(1614, "由于断点信息不正确，恢复失败。"),
 
-    BREAKPOINT_UNRECOGNIZED_ACTION_TYPE(1634, "Unrecognized action type."),
+    BREAKPOINT_UNRECOGNIZED_ACTION_TYPE(1634, "无法识别的操作类型。"),
 
-    BREAKPOINT_UNRECOGNIZED_TRIGGER_TYPE(1649, "Unrecognized trigger type."),
+    BREAKPOINT_UNRECOGNIZED_TRIGGER_TYPE(1649, "无法识别的触发器类型。"),
 
     UNKNOWN_ERROR_1(65534, "Unknown error."),
 

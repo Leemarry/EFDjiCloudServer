@@ -13,17 +13,17 @@ import java.util.Arrays;
  */
 public enum TakeoffStatusEnum {
 
-    TASK_READY("task_ready", "The drone is preparing to take off."),
+    TASK_READY("task_ready", "无人机正准备起飞。"),
 
-    WAYLINE_PROGRESS("wayline_progress", "The drone is taking off."),
+    WAYLINE_PROGRESS("wayline_progress", "无人机正在起飞。"),
 
-    WAYLINE_FAILED("wayline_failed", "The drone failed to take off."),
+    WAYLINE_FAILED("wayline_failed", "无人机未能起飞。"),
 
-    WAYLINE_OK("wayline_ok", "The drone took off successfully."),
+    WAYLINE_OK("wayline_ok", "无人机成功起飞。"),
 
-    WAYLINE_CANCEL("wayline_cancel", "The drone takeoff job has been cancelled."),
+    WAYLINE_CANCEL("wayline_cancel", "无人机起飞作业已被取消。"),
 
-    TASK_FINISH("task_finish", "The drone takeoff job is completed.");
+    TASK_FINISH("task_finish", "无人机起飞工作完成。");
 
     private final String status;
 

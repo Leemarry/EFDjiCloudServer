@@ -15,51 +15,51 @@ public enum RemoteDebugStepKeyEnum {
 
     GET_BID("get_bid", "Get bid"),
 
-    UPGRADING_PREVENT_REBOOT("upgrading_prevent_reboot", "Check if the device is being updated"),
+    UPGRADING_PREVENT_REBOOT("upgrading_prevent_reboot", "检查设备是否正在更新"),
 
-    CHECK_WORK_MODE("check_work_mode", "Check whether to enter remote debugging mode"),
+    CHECK_WORK_MODE("check_work_mode", "检查是否进入远程调试模式"),
 
-    CHECK_TASK_STATE("check_task_state", "Check if the DJI Dock is free"),
+    CHECK_TASK_STATE("check_task_state", "检查DJI 机场是否空闲"),
 
-    LAND_MCU_REBOOT("land_mcu_reboot", "Land MCU reboot"),
+    LAND_MCU_REBOOT("land_mcu_reboot", "Land MCU重启"),
 
-    RAIN_MCU_REBOOT("rain_mcu_reboot", "Weather station MCU reboot"),
+    RAIN_MCU_REBOOT("rain_mcu_reboot", "气象站MCU重启"),
 
-    CORE_MCU_REBOOT("core_mcu_reboot", "Central control MCU reboot"),
+    CORE_MCU_REBOOT("core_mcu_reboot", "中控MCU重启"),
 
-    SDR_REBOOT("sdr_reboot", "SDR reboot"),
+    SDR_REBOOT("sdr_reboot", "SDR重新启动"),
 
-    WRITE_REBOOT_PARAM_FILE("write_reboot_param_file", "Write reboot flag"),
+    WRITE_REBOOT_PARAM_FILE("write_reboot_param_file", "写入重新启动标志"),
 
-    GET_DRONE_POWER_STATE("get_drone_power_state", "Get battery charge state"),
+    GET_DRONE_POWER_STATE("get_drone_power_state", "获取电池充电状态"),
 
-    CLOSE_PUTTER("close_putter", "Close the putter"),
+    CLOSE_PUTTER("close_putter", "关闭推杆"),
 
-    CHECK_WIRED_CONNECT_STATE("check_wired_connect_state", "Get aircraft state"),
+    CHECK_WIRED_CONNECT_STATE("check_wired_connect_state", "获取飞机状态"),
 
     OPEN_DRONE("open_drone", "Open the plane"),
 
-    OPEN_ALARM("open_alarm", "Open sound and light alarm"),
+    OPEN_ALARM("open_alarm", "打开声光报警器"),
 
-    CHECK_SCRAM_STATE("check_scram_state", "Check if the emergency stop switch is pressed"),
+    CHECK_SCRAM_STATE("check_scram_state", "检查紧急停止开关是否按下"),
 
-    OPEN_COVER("open_cover", "Open the hatch"),
+    OPEN_COVER("open_cover", "打开舱门"),
 
-    CHECK_DRONE_SDR_CONNECT_STATE("check_drone_sdr_connect_state", "Establish SDR wireless connection"),
+    CHECK_DRONE_SDR_CONNECT_STATE("check_drone_sdr_connect_state", "建立SDR无线连接"),
 
-    TURN_ON_DRONE("turn_on_drone", "Turn the plane on"),
+    TURN_ON_DRONE("turn_on_drone", "打开飞机"),
 
     DRONE_PADDLE_FORWARD("drone_paddle_forward", "Turn on forward paddle"),
 
-    CLOSE_COVER("close_cover", "Close the hatch"),
+    CLOSE_COVER("close_cover", "关闭舱门"),
 
     DRONE_PADDLE_REVERSE("drone_paddle_reverse", "Turn on reverse paddle"),
 
-    DRONE_PADDLE_STOP("drone_paddle_stop", "Stop Paddle Rotation"),
+    DRONE_PADDLE_STOP("drone_paddle_stop", "停止桨叶旋转"),
 
     FREE_PUTTER("free_putter", "Free Putter"),
 
-    STOP_CHARGE("stop_charge", "Stop charging");
+    STOP_CHARGE("stop_charge", "停止充电");
 
     private final String stepKey;
 
@@ -82,7 +82,7 @@ public enum RemoteDebugStepKeyEnum {
     @JsonCreator
     public static RemoteDebugStepKeyEnum find(String stepKey) {
         return Arrays.stream(values()).filter(stepKeyEnum -> stepKeyEnum.stepKey.equals(stepKey)).findAny()
-            .orElseThrow(() -> new CloudSDKException(RemoteDebugStepKeyEnum.class,stepKey));
+                .orElseThrow(() -> new CloudSDKException(RemoteDebugStepKeyEnum.class, stepKey));
     }
 
 }

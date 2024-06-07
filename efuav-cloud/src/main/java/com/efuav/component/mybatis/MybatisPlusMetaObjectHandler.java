@@ -8,13 +8,13 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 
 /**
- * Automatic filling for set values
+ * 自动填充设定值
  */
 @Component
 public class MybatisPlusMetaObjectHandler implements MetaObjectHandler {
 
     /**
-     * Automatic filling when inserting into the database.
+     * 插入数据库时自动填充。
      * @param metaObject
      */
     @Override
@@ -26,7 +26,7 @@ public class MybatisPlusMetaObjectHandler implements MetaObjectHandler {
     }
 
     /**
-     * Automatic filling when updating the data.
+     * 更新数据时自动填充。
      * @param metaObject
      */
     @Override

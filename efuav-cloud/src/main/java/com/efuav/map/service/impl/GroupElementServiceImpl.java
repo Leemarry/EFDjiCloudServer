@@ -61,7 +61,7 @@ public class GroupElementServiceImpl implements IGroupElementService {
         if (!saveElement) {
             return false;
         }
-        // save coordinate
+        // 保存坐标
         return elementCoordinateService.saveCoordinate(
                 elementCreate.getResource().getContent().getGeometry().convertToList(), elementCreate.getId());
     }
@@ -80,9 +80,9 @@ public class GroupElementServiceImpl implements IGroupElementService {
         if (!update) {
             return false;
         }
-        // delete all coordinates according to element id.
+        // 根据元素id删除所有坐标。
         boolean delCoordinate = elementCoordinateService.deleteCoordinateByElementId(elementId);
-        // save coordinate
+        // 保存坐标
         boolean saveCoordinate = elementCoordinateService.saveCoordinate(
                 elementUpdate.getContent().getGeometry().convertToList(), elementId);
         return delCoordinate & saveCoordinate;
@@ -128,7 +128,7 @@ public class GroupElementServiceImpl implements IGroupElementService {
     }
 
     /**
-     * Adds the received coordinate data to the element object.
+     * 将接收到的坐标数据添加到元素对象中。
      * @param element
      * @param elementEntity
      */
@@ -149,7 +149,7 @@ public class GroupElementServiceImpl implements IGroupElementService {
     }
 
     /**
-     * Query an element based on the element id。
+     * 根据元素id查询元素
      * @param elementId
      * @return
      */
@@ -160,7 +160,7 @@ public class GroupElementServiceImpl implements IGroupElementService {
     }
 
     /**
-     * Convert database entity objects into element data transfer object.
+     * 将数据库实体对象转换为元素数据传输对象。
      * @param entity
      * @return
      */
@@ -180,7 +180,7 @@ public class GroupElementServiceImpl implements IGroupElementService {
     }
 
     /**
-     * Convert the received element object into a database entity object.
+     * 将接收到的元素对象转换为数据库实体对象。
      * @param elementCreate
      * @return
      */
@@ -197,7 +197,7 @@ public class GroupElementServiceImpl implements IGroupElementService {
     }
 
     /**
-     * Add the content that needs to be updated to the entity object to be updated.
+     * 将需要更新的内容添加到要更新的实体对象中。
      * @param elementUpdate
      * @param groupElement
      */

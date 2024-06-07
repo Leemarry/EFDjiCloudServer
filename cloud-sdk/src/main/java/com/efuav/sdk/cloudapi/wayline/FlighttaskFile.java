@@ -10,13 +10,13 @@ import javax.validation.constraints.NotNull;
 public class FlighttaskFile {
 
     /**
-     * File URL
+     * 文件URL
      */
     @NotNull
     private String url;
 
     /**
-     * File signature
+     * 文件签名
      */
     @NotNull
     private String fingerprint;

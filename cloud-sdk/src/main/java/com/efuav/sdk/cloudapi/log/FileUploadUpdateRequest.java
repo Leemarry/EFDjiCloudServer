@@ -14,7 +14,7 @@ import java.util.List;
 public class FileUploadUpdateRequest extends BaseModel {
 
     /**
-     * Filter list of file
+     * 文件的筛选器列表
      **/
     @NotNull
     @Size(min = 1, max = 2)

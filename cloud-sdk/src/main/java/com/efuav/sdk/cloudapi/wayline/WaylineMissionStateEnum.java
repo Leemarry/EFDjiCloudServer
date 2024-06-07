@@ -13,25 +13,25 @@ import java.util.Arrays;
  */
 public enum WaylineMissionStateEnum {
 
-    DISCONNECT(0, "Disconnect"),
+    DISCONNECT(0, "断开"),
 
-    NOT_SUPPORTED_WAYPOINT(1, "Do not support this waypoint"),
+    NOT_SUPPORTED_WAYPOINT(1, "不支持此航路点"),
 
-    WAYLINE_PREPARING(2, "Wayline is ready. File can be uploaded and uploaded file can be executed."),
+    WAYLINE_PREPARING(2, "航线准备就绪。可以上传文件，也可以执行上传的文件。"),
 
-    WAYLINE_UPLOADING(3, "Wayline file is uploading"),
+    WAYLINE_UPLOADING(3, "正在上传航线文件"),
 
-    DRONE_PREPARING(4, "Trigger start command. Trgger aircraft reading wayline. Not start. Under preparation."),
+    DRONE_PREPARING(4, "触发器启动命令。Trgger飞机读取航线。不启动。正在准备中。"),
 
-    ARRIVE_FIRST_WAYPOINT(5, "Enter wayline and arrive first waypoint"),
+    ARRIVE_FIRST_WAYPOINT(5, "输入航线并到达第一个航路点"),
 
-    WAYLINE_EXECUTING(6, "Execute wayline"),
+    WAYLINE_EXECUTING(6, "执行航线"),
 
-    WAYLINE_BROKEN(7, "Wayline is broken. Trigger reason: 1. User pauses the wayline. 2. Flight control is abnormal."),
+    WAYLINE_BROKEN(7, "航线断了。触发原因：1。用户暂停航线。2.飞行控制异常。"),
 
-    WAYLINE_RECOVER(8, "Wayline recover"),
+    WAYLINE_RECOVER(8, "航线恢复"),
 
-    WAYLINE_END(9, "Wayline stop"),
+    WAYLINE_END(9, "航线停止"),
 
     ;
 

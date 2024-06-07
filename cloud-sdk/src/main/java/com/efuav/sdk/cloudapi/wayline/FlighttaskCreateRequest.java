@@ -14,26 +14,27 @@ import javax.validation.constraints.Pattern;
 public class FlighttaskCreateRequest extends BaseModel {
 
     /**
-     * Task ID
+     * 任务ID
      */
     @NotNull
     private String flightId;
 
     /**
-     * Task type
+     * 任务类型
      */
     @NotNull
     @Pattern(regexp = "^wayline$")
     private String type = "wayline";
 
     /**
-     * Wayline flighttaskFile object
+     * Wayline flighttaskFile对象
      */
     @NotNull
     @Valid
     private FlighttaskCreateFile file;
 
-    public FlighttaskCreateRequest() {}
+    public FlighttaskCreateRequest() {
+    }
 
     @Override
     public String toString() {

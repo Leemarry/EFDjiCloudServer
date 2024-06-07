@@ -73,7 +73,7 @@ public class ControlServiceImpl implements IControlService {
                 mapper.convertValue(Objects.nonNull(param) ? param : new Object(), controlMethodEnum.getClazz())
                 : new RemoteDebugHandler();
         if (!handler.canPublish(sn)) {
-            throw new RuntimeException("The current state of the dock does not support this function.");
+            throw new RuntimeException("机场的当前状态不支持此功能。");
         }
         return handler;
     }
@@ -85,7 +85,7 @@ public class ControlServiceImpl implements IControlService {
 
         boolean isExist = deviceRedisService.checkDeviceOnline(sn);
         if (!isExist) {
-            return HttpResultResponse.error("The dock is offline.");
+            return HttpResultResponse.error("机场处于离线状态。");
         }
         TopicServicesResponse response;
         switch (controlMethodEnum) {
@@ -110,12 +110,12 @@ public class ControlServiceImpl implements IControlService {
         // TODO 设备固件版本不兼容情况
         Optional<DeviceDTO> dockOpt = deviceRedisService.getDeviceOnline(dockSn);
         if (dockOpt.isEmpty()) {
-            throw new RuntimeException("The dock is offline, please restart the dock.");
+            throw new RuntimeException("机场处于离线状态，请重新启动机场。");
         }
 
         DroneModeCodeEnum deviceMode = deviceService.getDeviceMode(dockOpt.get().getChildDeviceSn());
         if (DroneModeCodeEnum.MANUAL != deviceMode) {
-            throw new RuntimeException("The current state of the drone does not support this function, please try again later.");
+            throw new RuntimeException("无人机的当前状态不支持此功能，请稍后再试。");
         }
 
         HttpResultResponse result = seizeAuthority(dockSn, DroneAuthorityEnum.FLIGHT, null);
@@ -134,7 +134,7 @@ public class ControlServiceImpl implements IControlService {
         ServicesReplyData reply = response.getData();
         return reply.getResult().isSuccess() ?
                 HttpResultResponse.success()
-                : HttpResultResponse.error("Flying to the target point failed. " + reply.getResult());
+                : HttpResultResponse.error("飞往目标点失败。 " + reply.getResult());
     }
 
     @Override
@@ -144,13 +144,13 @@ public class ControlServiceImpl implements IControlService {
 
         return reply.getResult().isSuccess() ?
                 HttpResultResponse.success()
-                : HttpResultResponse.error("The drone flying to the target point failed to stop. " + reply.getResult());
+                : HttpResultResponse.error("飞向目标点的无人机没有停下来。 " + reply.getResult());
     }
 
     private void checkTakeoffCondition(String dockSn) {
         Optional<DeviceDTO> dockOpt = deviceRedisService.getDeviceOnline(dockSn);
         if (dockOpt.isEmpty() || DockModeCodeEnum.IDLE != deviceService.getDockMode(dockSn)) {
-            throw new RuntimeException("The current state does not support takeoff.");
+            throw new RuntimeException("当前状态不支持起飞。");
         }
 
         HttpResultResponse result = seizeAuthority(dockSn, DroneAuthorityEnum.FLIGHT, null);
@@ -170,7 +170,7 @@ public class ControlServiceImpl implements IControlService {
         ServicesReplyData reply = response.getData();
         return reply.getResult().isSuccess() ?
                 HttpResultResponse.success()
-                : HttpResultResponse.error("The drone failed to take off. " + reply.getResult());
+                : HttpResultResponse.error("无人机未能起飞。 " + reply.getResult());
     }
 
     @Override
@@ -203,7 +203,7 @@ public class ControlServiceImpl implements IControlService {
     private Boolean checkPayloadAuthority(String sn, String payloadIndex) {
         Optional<DeviceDTO> dockOpt = deviceRedisService.getDeviceOnline(sn);
         if (dockOpt.isEmpty()) {
-            throw new RuntimeException("The dock is offline, please restart the dock.");
+            throw new RuntimeException("机场处于离线状态，请重新启动机场。");
         }
         return devicePayloadService.checkAuthorityPayload(dockOpt.get().getChildDeviceSn(), payloadIndex);
     }

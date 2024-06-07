@@ -26,7 +26,7 @@ public class AuthInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String uri = request.getRequestURI();
-        log.debug("request uri: {}, IP: {}", uri, request.getRemoteAddr());
+        log.debug("请求URI: {}, IP: {}", uri, request.getRemoteAddr());
         // options方法是直接传递的。
         if (HttpMethod.OPTIONS.matches(request.getMethod())) {
             response.setStatus(HttpStatus.OK.value());

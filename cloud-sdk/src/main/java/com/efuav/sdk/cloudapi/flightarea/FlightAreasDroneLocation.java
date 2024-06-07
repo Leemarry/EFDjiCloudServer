@@ -10,7 +10,7 @@ import java.util.List;
 public class FlightAreasDroneLocation {
 
     /**
-     * Flight area distance to aircraft
+     * 飞行区域到飞机的距离
      */
     private List<DroneLocation> droneLocations;
 

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class GlobalExceptionHandler {
 
     /**
-     * Please do not return directly like this, there is a risk.
+     * 请不要像这样直接返回，这是有风险的。
      * @param e
      * @return
      */
@@ -30,7 +30,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(NullPointerException.class)
     public HttpResultResponse nullPointerExceptionHandler(NullPointerException e) {
         e.printStackTrace();
-        return HttpResultResponse.error("A null object appeared.");
+        return HttpResultResponse.error("出现一个空对象。");
     }
 
     @ExceptionHandler({MethodArgumentNotValidException.class, BindException.class})

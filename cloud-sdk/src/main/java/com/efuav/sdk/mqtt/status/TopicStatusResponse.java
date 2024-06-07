@@ -3,10 +3,11 @@ package com.efuav.sdk.mqtt.status;
 import com.efuav.sdk.mqtt.CommonTopicResponse;
 
 /**
- * Unified Topic request format
+ * 统一主题请求格式
+ *
  * @author sean.zhou
- * @date 2021/11/15
  * @version 0.1
+ * @date 2021/11/15
  */
 public class TopicStatusResponse<T> extends CommonTopicResponse<T> {
 

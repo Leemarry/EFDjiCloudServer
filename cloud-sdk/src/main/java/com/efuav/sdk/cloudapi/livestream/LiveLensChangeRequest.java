@@ -16,8 +16,8 @@ public class LiveLensChangeRequest extends BaseModel {
     private LensChangeVideoTypeEnum videoType;
 
     /**
-     * The format is #{uav_sn}/#{camera_id}/#{video_index},
-     * drone serial number/payload and mounted location enumeration value/payload lens numbering
+     * 格式为#{uav_sn}/#{camera_id}/#{video_index}，
+     * 无人机序列号/有效载荷和安装位置枚举值/有效载荷镜头编号
      */
     @NotNull
     private VideoId videoId;

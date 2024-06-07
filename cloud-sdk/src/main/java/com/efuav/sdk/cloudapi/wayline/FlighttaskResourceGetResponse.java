@@ -13,13 +13,14 @@ import javax.validation.constraints.NotNull;
 public class FlighttaskResourceGetResponse extends BaseModel {
 
     /**
-     * Wayline file object
+     * 路线文件对象
      */
     @NotNull
     @Valid
     private FlighttaskFile file;
 
-    public FlighttaskResourceGetResponse() {}
+    public FlighttaskResourceGetResponse() {
+    }
 
     @Override
     public String toString() {

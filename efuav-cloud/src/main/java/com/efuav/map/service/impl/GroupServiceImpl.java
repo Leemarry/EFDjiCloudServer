@@ -56,7 +56,7 @@ public class GroupServiceImpl implements IGroupService {
     }
 
     /**
-     * Convert database entity objects into group data transfer object.
+     * 将数据库实体对象转换为组数据传输对象。
      * @param entity
      * @return
      */

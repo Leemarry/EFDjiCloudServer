@@ -19,10 +19,11 @@ import javax.annotation.Resource;
 import java.util.UUID;
 
 /**
- * Client configuration for inbound messages.
+ * 入站消息的客户端配置。
+ *
  * @author sean.zhou
- * @date 2021/11/10
  * @version 0.1
+ * @date 2021/11/10
  */
 @Configuration
 @IntegrationComponentScan
@@ -41,6 +42,7 @@ public class MqttConfiguration {
 
     /**
      * 入站消息通道的客户端。
+     *
      * @return
      */
     @Bean
@@ -58,6 +60,7 @@ public class MqttConfiguration {
 
     /**
      * 出站消息通道的客户端。
+     *
      * @return
      */
     @Bean
@@ -76,18 +79,18 @@ public class MqttConfiguration {
     }
 
 
-
     /**
      * 定义一个默认通道来处理无效的消息。
+     *
      * @return
      */
     @Bean
     @ServiceActivator(inputChannel = ChannelName.DEFAULT)
     public MessageHandler defaultInboundHandler() {
         return message -> {
-            log.info("The default channel does not handle messages." +
-                    "\nTopic: " + message.getHeaders().get(MqttHeaders.RECEIVED_TOPIC) +
-                    "\nPayload: " + message.getPayload() + "\n");
+            log.info("默认通道不处理消息。" +
+                    "\n主题: " + message.getHeaders().get(MqttHeaders.RECEIVED_TOPIC) +
+                    "\n有效载荷: " + message.getPayload() + "\n");
         };
     }
 }

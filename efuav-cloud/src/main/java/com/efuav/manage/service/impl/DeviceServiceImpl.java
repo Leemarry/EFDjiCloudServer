@@ -55,7 +55,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
- *
  * @author sean.zhou
  * @version 0.1
  * @date 2021/11/10
@@ -127,29 +126,29 @@ public class DeviceServiceImpl implements IDeviceService {
 
     @Override
     public void subDeviceOffline(String deviceSn) {
-        // 如果缓存中不存在有关该设备的信息，则认为无人机处于脱机状态。
+        // 如果缓存中不存在有关该设备的信息，则认为无人机处于离线状态。
         Optional<DeviceDTO> deviceOpt = deviceRedisService.getDeviceOnline(deviceSn);
         if (deviceOpt.isEmpty()) {
-            log.debug("The drone is already offline.");
+            log.debug("无人机已经离线。");
             return;
         }
         try {
             gatewayOnlineSubscribeTopic(SDKManager.getDeviceSDK(String.valueOf(deviceOpt.get().getParentSn())));
         } catch (CloudSDKException e) {
-            log.debug("The gateway is already offline.", e);
+            log.debug("网关已离线。", e);
         }
         deviceRedisService.subDeviceOffline(deviceSn);
         // 在当前工作空间中发布最新的设备拓扑信息。
         pushDeviceOfflineTopo(deviceOpt.get().getWorkspaceId(), deviceSn);
-        log.debug("{} offline.", deviceSn);
+        log.debug("{} 离线的", deviceSn);
     }
 
     @Override
     public void gatewayOffline(String gatewaySn) {
-        // 如果缓存中不存在有关该设备的信息，则认为无人机处于脱机状态。
+        // 如果缓存中不存在有关该设备的信息，则认为无人机处于离线状态。
         Optional<DeviceDTO> deviceOpt = deviceRedisService.getDeviceOnline(gatewaySn);
         if (deviceOpt.isEmpty()) {
-            log.debug("The gateway is already offline.");
+            log.debug("网关已离线。");
             return;
         }
 
@@ -158,7 +157,7 @@ public class DeviceServiceImpl implements IDeviceService {
         offlineUnsubscribeTopic(SDKManager.getDeviceSDK(gatewaySn));
         // 在当前工作空间中发布最新的设备拓扑信息。
         pushDeviceOfflineTopo(deviceOpt.get().getWorkspaceId(), gatewaySn);
-        log.debug("{} offline.", gatewaySn);
+        log.debug("{} 离线的。", gatewaySn);
     }
 
     @Override
@@ -197,25 +196,25 @@ public class DeviceServiceImpl implements IDeviceService {
     @Override
     public List<DeviceDTO> getDevicesByParams(DeviceQueryParam param) {
         return mapper.selectList(
-                new LambdaQueryWrapper<DeviceEntity>()
-                        .eq(StringUtils.hasText(param.getDeviceSn()),
-                                DeviceEntity::getDeviceSn, param.getDeviceSn())
-                        .eq(param.getDeviceType() != null,
-                                DeviceEntity::getDeviceType, param.getDeviceType())
-                        .eq(param.getSubType() != null,
-                                DeviceEntity::getSubType, param.getSubType())
-                        .eq(StringUtils.hasText(param.getChildSn()),
-                                DeviceEntity::getChildSn, param.getChildSn())
-                        .and(!CollectionUtils.isEmpty(param.getDomains()), wrapper -> {
-                            for (Integer domain : param.getDomains()) {
-                                wrapper.eq(DeviceEntity::getDomain, domain).or();
-                            }
-                        })
-                        .eq(StringUtils.hasText(param.getWorkspaceId()),
-                                DeviceEntity::getWorkspaceId, param.getWorkspaceId())
-                        .eq(param.getBoundStatus() != null, DeviceEntity::getBoundStatus, param.getBoundStatus())
-                        .orderBy(param.isOrderBy(),
-                                param.isAsc(), DeviceEntity::getId))
+                        new LambdaQueryWrapper<DeviceEntity>()
+                                .eq(StringUtils.hasText(param.getDeviceSn()),
+                                        DeviceEntity::getDeviceSn, param.getDeviceSn())
+                                .eq(param.getDeviceType() != null,
+                                        DeviceEntity::getDeviceType, param.getDeviceType())
+                                .eq(param.getSubType() != null,
+                                        DeviceEntity::getSubType, param.getSubType())
+                                .eq(StringUtils.hasText(param.getChildSn()),
+                                        DeviceEntity::getChildSn, param.getChildSn())
+                                .and(!CollectionUtils.isEmpty(param.getDomains()), wrapper -> {
+                                    for (Integer domain : param.getDomains()) {
+                                        wrapper.eq(DeviceEntity::getDomain, domain).or();
+                                    }
+                                })
+                                .eq(StringUtils.hasText(param.getWorkspaceId()),
+                                        DeviceEntity::getWorkspaceId, param.getWorkspaceId())
+                                .eq(param.getBoundStatus() != null, DeviceEntity::getBoundStatus, param.getBoundStatus())
+                                .orderBy(param.isOrderBy(),
+                                        param.isAsc(), DeviceEntity::getId))
                 .stream()
                 .map(this::deviceEntityConvertToDTO)
                 .collect(Collectors.toList());
@@ -261,9 +260,9 @@ public class DeviceServiceImpl implements IDeviceService {
             return Optional.empty();
         }
         List<TopologyDeviceDTO> topologyDeviceList = this.getDevicesByParams(
-                DeviceQueryParam.builder()
-                        .deviceSn(sn)
-                        .build())
+                        DeviceQueryParam.builder()
+                                .deviceSn(sn)
+                                .build())
                 .stream()
                 .map(this::deviceConvertToTopologyDTO)
                 .collect(Collectors.toList());
@@ -279,21 +278,21 @@ public class DeviceServiceImpl implements IDeviceService {
             return null;
         }
         return new TopologyDeviceDTO()
-                    .setSn(device.getDeviceSn())
-                    .setDeviceCallsign(device.getNickname())
-                    .setDeviceModel(new TopologyDeviceModel()
-                            .setDomain(device.getDomain())
-                            .setSubType(device.getSubType())
-                            .setType(device.getType())
-                            .setDeviceModelKey(DeviceEnum.find(device.getDomain(), device.getType(), device.getSubType())))
-                    .setIconUrls(device.getIconUrl())
-                    .setOnlineStatus(deviceRedisService.checkDeviceOnline(device.getDeviceSn()))
-                    .setUserCallsign(device.getNickname())
-                    .setBoundStatus(device.getBoundStatus())
-                    .setModel(device.getDeviceName())
-                    .setUserId(device.getUserId())
-                    .setDomain(device.getDomain())
-                    .setGatewaySn(device.getParentSn());
+                .setSn(device.getDeviceSn())
+                .setDeviceCallsign(device.getNickname())
+                .setDeviceModel(new TopologyDeviceModel()
+                        .setDomain(device.getDomain())
+                        .setSubType(device.getSubType())
+                        .setType(device.getType())
+                        .setDeviceModelKey(DeviceEnum.find(device.getDomain(), device.getType(), device.getSubType())))
+                .setIconUrls(device.getIconUrl())
+                .setOnlineStatus(deviceRedisService.checkDeviceOnline(device.getDeviceSn()))
+                .setUserCallsign(device.getNickname())
+                .setBoundStatus(device.getBoundStatus())
+                .setModel(device.getDeviceName())
+                .setUserId(device.getUserId())
+                .setDomain(device.getDomain())
+                .setGatewaySn(device.getParentSn());
     }
 
     @Override
@@ -327,9 +326,11 @@ public class DeviceServiceImpl implements IDeviceService {
 
     /**
      * 保存设备信息，如果设备已经存在，则直接更新信息。
+     *
      * @param device
      * @return
      */
+    @Override
     public Boolean saveOrUpdateDevice(DeviceDTO device) {
         int count = mapper.selectCount(
                 new LambdaQueryWrapper<DeviceEntity>()
@@ -339,9 +340,11 @@ public class DeviceServiceImpl implements IDeviceService {
 
     /**
      * 保存设备信息。
+     *
      * @param device
      * @return
      */
+    @Override
     public Integer saveDevice(DeviceDTO device) {
         DeviceEntity entity = deviceDTO2Entity(device);
         return mapper.insert(entity) > 0 ? entity.getId() : -1;
@@ -349,6 +352,7 @@ public class DeviceServiceImpl implements IDeviceService {
 
     /**
      * 将数据库实体对象转换为设备数据传输对象。
+     *
      * @param entity
      * @return
      */
@@ -386,7 +390,7 @@ public class DeviceServiceImpl implements IDeviceService {
                     .firmwareStatus(DeviceFirmwareStatusEnum.NOT_UPGRADE)
                     .thingVersion(entity.getVersion()).build();
         } catch (CloudSDKException e) {
-            log.error(e.getLocalizedMessage() + "Entity: {}", entity);
+            log.error(e.getLocalizedMessage() + "实体: {}", entity);
         }
         DeviceDTO deviceDTO = builder.build();
         addFirmwareStatus(deviceDTO, entity);
@@ -402,9 +406,9 @@ public class DeviceServiceImpl implements IDeviceService {
         if (progressOpt.isPresent()) {
             deviceDTO.setFirmwareStatus(DeviceFirmwareStatusEnum.UPGRADING);
             deviceDTO.setFirmwareProgress(progressOpt.map(EventsReceiver::getOutput)
-                            .map(OtaProgress::getProgress)
-                            .map(OtaProgressData::getPercent)
-                            .orElse(0));
+                    .map(OtaProgress::getProgress)
+                    .map(OtaProgressData::getPercent)
+                    .orElse(0));
             return;
         }
 
@@ -530,7 +534,7 @@ public class DeviceServiceImpl implements IDeviceService {
 
         Optional<DeviceDTO> deviceOpt = deviceRedisService.getDeviceOnline(deviceOtaFirmwares.get(0).getSn());
         if (deviceOpt.isEmpty()) {
-            throw new RuntimeException("Device is offline.");
+            throw new RuntimeException("设备处于离线状态。");
         }
         DeviceDTO device = deviceOpt.get();
         String gatewaySn = DeviceDomainEnum.DOCK == device.getDomain() ? device.getDeviceSn() : device.getParentSn();
@@ -553,21 +557,22 @@ public class DeviceServiceImpl implements IDeviceService {
 
     /**
      * 确定是否可以升级固件。
+     *
      * @param dockSn
      */
     private void checkOtaConditions(String dockSn) {
         Optional<OsdDock> deviceOpt = deviceRedisService.getDeviceOsd(dockSn, OsdDock.class);
         if (deviceOpt.isEmpty()) {
-            throw new RuntimeException("Dock is offline.");
+            throw new RuntimeException("机场处于离线状态。");
         }
         boolean emergencyStopState = deviceOpt.get().getEmergencyStopState();
         if (emergencyStopState) {
-            throw new RuntimeException("The emergency stop button of the dock is pressed and can't be upgraded.");
+            throw new RuntimeException("机场的紧急停止按钮被按下，无法升级。");
         }
 
         DockModeCodeEnum dockMode = this.getDockMode(dockSn);
         if (DockModeCodeEnum.IDLE != dockMode) {
-            throw new RuntimeException("The current status of the dock can't be upgraded.");
+            throw new RuntimeException("机场的当前状态无法升级。");
         }
     }
 
@@ -578,15 +583,15 @@ public class DeviceServiceImpl implements IDeviceService {
 
         Optional<DeviceDTO> dockOpt = deviceRedisService.getDeviceOnline(dockSn);
         if (dockOpt.isEmpty()) {
-            throw new RuntimeException("Dock is offline.");
+            throw new RuntimeException("机场处于离线状态。");
         }
         String childSn = dockOpt.get().getChildDeviceSn();
         Optional<OsdDockDrone> osdOpt = deviceRedisService.getDeviceOsd(childSn, OsdDockDrone.class);
         if (osdOpt.isEmpty()) {
-            throw new RuntimeException("Device is offline.");
+            throw new RuntimeException("设备处于离线状态。");
         }
 
-        // Make sure the data is valid.
+        // 请确保数据有效。
         BasicDeviceProperty basicDeviceProperty = objectMapper.convertValue(param.get(property), propertyEnum.getClazz());
         boolean valid = basicDeviceProperty.valid();
         if (!valid) {
@@ -624,9 +629,9 @@ public class DeviceServiceImpl implements IDeviceService {
     @Override
     public Boolean checkAuthorityFlight(String gatewaySn) {
         return deviceRedisService.getDeviceOnline(gatewaySn).flatMap(gateway ->
-                Optional.of((DeviceDomainEnum.DOCK == gateway.getDomain()
-                        || DeviceDomainEnum.REMOTER_CONTROL == gateway.getDomain())
-                    && ControlSourceEnum.A == gateway.getControlSource()))
+                        Optional.of((DeviceDomainEnum.DOCK == gateway.getDomain()
+                                || DeviceDomainEnum.REMOTER_CONTROL == gateway.getDomain())
+                                && ControlSourceEnum.A == gateway.getControlSource()))
                 .orElse(true);
     }
 
@@ -648,7 +653,27 @@ public class DeviceServiceImpl implements IDeviceService {
     }
 
     /**
+     * 获取所有绑定的设备信息
+     *
+     * @return
+     */
+    @Override
+    public List<DeviceDTO> getDevices() {
+        List<DeviceDTO> devicesList = this.getDevicesByParams(
+                DeviceQueryParam.builder()
+                        .domains(List.of(DeviceDomainEnum.REMOTER_CONTROL.getDomain(), DeviceDomainEnum.DOCK.getDomain()))
+                        .build());
+
+        devicesList.stream()
+                .filter(gateway -> DeviceDomainEnum.DOCK == gateway.getDomain() ||
+                        deviceRedisService.checkDeviceOnline(gateway.getDeviceSn()))
+                .forEach(this::spliceDeviceTopo);
+        return devicesList;
+    }
+
+    /**
      * 将设备数据传输对象转换为数据库实体对象。
+     *
      * @param dto
      * @return
      */

@@ -1,18 +1,18 @@
 package com.efuav.wayline.controller;
 
 import com.efuav.common.model.CustomClaim;
+import com.efuav.component.oss.service.impl.MinIOServiceImpl;
 import com.efuav.wayline.model.dto.WaylineFileDTO;
+import com.efuav.wayline.model.entity.template.WaylineEntity;
 import com.efuav.wayline.service.IWaylineFileService;
 import com.efuav.sdk.cloudapi.device.DeviceEnum;
 import com.efuav.sdk.cloudapi.wayline.*;
 import com.efuav.sdk.cloudapi.wayline.api.IHttpWaylineService;
 import com.efuav.sdk.common.HttpResultResponse;
 import com.efuav.sdk.common.PaginationData;
+import com.efuav.wayline.util.WaylineUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,11 +20,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static com.efuav.component.AuthInterceptor.TOKEN_CLAIM;
@@ -35,10 +34,14 @@ import static com.efuav.component.AuthInterceptor.TOKEN_CLAIM;
  * @date 2021/12/22
  */
 @RestController
+@RequestMapping("${url.manage.prefix}${url.manage.version}/workspaces")
 public class WaylineFileController implements IHttpWaylineService {
 
     @Autowired
     private IWaylineFileService waylineFileService;
+
+    @Autowired
+    private MinIOServiceImpl minIOService;
 
     /**
      * 根据路线id删除工作区中的航线文件。
@@ -47,11 +50,11 @@ public class WaylineFileController implements IHttpWaylineService {
      * @param waylineId
      * @return
      */
-    @DeleteMapping("${url.wayline.prefix}${url.wayline.version}/workspaces/{workspace_id}/waylines/{wayline_id}")
+    @DeleteMapping("/{workspace_id}/waylines/{wayline_id}")
     public HttpResultResponse deleteWayline(@PathVariable(name = "workspace_id") String workspaceId,
                                             @PathVariable(name = "wayline_id") String waylineId) {
         boolean isDel = waylineFileService.deleteByWaylineId(workspaceId, waylineId);
-        return isDel ? HttpResultResponse.success() : HttpResultResponse.error("Failed to delete wayline.");
+        return isDel ? HttpResultResponse.success() : HttpResultResponse.error("未能删除航线。");
     }
 
     /**
@@ -60,10 +63,10 @@ public class WaylineFileController implements IHttpWaylineService {
      * @param file
      * @return
      */
-    @PostMapping("${url.wayline.prefix}${url.wayline.version}/workspaces/{workspace_id}/waylines/file/upload")
+    @PostMapping("/{workspace_id}/waylines/file/upload")
     public HttpResultResponse importKmzFile(HttpServletRequest request, MultipartFile file) {
         if (Objects.isNull(file)) {
-            return HttpResultResponse.error("No file received.");
+            return HttpResultResponse.error("未收到任何文件。");
         }
         CustomClaim customClaim = (CustomClaim) request.getAttribute(TOKEN_CLAIM);
         String workspaceId = customClaim.getWorkspaceId();
@@ -71,6 +74,39 @@ public class WaylineFileController implements IHttpWaylineService {
         waylineFileService.importKmzFile(file, workspaceId, creator);
         return HttpResultResponse.success();
     }
+
+    /**
+     * 新增航线任务并保存至MINIO服务器。
+     *
+     * @param waylineEntity 航线实体
+     * @return 成功 失败
+     */
+    @ResponseBody
+    @PostMapping("/{workspace_id}/waylines/file/addWayLine")
+    public HttpResultResponse addWayLine(@RequestBody WaylineEntity waylineEntity,
+                                         @PathVariable(name = "workspace_id") String workspaceId) throws FileNotFoundException {
+//        File file = new File("c://");
+//        FileInputStream inputStream = new FileInputStream(file);
+//        minIOService.createClient();
+//        minIOService.putObject("efuav", workspaceId, inputStream);
+        String path = WaylineUtil.generateKmz(waylineEntity);
+        if (!Objects.equals(path, "")) {
+            File file = new File(path);
+            try (FileInputStream inputStream = new FileInputStream(file)) {
+                minIOService.createClient();
+                minIOService.putObject("efuav", workspaceId, inputStream);
+                //保存航线信息到数据库
+//                waylineFileService
+                return HttpResultResponse.success();
+            } catch (IOException e) {
+                e.printStackTrace();
+                return HttpResultResponse.error();
+            }
+        } else {
+            return HttpResultResponse.error();
+        }
+    }
+
 
     /**
      * 根据查询条件查询航线文件的基础数据。

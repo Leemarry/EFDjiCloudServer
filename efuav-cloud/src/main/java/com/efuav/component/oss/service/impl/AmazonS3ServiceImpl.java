@@ -75,6 +75,7 @@ public class AmazonS3ServiceImpl implements IOssService {
         return true;
     }
 
+    @Override
     public InputStream getObject(String bucket, String objectKey) {
         return client.getObject(bucket, objectKey).getObjectContent().getDelegateStream();
     }
@@ -82,12 +83,13 @@ public class AmazonS3ServiceImpl implements IOssService {
     @Override
     public void putObject(String bucket, String objectKey, InputStream input) {
         if (client.doesObjectExist(bucket, objectKey)) {
-            throw new RuntimeException("The filename already exists.");
+            throw new RuntimeException("文件名已存在。");
         }
         PutObjectResult objectResult = client.putObject(new PutObjectRequest(bucket, objectKey, input, new ObjectMetadata()));
-        log.info("Upload FlighttaskCreateFile: {}", objectResult.toString());
+        log.info("上传FlighttaskCreateFile： {}", objectResult.toString());
     }
 
+    @Override
     public void createClient() {
         if (Objects.nonNull(this.client)) {
             return;

@@ -40,7 +40,7 @@ public class MqttPropertyConfiguration {
      */
     static MqttClientOptions getBasicClientOptions() {
         if (!mqtt.containsKey(MqttUseEnum.BASIC)) {
-            throw new Error("Please configure the basic mqtt connection parameters first, otherwise application cannot be started.");
+            throw new Error("请先配置基本的MQTT连接参数，否则应用程序将无法启动。");
         }
         return mqtt.get(MqttUseEnum.BASIC);
     }
@@ -81,7 +81,7 @@ public class MqttPropertyConfiguration {
      */
     public static DrcModeMqttBroker getMqttBrokerWithDrc(String clientId, String username, Long age, Map<String, ?> map) {
         if (!mqtt.containsKey(MqttUseEnum.DRC)) {
-            throw new RuntimeException("Please configure the drc link parameters of mqtt in the backend configuration file first.");
+            throw new RuntimeException("请先在后端配置文件中配置MQTT的DRC链接参数。");
         }
         Algorithm algorithm = JwtUtil.algorithm;
 

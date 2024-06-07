@@ -21,10 +21,10 @@ public class OssAspectHandler {
     @Before("execution(public * com.efuav.component.oss.service.impl.OssServiceContext.*(..))")
     public void before() {
         if (!OssConfiguration.enable) {
-            throw new IllegalArgumentException("Please enable OssConfiguration.");
+            throw new IllegalArgumentException("请启用OssConfiguration。");
         }
         if (this.ossServiceContext.getOssService() == null) {
-            throw new IllegalArgumentException("Please check the OssConfiguration configuration.");
+            throw new IllegalArgumentException("请检查OssConfiguration配置。");
         }
         this.ossServiceContext.createClient();
     }

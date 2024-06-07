@@ -6,7 +6,8 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 /**
- * The state of the drone's limited distance
+ * 无人机有限距离的状态
+ *
  * @author sean
  * @version 1.3
  * @date 2022/10/27

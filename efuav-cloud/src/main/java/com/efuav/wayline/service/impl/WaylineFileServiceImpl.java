@@ -108,7 +108,7 @@ public class WaylineFileServiceImpl implements IWaylineFileService {
     public URL getObjectUrl(String workspaceId, String waylineId) throws SQLException {
         Optional<GetWaylineListResponse> waylineOpt = this.getWaylineByWaylineId(workspaceId, waylineId);
         if (waylineOpt.isEmpty()) {
-            throw new SQLException(waylineId + " does not exist.");
+            throw new SQLException(waylineId + " 不存在。");
         }
         return ossService.getObjectUrl(OssConfiguration.bucket, waylineOpt.get().getObjectKey());
     }
@@ -122,8 +122,8 @@ public class WaylineFileServiceImpl implements IWaylineFileService {
         if (!StringUtils.hasText(file.getSign())) {
             try (InputStream object = ossService.getObject(OssConfiguration.bucket, metadata.getObjectKey())) {
                 if (object.available() == 0) {
-                    throw new RuntimeException("The file " + metadata.getObjectKey() +
-                            " does not exist in the bucket[" + OssConfiguration.bucket + "].");
+                    throw new RuntimeException("这个文件 " + metadata.getObjectKey() +
+                            " 储存桶中不存在[" + OssConfiguration.bucket + "].");
                 }
                 file.setSign(DigestUtils.md5DigestAsHex(object));
             } catch (IOException e) {
@@ -179,7 +179,7 @@ public class WaylineFileServiceImpl implements IWaylineFileService {
     public void importKmzFile(MultipartFile file, String workspaceId, String creator) {
         Optional<WaylineFileDTO> waylineFileOpt = validKmzFile(file);
         if (waylineFileOpt.isEmpty()) {
-            throw new RuntimeException("The file format is incorrect.");
+            throw new RuntimeException("文件格式不正确。");
         }
 
         try {
@@ -196,7 +196,7 @@ public class WaylineFileServiceImpl implements IWaylineFileService {
     private Optional<WaylineFileDTO> validKmzFile(MultipartFile file) {
         String filename = file.getOriginalFilename();
         if (Objects.nonNull(filename) && !filename.endsWith(WAYLINE_FILE_SUFFIX)) {
-            throw new RuntimeException("The file format is incorrect.");
+            throw new RuntimeException("文件格式不正确。");
         }
         try (ZipInputStream unzipFile = new ZipInputStream(file.getInputStream(), StandardCharsets.UTF_8)) {
 
@@ -210,13 +210,13 @@ public class WaylineFileServiceImpl implements IWaylineFileService {
                 SAXReader reader = new SAXReader();
                 Document document = reader.read(unzipFile);
                 if (!StandardCharsets.UTF_8.name().equals(document.getXMLEncoding())) {
-                    throw new RuntimeException("The file encoding format is incorrect.");
+                    throw new RuntimeException("文件编码格式不正确。");
                 }
 
                 Node droneNode = document.selectSingleNode("//" + KmzFileProperties.TAG_WPML_PREFIX + KmzFileProperties.TAG_DRONE_INFO);
                 Node payloadNode = document.selectSingleNode("//" + KmzFileProperties.TAG_WPML_PREFIX + KmzFileProperties.TAG_PAYLOAD_INFO);
                 if (Objects.isNull(droneNode) || Objects.isNull(payloadNode)) {
-                    throw new RuntimeException("The file format is incorrect.");
+                    throw new RuntimeException("文件格式不正确。");
                 }
 
                 DeviceTypeEnum type = DeviceTypeEnum.find(Integer.parseInt(droneNode.valueOf(KmzFileProperties.TAG_WPML_PREFIX + KmzFileProperties.TAG_DRONE_ENUM_VALUE)));

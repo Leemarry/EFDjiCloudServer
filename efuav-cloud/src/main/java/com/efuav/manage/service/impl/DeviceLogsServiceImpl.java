@@ -107,7 +107,7 @@ public class DeviceLogsServiceImpl extends AbstractLogService implements IDevice
     public HttpResultResponse getRealTimeLogs(String deviceSn, List<LogModuleEnum> domainList) {
         boolean exist = deviceRedisService.checkDeviceOnline(deviceSn);
         if (!exist) {
-            return HttpResultResponse.error("Device is offline.");
+            return HttpResultResponse.error("设备处于离线状态。");
         }
 
         TopicServicesResponse<ServicesReplyData<FileUploadListResponse>> response = abstractLogService
@@ -172,7 +172,7 @@ public class DeviceLogsServiceImpl extends AbstractLogService implements IDevice
 
         String id = this.insertDeviceLogs(response.getBid(), username, deviceSn, param);
 
-        // 保存日志上载的状态。
+        // 保存日志上传的状态。
         RedisOpsUtils.hashSet(RedisConst.LOGS_FILE_PREFIX + deviceSn, id, LogsOutputProgressDTO.builder().logsId(id).build());
         return HttpResultResponse.success();
 
@@ -211,7 +211,7 @@ public class DeviceLogsServiceImpl extends AbstractLogService implements IDevice
 
         try {
             FileUploadProgress output = request.getData().getOutput();
-            log.info("Logs upload progress: {}", output.toString());
+            log.info("记录上传进度: {}", output.toString());
 
             LogsOutputProgressDTO progress;
             boolean exist = RedisOpsUtils.checkExist(key);

@@ -8,17 +8,17 @@ package com.efuav.sdk.cloudapi.map;
 public class OfflineMapSyncProgress {
 
     /**
-     * Sync status
+     * 同步状态
      */
     private OfflineMapSyncStatusEnum status;
 
     /**
-     * Result code
+     * 结果代码
      */
     private OfflineMapSyncReasonEnum reason;
 
     /**
-     * Offline map file information
+     * 离线地图文件信息
      */
     private OfflineMapSyncFile file;
 

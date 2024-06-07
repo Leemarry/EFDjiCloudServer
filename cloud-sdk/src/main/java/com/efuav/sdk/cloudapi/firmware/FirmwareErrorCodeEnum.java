@@ -13,55 +13,55 @@ import java.util.Arrays;
  */
 public enum FirmwareErrorCodeEnum implements IServicesErrorCode, IEventsErrorCode, IErrorInfo {
 
-    WRONG_TYPE(312001, "Consistency Upgrade was trrigered, but device didn't request."),
+    WRONG_TYPE(312001, "一致性升级已完成，但设备未请求。"),
 
-    READY_1_FAILED(312002, "Failed to upgrade. Please try again."),
+    READY_1_FAILED(312002, "升级失败。请再试一次。"),
 
-    VALIDATION_FAILED(312003, "Failed to upgrade. Please try again."),
+    VALIDATION_FAILED(312003, "升级失败。请再试一次。"),
 
-    READY_2_FAILED(312004, "Failed to upgrade. Please try again."),
+    READY_2_FAILED(312004, "升级失败。请再试一次。"),
 
-    WRONG_PROTOCOL(312010, "The upgrade request is different from the API."),
+    WRONG_PROTOCOL(312010, "升级请求与API不同。"),
 
-    WRONG_PARAMETER(312012, "Please check the parameters and try again."),
+    WRONG_PARAMETER(312012, "请检查参数，然后重试。"),
 
-    COMMAND_1_FAILED(312013, "Failed to upgrade. Please try again."),
+    COMMAND_1_FAILED(312013, "升级失败。请再试一次。"),
 
-    UPDATING(312014, "Updating device firmware. Wait until update completed."),
+    UPDATING(312014, "正在更新设备固件。等待更新完成。"),
 
-    WORKING(312015, "Device can not upgrade during the flight. Please wait and try again."),
+    WORKING(312015, "设备在飞行过程中无法升级。请稍候，然后重试。"),
 
-    TRANSMISSION_ERROR(312016, "Update failed. Dock and aircraft transmission error. Restart dock and aircraft and try again."),
+    TRANSMISSION_ERROR(312016, "更新失败。机场和飞机传输错误。重新启动机场和飞机，然后再试一次。"),
 
-    VERSION_CHECK_FAILED(312017, "Failed to check the version."),
+    VERSION_CHECK_FAILED(312017, "未能检查版本。"),
 
-    COMMAND_2_FAILED(312018, "Failed to upgrade. Please try again."),
+    COMMAND_2_FAILED(312018, "升级失败。请再试一次。"),
 
-    COMMAND_3_FAILED(312019, "Failed to upgrade. Please try again."),
+    COMMAND_3_FAILED(312019, "升级失败。请再试一次。"),
 
-    COMMAND_4_FAILED(312020, "Failed to upgrade. Please try again."),
+    COMMAND_4_FAILED(312020, "升级失败。请再试一次。"),
 
-    COMMAND_5_FAILED(312021, "Failed to upgrade. Please try again."),
+    COMMAND_5_FAILED(312021, "升级失败。请再试一次。"),
 
-    AIRCRAFT_NOT_FOUND(312022, "Failed to power on aircraft, or aircraft not connected. Check if aircraft is inside dock, battery installed, and dock and aircraft linked."),
+    AIRCRAFT_NOT_FOUND(312022, "未能接通飞机电源，或飞机未连接。检查飞机是否在机场内，电池是否已安装，机场和飞机是否已连接。"),
 
-    AIRCRAFT_OUTSIDE(312023, "Failed to push driving rods back into place. Unable to update aircraft firmware. Check if emergency stop button is pressed down or driving rods are stuck."),
+    AIRCRAFT_OUTSIDE(312023, "未能将传动杆推回原位。无法更新飞机固件。检查紧急停止按钮是否按下或传动杆是否卡住。"),
 
-    COMMAND_6_FAILED(312024, "Failed to upgrade. Please try again."),
+    COMMAND_6_FAILED(312024, "升级失败。请再试一次。"),
 
-    DELETE_FAILED(312025, "Failed to delete old firmware package."),
+    DELETE_FAILED(312025, "未能删除旧的固件包。"),
 
-    DECOMPRESSION_FAILED(312026, "Failed to decompress the offline upgrade package."),
+    DECOMPRESSION_FAILED(312026, "无法解压缩离线升级包。"),
 
-    NO_AIRCRAFT_DETECTED(312027, "Failed to update firmware. Aircraft not detected inside dock."),
+    NO_AIRCRAFT_DETECTED(312027, "无法更新固件。机场内未发现飞机。"),
 
-    DEVICE_RESTART_1(312028, "Failed to update firmware. Device restarted during update."),
+    DEVICE_RESTART_1(312028, "无法更新固件。设备在更新过程中重新启动。"),
 
-    DEVICE_RESTART_2(312029, "Restarting device. Unable to update firmware."),
+    DEVICE_RESTART_2(312029, "正在重新启动设备。无法更新固件。"),
 
-    FOURTH_GENERATION_IS_ENABLE(312030, "Aircraft enhanced transmission enabled. Failed to update firmware. Disable 4G transmission and try again."),
+    FOURTH_GENERATION_IS_ENABLE(312030, "启用了飞机增强传输。无法更新固件。请禁用4G传输，然后重试。"),
 
-    LOW_POWER(312704, "Aircraft battery level too low. Wait until aircraft is charged to above 20% and try again."),
+    LOW_POWER(312704, "飞机电池电量过低。等待飞机充电到20%以上，然后再试一次。"),
 
     UNKNOWN(-1, "UNKNOWN"),
     ;

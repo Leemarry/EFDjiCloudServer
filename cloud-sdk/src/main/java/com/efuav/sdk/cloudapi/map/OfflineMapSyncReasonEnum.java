@@ -15,23 +15,23 @@ public enum OfflineMapSyncReasonEnum {
 
     SUCCESS(0, "success"),
 
-    PARSE_FILE_FAILED(1, "Failed to parse the file information returned by the cloud."),
+    PARSE_FILE_FAILED(1, "无法分析云返回的文件信息。"),
 
-    OBTAIN_DRONE_FILE_FAILED(2, "Failed to obtain aircraft file information."),
+    OBTAIN_DRONE_FILE_FAILED(2, "无法获取飞机文件信息。"),
 
-    DOWNLOAD_FILE_FAILED(3, "Failed to download file from cloud."),
+    DOWNLOAD_FILE_FAILED(3, "未能从云中下载文件。"),
 
-    LINK_ROLLOVER_FAILED(4, "Failed to rollover the link."),
+    LINK_ROLLOVER_FAILED(4, "无法滚动链接。"),
 
-    FILE_TRANSFER_FAILED(5, "Failed to transfer file."),
+    FILE_TRANSFER_FAILED(5, "无法传输文件。"),
 
-    DISABLE_OFFLINE_MAP_FAILED(6, "Failed to disable offline map."),
+    DISABLE_OFFLINE_MAP_FAILED(6, "无法禁用离线映射。"),
 
-    DELETE_FILE_FAILED(7, "Failed to delete file."),
+    DELETE_FILE_FAILED(7, "未能删除文件。"),
 
-    LOAD_FILE_FAILED(8, "Failed to load the file on the device side."),
+    LOAD_FILE_FAILED(8, "无法在设备端加载文件。"),
 
-    ENABLE_OFFLINE_MAP_FAILED(9, "Failed to enable offline map."),
+    ENABLE_OFFLINE_MAP_FAILED(9, "无法启用离线映射。"),
 
     ;
 

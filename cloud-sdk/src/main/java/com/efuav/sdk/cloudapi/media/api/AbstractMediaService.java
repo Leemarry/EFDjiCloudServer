@@ -30,7 +30,8 @@ public abstract class AbstractMediaService {
     private ServicesPublish servicesPublish;
 
     /**
-     * Result reporting of media file uploading
+     * 媒体文件上传结果报告
+     *
      * @param request
      * @param headers
      * @return
@@ -41,7 +42,8 @@ public abstract class AbstractMediaService {
     }
 
     /**
-     * Priority report of the media file uploading
+     * 媒体文件上传优先级报告
+     *
      * @param request
      * @param headers
      * @return
@@ -52,10 +54,11 @@ public abstract class AbstractMediaService {
     }
 
     /**
-     * Set the uploading file to highest priority
+     * 将上传文件设置为最高优先级
+     *
      * @param gateway
-     * @param request   data
-     * @return  services_reply
+     * @param request data
+     * @return services_reply
      */
     @CloudSDKVersion(exclude = GatewayTypeEnum.RC)
     public TopicServicesResponse<ServicesReplyData> uploadFlighttaskMediaPrioritize(GatewayManager gateway, UploadFlighttaskMediaPrioritize request) {
@@ -66,7 +69,8 @@ public abstract class AbstractMediaService {
     }
 
     /**
-     * Obtain upload temporary credentials
+     * 获取上传临时凭据
+     *
      * @param request
      * @param headers
      */

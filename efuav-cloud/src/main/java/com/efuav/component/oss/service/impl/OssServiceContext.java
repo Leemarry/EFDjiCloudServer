@@ -31,7 +31,7 @@ public class OssServiceContext {
         this.ossService = ossServices.stream()
                 .filter(ossService -> ossService.getOssType() == OssConfiguration.provider)
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Oss provider is illegal. Optional: " +
+                .orElseThrow(() -> new IllegalArgumentException("Oss提供者是非法的。可选择的： " +
                         Arrays.toString(Arrays.stream(OssTypeEnum.values()).map(OssTypeEnum::getType).toArray())));
     }
 

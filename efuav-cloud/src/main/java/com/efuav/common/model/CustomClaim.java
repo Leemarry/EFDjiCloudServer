@@ -24,7 +24,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class CustomClaim {
 
     /**
-     * 账户的ID
+     * 账户的user_id
      */
     private String id;
 
@@ -47,12 +47,12 @@ public class CustomClaim {
             for (Field field : declaredFields) {
                 JsonAlias annotation = field.getAnnotation(JsonAlias.class);
                 field.setAccessible(true);
-                // The value of key is named underscore.
+                // 键的值命名为下划线。
                 map.put(annotation != null ? annotation.value()[0] : field.getName(),
                         field.get(this).toString());
             }
         } catch (IllegalAccessException e) {
-            log.info("CustomClaim converts failed. {}", this.toString());
+            log.info("CustomClaim转换失败。 {}", this.toString());
             e.printStackTrace();
         }
         return map;
@@ -80,7 +80,7 @@ public class CustomClaim {
                     continue;
                 }
             } catch (IllegalAccessException e) {
-                log.info("Claim parses failed. {}", claimMap.toString());
+                log.info("声明解析失败。 {}", claimMap.toString());
                 e.printStackTrace();
             }
         }

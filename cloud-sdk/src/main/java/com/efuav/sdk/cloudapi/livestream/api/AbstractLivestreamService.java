@@ -27,9 +27,10 @@ public abstract class AbstractLivestreamService {
     private static final long DEFAULT_TIMEOUT = 20_000;
 
     /**
-     * Livestream ability update for remote control
-     * @param request  data
-     * @param headers   The headers for a {@link Message}.
+     * 远程控制的直播功能更新
+     *
+     * @param request data
+     * @param headers The headers for a {@link Message}.
      */
     @ServiceActivator(inputChannel = ChannelName.INBOUND_STATE_DOCK_LIVESTREAM_ABILITY_UPDATE)
     public void dockLivestreamAbilityUpdate(TopicStateRequest<DockLivestreamAbilityUpdate> request, MessageHeaders headers) {
@@ -37,9 +38,10 @@ public abstract class AbstractLivestreamService {
     }
 
     /**
-     * Livestream ability update for dock
-     * @param request  data
-     * @param headers   The headers for a {@link Message}.
+     * dock的直播功能更新
+     *
+     * @param request data
+     * @param headers The headers for a {@link Message}.
      */
     @ServiceActivator(inputChannel = ChannelName.INBOUND_STATE_RC_LIVESTREAM_ABILITY_UPDATE)
     public void rcLivestreamAbilityUpdate(TopicStateRequest<RcLivestreamAbilityUpdate> request, MessageHeaders headers) {
@@ -47,14 +49,16 @@ public abstract class AbstractLivestreamService {
     }
 
     /**
-     * Start livestreaming
+     * 开始直播
+     *
      * @param gateway
-     * @param request   data
-     * @return  services_reply
+     * @param request data
+     * @return services_reply
      */
     public TopicServicesResponse<ServicesReplyData<String>> liveStartPush(GatewayManager gateway, LiveStartPushRequest request) {
         return servicesPublish.publish(
-                new TypeReference<String>() {},
+                new TypeReference<String>() {
+                },
                 gateway.getGatewaySn(),
                 LiveStreamMethodEnum.LIVE_START_PUSH.getMethod(),
                 request,
@@ -62,10 +66,11 @@ public abstract class AbstractLivestreamService {
     }
 
     /**
-     * Stop livestreaming
+     * 停止直播
+     *
      * @param gateway
-     * @param request   data
-     * @return  services_reply
+     * @param request data
+     * @return services_reply
      */
     public TopicServicesResponse<ServicesReplyData> liveStopPush(GatewayManager gateway, LiveStopPushRequest request) {
         return servicesPublish.publish(
@@ -76,10 +81,11 @@ public abstract class AbstractLivestreamService {
     }
 
     /**
-     * Set livestream quality
+     * 设置直播质量
+     *
      * @param gateway
-     * @param request   data
-     * @return  services_reply
+     * @param request data
+     * @return services_reply
      */
     public TopicServicesResponse<ServicesReplyData> liveSetQuality(GatewayManager gateway, LiveSetQualityRequest request) {
         return servicesPublish.publish(
@@ -90,10 +96,11 @@ public abstract class AbstractLivestreamService {
     }
 
     /**
-     * Set livestream lens
+     * 设置直播镜头
+     *
      * @param gateway
-     * @param request   data
-     * @return  services_reply
+     * @param request data
+     * @return services_reply
      */
     public TopicServicesResponse<ServicesReplyData> liveLensChange(GatewayManager gateway, LiveLensChangeRequest request) {
         return servicesPublish.publish(

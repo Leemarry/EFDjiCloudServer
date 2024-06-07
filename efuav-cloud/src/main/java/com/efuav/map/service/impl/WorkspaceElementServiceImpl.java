@@ -48,7 +48,7 @@ public class WorkspaceElementServiceImpl implements IWorkspaceElementService {
     public HttpResultResponse saveElement(String workspaceId, String groupId, CreateMapElementRequest elementCreate, boolean notify) {
         boolean saveElement = groupElementService.saveElement(groupId, elementCreate);
         if (!saveElement) {
-            return HttpResultResponse.error("Failed to save the element.");
+            return HttpResultResponse.error("未能保存元素。");
         }
         if (notify) {
             // 创建元素时，通知此工作区中的所有WebSocket连接进行更新。
@@ -64,7 +64,7 @@ public class WorkspaceElementServiceImpl implements IWorkspaceElementService {
     public HttpResultResponse updateElement(String workspaceId, String elementId, UpdateMapElementRequest elementUpdate, String username, boolean notify) {
         boolean updElement = groupElementService.updateElement(elementId, elementUpdate, username);
         if (!updElement) {
-            return HttpResultResponse.error("Failed to update the element.");
+            return HttpResultResponse.error("未能更新元素。");
         }
 
         if (notify) {
@@ -82,13 +82,13 @@ public class WorkspaceElementServiceImpl implements IWorkspaceElementService {
         Optional<GroupElementDTO> elementOpt = getElementByElementId(elementId);
         boolean delElement = groupElementService.deleteElement(elementId);
         if (!delElement) {
-            return HttpResultResponse.error("Failed to delete the element.");
+            return HttpResultResponse.error("未能删除元素。");
         }
 
         // 根据元素id删除所有坐标。
         boolean delCoordinate = elementCoordinateService.deleteCoordinateByElementId(elementId);
         if (!delCoordinate) {
-            return HttpResultResponse.error("Failed to delete the coordinate.");
+            return HttpResultResponse.error("删除坐标失败。");
         }
 
         if (notify) {
@@ -121,6 +121,7 @@ public class WorkspaceElementServiceImpl implements IWorkspaceElementService {
         return HttpResultResponse.success();
     }
 
+    @Override
     public MapElementCreateWsResponse element2CreateWsElement(GroupElementDTO element) {
         if (element == null) {
             return null;
@@ -134,6 +135,7 @@ public class WorkspaceElementServiceImpl implements IWorkspaceElementService {
                 .setCreateTime(element.getCreateTime());
     }
 
+    @Override
     public MapElementUpdateWsResponse element2UpdateWsElement(GroupElementDTO element) {
         if (element == null) {
             return null;

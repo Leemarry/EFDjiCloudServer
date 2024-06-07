@@ -14,13 +14,13 @@ import java.util.List;
 public class OfflineMapGetResponse extends BaseModel {
 
     /**
-     * This parameter allows the dock to turn off the offline map capability of the aircraft.
+     * 此参数允许机场关闭飞机的离线地图功能。
      */
     @NotNull
     private Boolean offlineMapEnable;
 
     /**
-     * Offline map file object list.
+     * 离线映射文件对象列表。
      */
     @NotNull
     private List<@Valid OfflineMapFile> files;

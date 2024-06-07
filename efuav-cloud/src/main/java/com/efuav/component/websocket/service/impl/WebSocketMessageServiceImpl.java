@@ -39,14 +39,14 @@ public class WebSocketMessageServiceImpl implements IWebSocketMessageService {
         try {
             if (!session.isOpen()) {
                 session.close();
-                log.debug("This session is closed.");
+                log.debug("此会话已关闭。");
                 return;
             }
 
 
             session.sendMessage(new TextMessage(mapper.writeValueAsBytes(message)));
         } catch (IOException e) {
-            log.info("Failed to publish the message. {}", message.toString());
+            log.info("未能发布消息。 {}", message.toString());
             e.printStackTrace();
         }
     }
@@ -64,14 +64,14 @@ public class WebSocketMessageServiceImpl implements IWebSocketMessageService {
             for (MyConcurrentWebSocketSession session : sessions) {
                 if (!session.isOpen()) {
                     session.close();
-                    log.debug("This session is closed.");
+                    log.debug("此会话已关闭。");
                     return;
                 }
                 session.sendMessage(data);
             }
 
         } catch (IOException e) {
-            log.info("Failed to publish the message. {}", message.toString());
+            log.info("未能发布消息。 {}", message.toString());
 
             e.printStackTrace();
         }
@@ -80,7 +80,7 @@ public class WebSocketMessageServiceImpl implements IWebSocketMessageService {
     @Override
     public void sendBatch(String workspaceId, Integer userType, String bizCode, Object data) {
         if (!StringUtils.hasText(workspaceId)) {
-            throw new RuntimeException("Workspace ID does not exist.");
+            throw new RuntimeException("工作区ID不存在。");
         }
         Collection<MyConcurrentWebSocketSession> sessions = Objects.isNull(userType) ?
                 webSocketManageService.getValueWithWorkspace(workspaceId) :

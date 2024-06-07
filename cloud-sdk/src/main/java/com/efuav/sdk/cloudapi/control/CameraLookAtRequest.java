@@ -15,24 +15,24 @@ import javax.validation.constraints.NotNull;
 public class CameraLookAtRequest extends BaseModel {
 
     /**
-     * Camera enumeration.
-     * It is unofficial device_mode_key.
-     * The format is *{type-subtype-gimbalindex}*.
-     * Please read [Product Supported](https://developer.dji.com/doc/cloud-api-tutorial/en/overview/product-support.html)
+     * 摄像机枚举。
+     * 它是非官方的device_mode_key。
+     * 格式为*｛type subtype gimbalindex｝*。
+     * 请阅读[支持的产品]（https://developer.di.com/doc/cloud-api-tutorial/en/overview/Product-support.html）
      */
     @NotNull
     private PayloadIndex payloadIndex;
 
     /**
-     * Whether the relative location of drone head and gimbal is locked
+     * 无人机机头与万向节的相对位置是否锁定
      */
     @NotNull
     private Boolean locked;
 
     /**
-     * The latitude of target point is angular values.
-     * Negative values for south latitude and positive values for north latitude.
-     * It is accurate to six decimal places.
+     * 目标点的纬度是角度值。
+     * 南纬为负值，北纬为正值。
+     * 它精确到小数点后六位。
      */
     @Min(-90)
     @Max(90)
@@ -40,9 +40,9 @@ public class CameraLookAtRequest extends BaseModel {
     private Float latitude;
 
     /**
-     * The latitude of target point is angular values.
-     * Negative values for west longitude and positive values for east longitude.
-     * It is accurate to six decimal places.
+     * 目标点的纬度是角度值。
+     * 负值表示西经度，正值表示东经度。
+     * 它精确到小数点后六位。
      */
     @NotNull
     @Min(-180)
@@ -50,7 +50,7 @@ public class CameraLookAtRequest extends BaseModel {
     private Float longitude;
 
     /**
-     * Ellipsoid height
+     * 椭球体高度
      */
     @NotNull
     @Min(2)

@@ -6,24 +6,24 @@ import java.util.List;
 
 /**
  * @author sean.zhou
- * @date 2021/11/18
  * @version 0.1
+ * @date 2021/11/18
  */
 public class RcLiveCapacityCamera {
 
     /**
-     * Total number of video streams that can be used for livestreaming
-     * Total number of video streams that the camera can live stream
+     * 可用于直播的视频流总数
+     * 摄像机可以直播的视频流总数
      */
     private Integer availableVideoNumber;
 
     /**
-     * Maximum number of video streams that the camera can live stream at the same time.
+     * 摄像机可以同时直播的最大视频流数。
      */
     private Integer coexistVideoNumberMax;
 
     /**
-     * Camera index, composed of product type enumeration and gimbal index.
+     * 相机索引，由产品类型枚举和万向节索引组成。
      */
     private PayloadIndex cameraIndex;
 

@@ -8,17 +8,17 @@ package com.efuav.sdk.cloudapi.flightarea;
 public class FlightAreasSyncProgress {
 
     /**
-     * Synchronize state
+     * 同步状态
      */
     private FlightAreaSyncStatusEnum status;
 
     /**
-     * Return Code
+     * 返回代码
      */
     private FlightAreaSyncReasonEnum reason;
 
     /**
-     * Custom flight area file
+     * 自定义飞行区域文件
      */
     private FlightAreaFile file;
 

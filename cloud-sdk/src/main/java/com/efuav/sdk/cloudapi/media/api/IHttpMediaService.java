@@ -28,7 +28,8 @@ public interface IHttpMediaService {
     String PREFIX = "media/api/v1";
 
     /**
-     * Check if the file has been uploaded by the fingerprint.
+     * 检查文件是否已通过指纹上传。
+     *
      * @param workspaceId
      * @param request
      * @param req
@@ -47,8 +48,9 @@ public interface IHttpMediaService {
 
 
     /**
-     * When the file is uploaded to the storage server by pilot,
-     * the basic information of the file is reported through this interface.
+     * 当通过导频将文件上传到存储服务器时，
+     * 文件的基本信息是通过这个接口报告的。
+     *
      * @param workspaceId
      * @param request
      * @param req
@@ -60,7 +62,7 @@ public interface IHttpMediaService {
             parameters = {
                     @Parameter(name = "workspace_id", description = "workspace id", schema = @Schema(format = "uuid"))
             }, responses = @ApiResponse(responseCode = "200", description = "OK",
-                content = @Content(mediaType = "application/json",
+            content = @Content(mediaType = "application/json",
                     examples = {@ExampleObject(name = "responseObjectKey",
                             summary = "response object key",
                             description = "response object key",
@@ -71,12 +73,13 @@ public interface IHttpMediaService {
     HttpResultResponse<String> mediaUploadCallback(
             @PathVariable(name = "workspace_id") String workspaceId,
             @Valid @RequestBody MediaUploadCallbackRequest request,
-                HttpServletRequest req, HttpServletResponse rsp);
+            HttpServletRequest req, HttpServletResponse rsp);
 
     /**
-     * Query the files that already exist in this workspace based on the workspace id and the collection of tiny fingerprints.
+     * 根据工作区id和微小指纹的集合，查询此工作区中已经存在的文件。
+     *
      * @param workspaceId
-     * @param request  There is only one tiny_fingerprint parameter in the body.
+     * @param request     body中只有一个tiny_fingerprint参数。
      * @param req
      * @param rsp
      * @return
@@ -90,10 +93,11 @@ public interface IHttpMediaService {
     HttpResultResponse<GetFileFingerprintResponse> getExistFileTinyFingerprint(
             @PathVariable(name = "workspace_id") String workspaceId,
             @Valid @RequestBody GetFileFingerprintRequest request,
-                HttpServletRequest req, HttpServletResponse rsp);
+            HttpServletRequest req, HttpServletResponse rsp);
 
     /**
-     * Report the upload status of the media files in the file group in real time.
+     * 实时报告文件组中媒体文件的上传状态。
+     *
      * @param workspaceId
      * @param request
      * @param req
@@ -109,7 +113,7 @@ public interface IHttpMediaService {
     HttpResultResponse folderUploadCallback(
             @PathVariable(name = "workspace_id") String workspaceId,
             @Valid @RequestBody FolderUploadCallbackRequest request,
-                HttpServletRequest req, HttpServletResponse rsp);
+            HttpServletRequest req, HttpServletResponse rsp);
 
 
 }

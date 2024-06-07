@@ -21,8 +21,8 @@ import java.util.stream.Collectors;
 
 /**
  * @author sean.zhou
- * @date 2021/11/19
  * @version 0.1
+ * @date 2021/11/19
  */
 @Service
 public class CapacityCameraServiceImpl implements ICapacityCameraService {
@@ -56,8 +56,8 @@ public class CapacityCameraServiceImpl implements ICapacityCameraService {
             return builder.build();
         }
         PayloadIndex cameraIndex = receiver.getCameraIndex();
-        // The cameraIndex consists of type and subType and the index of the payload hanging on the drone.
-        // type-subType-index
+        //cameraIndex由类型和子类型以及悬挂在无人机上的有效载荷的索引组成。
+        //type subType索引
         Optional<DeviceDictionaryDTO> dictionaryOpt = dictionaryService.getOneDictionaryInfoByTypeSubType(
                 DeviceDomainEnum.PAYLOAD.getDomain(), cameraIndex.getType().getType(), cameraIndex.getSubType().getSubType());
         dictionaryOpt.ifPresent(dictionary -> builder.name(dictionary.getDeviceName()));

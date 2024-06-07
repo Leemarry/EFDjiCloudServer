@@ -8,17 +8,17 @@ package com.efuav.sdk.cloudapi.device;
 public class SimInfo {
 
     /**
-     * sim supported operators
+     * sim支持的运营商
      */
     private TelecomOperatorEnum telecomOperator;
 
     /**
-     * Type of physical sim card
+     * 物理sim卡类型
      */
     private SimTypeEnum simType;
 
     /**
-     * The unique identification mark of the sim card can be used to purchase physical sim card packages.
+     * sim卡的唯一识别标记可用于购买实体sim卡包。
      */
     private String iccid;
 

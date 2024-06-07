@@ -8,12 +8,12 @@ package com.efuav.sdk.cloudapi.wayline;
 public class FlighttaskProgressData {
 
     /**
-     * Execution step
+     * 执行步骤
      */
     private ExecutionStepEnum currentStep;
 
     /**
-     * Progress value
+     * 进度值
      */
     private Integer percent;
 

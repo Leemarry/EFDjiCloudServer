@@ -22,7 +22,7 @@ import java.util.Objects;
 public class ServicesReplyHandler {
 
     /**
-     * Handle the reply message from topic "/services_reply".
+     * 处理主题“/services_reply”中的回复消息。
      * @param message   reply message
      * @throws IOException
      */

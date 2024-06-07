@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 public class DockDroneCurrentRthMode {
 
     /**
-     * Current RTH height mode
+     * 当前RTH高度模式
      */
     @JsonProperty("current_rth_mode")
     @NotNull

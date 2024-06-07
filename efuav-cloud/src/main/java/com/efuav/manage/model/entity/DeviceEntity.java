@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 /**
- * The entity class of the device
+ * 设备的实体类
  *
  * @author sean.zhou
  * @version 0.1

@@ -11,8 +11,8 @@ import javax.validation.constraints.Pattern;
 public class OfflineMapFile {
 
     /**
-     * The offline map file name will be used as a way to determine the version, and the format is: offline_map_{sync_method}_{version}.
-     * offline_map: is a fixed prefix, sync_method: data synchronization method - full (full), version: version number
+     * 离线映射文件名将用作确定版本的一种方式，格式为：offline_map_{sync_method}_版本
+     * offline_map:是固定前缀，sync_method:数据同步方法-完整（full），版本：版本号
      */
     @NotNull
     @Pattern(regexp = "^offline_map_full_\\w+\\.rocksdb\\.zip$")
@@ -22,13 +22,13 @@ public class OfflineMapFile {
     private String url;
 
     /**
-     * Calculated using SHA256, this value can be used to confirm whether the file is complete.
+     * 使用SHA256计算，此值可用于确认文件是否完整。
      */
     @NotNull
     private String checksum;
 
     /**
-     * The size of this file in bytes.
+     * 此文件的大小（以字节为单位）。
      */
     @NotNull
     private Long size;

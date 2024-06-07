@@ -7,6 +7,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
 
 /**
+ * 海拔高度枚举
+ *
  * @author sean
  * @version 1.7
  * @date 2023/10/16
@@ -33,7 +35,7 @@ public enum AltitudeTypeEnum {
     @JsonCreator
     public static AltitudeTypeEnum find(int type) {
         return Arrays.stream(values()).filter(typeEnum -> typeEnum.type == type).findAny()
-            .orElseThrow(() -> new CloudSDKException(AltitudeTypeEnum.class, type));
+                .orElseThrow(() -> new CloudSDKException(AltitudeTypeEnum.class, type));
     }
 
 }

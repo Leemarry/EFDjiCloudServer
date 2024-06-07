@@ -105,7 +105,7 @@ public class FlightAreaServiceImpl extends AbstractFlightAreaService implements 
     public void createFlightArea(String workspaceId, String username, PostFlightAreaParam param) {
         Optional<GetMapElementsResponse> groupOpt = groupService.getCustomGroupByWorkspaceId(workspaceId);
         if (groupOpt.isEmpty()) {
-            throw new RuntimeException("The custom flight area group does not exist, please create it first.");
+            throw new RuntimeException("自定义飞行区域组不存在，请先创建。");
         }
         ElementGeometryType geometry = param.getContent().getGeometry();
         String type = geometry.getType();
@@ -137,7 +137,7 @@ public class FlightAreaServiceImpl extends AbstractFlightAreaService implements 
 
         int id = flightAreaPropertyServices.saveProperty(property);
         if (id <= 0) {
-            throw new RuntimeException("Failed to save flight area properties.");
+            throw new RuntimeException("保存飞行区域属性失败。");
         }
         flightAreaFileService.setNonLatestByWorkspaceId(workspaceId);
 
@@ -184,7 +184,7 @@ public class FlightAreaServiceImpl extends AbstractFlightAreaService implements 
         }
         int id = flightAreaPropertyServices.deleteProperty(areaId);
         if (id <= 0) {
-            throw new RuntimeException("Failed to delete the flight area property.");
+            throw new RuntimeException("删除飞行区域属性失败。");
         }
         flightAreaFileService.setNonLatestByWorkspaceId(workspaceId);
         webSocketMessageService.sendBatch(workspaceId, BizCodeEnum.FLIGHT_AREAS_UPDATE.getCode(),
@@ -220,7 +220,7 @@ public class FlightAreaServiceImpl extends AbstractFlightAreaService implements 
         int id = flightAreaPropertyServices.updateProperty(FlightAreaPropertyUpdate.builder()
                 .elementId(areaId).status(param.getStatus()).radius(radius).build());
         if (id <= 0) {
-            throw new RuntimeException("Failed to update flight area properties.");
+            throw new RuntimeException("更新飞行区域属性失败。");
         }
         flightAreaFileService.setNonLatestByWorkspaceId(workspaceId);
         Optional<FlightAreaDTO> areaOpt = getFlightAreaByAreaId(areaId);
@@ -244,7 +244,7 @@ public class FlightAreaServiceImpl extends AbstractFlightAreaService implements 
     public TopicEventsResponse<MqttReply> flightAreasSyncProgress(TopicEventsRequest<FlightAreasSyncProgress> request, MessageHeaders headers) {
         Optional<DeviceDTO> deviceOpt = deviceRedisService.getDeviceOnline(request.getGateway());
         if (deviceOpt.isEmpty()) {
-            log.warn("method: flight_areas_sync_progress. Dock is offline.");
+            log.warn("方法：flight_areas_sync_progress。机场处于离线状态。");
             return null;
         }
 
@@ -272,7 +272,7 @@ public class FlightAreaServiceImpl extends AbstractFlightAreaService implements 
     public TopicEventsResponse<MqttReply> flightAreasDroneLocation(TopicEventsRequest<FlightAreasDroneLocation> request, MessageHeaders headers) {
         Optional<DeviceDTO> deviceOpt = deviceRedisService.getDeviceOnline(request.getGateway());
         if (deviceOpt.isEmpty()) {
-            log.warn("method: flight_areas_drone_location. Dock is offline.");
+            log.warn("方法：flight_areas_drone_location。机场处于离线状态。");
             return null;
         }
         if (request.getData().getDroneLocations().isEmpty()) {

@@ -83,7 +83,7 @@ public class WaylineJobController {
     }
 
     /**
-     * 将此作业的媒体文件设置为立即上载。
+     * 将此作业的媒体文件设置为立即上传。
      *
      * @param workspaceId
      * @param jobId

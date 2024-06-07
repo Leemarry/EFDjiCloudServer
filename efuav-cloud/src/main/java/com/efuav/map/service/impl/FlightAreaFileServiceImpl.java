@@ -98,7 +98,7 @@ public class FlightAreaFileServiceImpl implements IFlightAreaFileService {
         FlightAreaFileDTO file = generateFlightAreaFile(workspaceId, flightAreas);
         int id = saveFlightAreaFile(file);
         if (id <= 0) {
-            throw new RuntimeException("Failed to save the flight area file.");
+            throw new RuntimeException("保存飞行区域文件失败。");
         }
         return file;
     }

@@ -8,12 +8,12 @@ package com.efuav.sdk.cloudapi.flightarea;
 public class FlightAreaFile {
 
     /**
-     * Custom flight area file name
+     * 自定义飞行区域文件名
      */
     private String name;
 
     /**
-     * File SHA256 signature
+     * 文件SHA256签名
      */
     private String checksum;
 

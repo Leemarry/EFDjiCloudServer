@@ -14,7 +14,8 @@ import org.springframework.messaging.MessageHeaders;
 public abstract class AbstractHmsService {
 
     /**
-     * Reporting of hms
+     * hms报告
+     *
      * @param response
      * @param headers
      * @return

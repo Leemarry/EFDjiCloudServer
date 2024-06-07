@@ -8,7 +8,7 @@ package com.efuav.sdk.cloudapi.firmware;
 public class OtaCreateResponse {
 
     /**
-     * Mission status
+     * 任务状态
      **/
     private OtaProgressStatusEnum status;
 

@@ -7,12 +7,14 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.efuav.manage.model.entity.DeviceFirmwareEntity;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.springframework.stereotype.Service;
 
 /**
  * @author sean
  * @version 1.2
  * @date 2022/8/16
  */
+@Service
 public interface IDeviceFirmwareMapper extends BaseMapper<DeviceFirmwareEntity> {
     String sql = "<script> \n" +
                 "SELECT \n" +

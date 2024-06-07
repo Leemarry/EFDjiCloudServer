@@ -11,6 +11,7 @@ import com.efuav.sdk.common.HttpResultResponse;
 import com.efuav.sdk.common.SDKManager;
 import com.efuav.sdk.mqtt.services.ServicesReplyData;
 import com.efuav.sdk.mqtt.services.TopicServicesResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +26,7 @@ import java.util.stream.Collectors;
  * @date 2021/11/22
  * @version 0.1
  */
+@Slf4j
 @Service
 @Transactional
 public class LiveStreamServiceImpl implements ILiveStreamService {
@@ -75,7 +77,6 @@ public class LiveStreamServiceImpl implements ILiveStreamService {
 
         ILivestreamUrl url = LiveStreamProperty.get(liveParam.getUrlType());
         url = setExt(liveParam.getUrlType(), url, liveParam.getVideoId());
-
         TopicServicesResponse<ServicesReplyData<String>> response = abstractLivestreamService.liveStartPush(
                 SDKManager.getDeviceSDK(responseResult.getData().getDeviceSn()),
                 new LiveStartPushRequest()
@@ -116,7 +117,6 @@ public class LiveStreamServiceImpl implements ILiveStreamService {
             default:
                 return HttpResultResponse.error(LiveErrorCodeEnum.URL_TYPE_NOT_SUPPORTED);
         }
-
         return HttpResultResponse.success(live);
     }
 
@@ -217,7 +217,7 @@ public class LiveStreamServiceImpl implements ILiveStreamService {
                 return agoraUrl.setSn(videoId.getDroneSn());
             case RTMP:
                 LivestreamRtmpUrl rtmpUrl = (LivestreamRtmpUrl) url.clone();
-                return rtmpUrl.setUrl(rtmpUrl.getUrl() + videoId.getDroneSn() + "-" + videoId.getPayloadIndex().toString());
+                return rtmpUrl.setUrl(rtmpUrl.getUrl() +"&"+ videoId.getDroneSn() + "-" + videoId.getPayloadIndex().toString());
             case GB28181:
                 String random = String.valueOf(Math.abs(videoId.getDroneSn().hashCode()) % 1000);
                 LivestreamGb28181Url gbUrl = (LivestreamGb28181Url) url.clone();

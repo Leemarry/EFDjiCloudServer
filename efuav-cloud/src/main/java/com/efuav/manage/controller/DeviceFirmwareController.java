@@ -78,11 +78,11 @@ public class DeviceFirmwareController {
      */
     @PostMapping("/{workspace_id}/firmwares/file/upload")
     public HttpResultResponse importFirmwareFile(HttpServletRequest request, @PathVariable("workspace_id") String workspaceId,
-                                                 @NotNull(message = "No file received.") MultipartFile file,
+                                                 @NotNull(message = "未收到任何文件。") MultipartFile file,
                                                  @Valid DeviceFirmwareUploadParam param) {
 
         if (!file.getOriginalFilename().endsWith(FirmwareFileProperties.FIRMWARE_FILE_SUFFIX)) {
-            return HttpResultResponse.error("The file format is incorrect.");
+            return HttpResultResponse.error("文件格式不正确。");
         }
 
         CustomClaim customClaim = (CustomClaim)request.getAttribute(TOKEN_CLAIM);

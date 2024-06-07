@@ -8,13 +8,13 @@ package com.efuav.sdk.cloudapi.map;
 public class OfflineMapSyncFile {
 
     /**
-     * The offline map file name will be used as a way to determine the version, and the format is: offline_map_{sync_method}_{version}.
-     * offline_map: is a fixed prefix, sync_method: data synchronization method - full (full), version: version number
+     * 离线映射文件名将用作确定版本的一种方式，格式为：offline_map_{sync_method}_版本
+     * offline_map:是固定前缀，sync_method:数据同步方法-完整（full），版本：版本号
      */
     private String name;
 
     /**
-     * Calculated using SHA256, this value can be used to confirm whether the file is complete.
+     * 使用SHA256计算，此值可用于确认文件是否完整。
      */
     private String checksum;
 

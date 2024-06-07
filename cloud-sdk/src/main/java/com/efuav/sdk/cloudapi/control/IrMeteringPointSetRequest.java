@@ -15,16 +15,16 @@ import javax.validation.constraints.NotNull;
 public class IrMeteringPointSetRequest extends BaseModel {
 
     /**
-     * Camera enumeration.
-     * It is unofficial device_mode_key.
-     * The format is *{type-subtype-gimbalindex}*.
-     * Please read [Product Supported](https://developer.dji.com/doc/cloud-api-tutorial/en/overview/product-support.html)
+     * 摄像机枚举。
+     * 它是非官方的device_mode_key。
+     * 格式为*｛type subtype gimbalindex｝*。
+     * 请阅读[支持的产品]（https://developer.di.com/doc/cloud-api-tutorial/en/overview/Product-support.html）
      */
     @NotNull
     private PayloadIndex payloadIndex;
 
     /**
-     * The coordinate x of the temperature measurement point is the upper left corner of the lens as the coordinate center point, and the horizontal direction is x.
+     * 温度测量点的坐标x是作为坐标中心点的透镜的左上角，水平方向为x。
      */
     @NotNull
     @Min(0)
@@ -32,7 +32,7 @@ public class IrMeteringPointSetRequest extends BaseModel {
     private Float x;
 
     /**
-     * The coordinate y of the temperature measurement point is the upper left corner of the lens as the coordinate center point, and the vertical direction is y.
+     * 温度测量点的坐标y为透镜的左上角作为坐标中心点，垂直方向为y。
      */
     @NotNull
     @Min(0)

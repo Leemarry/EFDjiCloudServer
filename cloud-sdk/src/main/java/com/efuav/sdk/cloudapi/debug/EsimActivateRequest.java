@@ -12,13 +12,13 @@ import javax.validation.constraints.NotNull;
 public class EsimActivateRequest extends BaseModel {
 
     /**
-     * Identifies the dongle to be operated on.
+     *标识要操作的加密狗。
      */
     @NotNull
     private String imei;
 
     /**
-     * Identifies the target device to operate on.
+     *标识要操作的目标设备。
      */
     @NotNull
     private DongleDeviceTypeEnum deviceType;

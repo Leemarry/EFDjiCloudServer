@@ -84,7 +84,7 @@ public class JwtUtil {
         // 将自定义信息添加到令牌的有效负载段。
         claims.forEach((k, v) -> {
             if (Objects.nonNull(v.getClass().getClassLoader())) {
-                log.error("claim can't be set to a custom object.");
+                log.error("不能将声明设置为自定义对象。");
                 return;
             }
             if (v instanceof Map) {
@@ -112,7 +112,7 @@ public class JwtUtil {
                 .withIssuedAt(now)
                 .withNotBefore(now)
                 .sign(algorithm);
-        log.debug("token created. " + token);
+        log.debug("已创建令牌。 " + token);
         return token;
     }
 

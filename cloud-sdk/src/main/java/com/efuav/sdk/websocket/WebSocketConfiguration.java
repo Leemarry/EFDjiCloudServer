@@ -27,7 +27,7 @@ public class WebSocketConfiguration implements WebSocketMessageBrokerConfigurer 
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        // Set the WebSocket connection address
+        // 设置WebSocket连接地址
         registry.addEndpoint("/api/v1/ws").setAllowedOriginPatterns("*")
                 .setHandshakeHandler(handshakeHandler);
     }

@@ -8,13 +8,15 @@ package com.efuav.sdk.common;
 public interface IErrorInfo {
 
     /**
-     * Get error message.
+     * 获取错误消息。
+     *
      * @return error message
      */
     String getMessage();
 
     /**
-     * Get error code.
+     * 获取错误代码。
+     *
      * @return error code
      */
     Integer getCode();

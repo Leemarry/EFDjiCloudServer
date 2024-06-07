@@ -21,14 +21,14 @@ public class CameraAimRequest extends BaseModel {
     private CameraTypeEnum cameraType;
 
     /**
-     * true: Lock the gimbal, the gimbal and the drone rotate together.
-     * false: Only the gimbal rotates, but the drone does not.
+     * true：锁定万向节，万向节和无人机一起旋转。
+     * false：只有万向节旋转，但无人机不旋转。
      */
     @NotNull
     private Boolean locked;
 
     /**
-     * upper left corner as center point
+     * 左上角作为中心点
      */
     @Min(0)
     @Max(1)

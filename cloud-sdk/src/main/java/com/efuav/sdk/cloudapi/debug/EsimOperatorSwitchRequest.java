@@ -13,19 +13,19 @@ import javax.validation.constraints.NotNull;
 public class EsimOperatorSwitchRequest extends BaseModel {
 
     /**
-     * Identifies the dongle to be operated on.
+     * 标识要操作的加密狗。
      */
     @NotNull
     private String imei;
 
     /**
-     * Identifies the target device to operate on.
+     * 标识要操作的目标设备。
      */
     @NotNull
     private DongleDeviceTypeEnum deviceType;
 
     /**
-     * Target carrier for switching.
+     * 切换的目标载波。
      */
     @NotNull
     private TelecomOperatorEnum telecomOperator;

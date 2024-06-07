@@ -220,4 +220,11 @@ public interface IDeviceService {
     void pushOsdDataToWeb(String workspaceId, BizCodeEnum codeEnum, String sn, Object data);
 
     void updateFlightControl(DeviceDTO gateway, ControlSourceEnum controlSource);
+
+    /**
+     * 获取所有绑定设备的信息
+     *
+     * @return
+     */
+    List<DeviceDTO> getDevices();
 }

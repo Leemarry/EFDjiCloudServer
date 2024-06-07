@@ -11,26 +11,26 @@ import javax.validation.constraints.Pattern;
 public class FlightAreaGetFile {
 
     /**
-     * File name
+     * 文件名
      */
     @NotNull
     @Pattern(regexp = "^geofence_[A-Za-z0-9]{32}.json$")
     private String name;
 
     /**
-     * File URL
+     * 文件URL
      */
     @NotNull
     private String url;
 
     /**
-     * File SHA256 signature
+     * 文件SHA256签名
      */
     @NotNull
     private String checksum;
 
     /**
-     * File size
+     * 文件大小
      */
     @NotNull
     private Integer size;

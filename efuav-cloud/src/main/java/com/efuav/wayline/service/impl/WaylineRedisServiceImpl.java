@@ -67,7 +67,7 @@ public class WaylineRedisServiceImpl implements IWaylineRedisService {
     @Override
     public void setConditionalWaylineJob(WaylineJobDTO waylineJob) {
         if (!StringUtils.hasText(waylineJob.getJobId())) {
-            throw new RuntimeException("Job id can't be null.");
+            throw new RuntimeException("作业id不能为null。");
         }
         RedisOpsUtils.setWithExpire(RedisConst.WAYLINE_JOB_CONDITION_PREFIX + waylineJob.getJobId(), waylineJob,
                 (Duration.between(waylineJob.getEndTime(), LocalDateTime.now()).getSeconds()));

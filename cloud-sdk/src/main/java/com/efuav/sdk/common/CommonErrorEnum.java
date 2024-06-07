@@ -15,9 +15,9 @@ public enum CommonErrorEnum implements IServicesErrorCode, IEventsErrorCode, IEr
 
     SUCCESS(0, "Success"),
 
-    STATUS_NOT_SUPPORTED(314000, "The device is either uploading logs or executing a flight mission. Please try again later."),
+    STATUS_NOT_SUPPORTED(314000, "该设备正在上传日志或执行飞行任务。请稍后再试。"),
 
-    WRONG_PARAMETER(325001, "Cloud command parameter error. Dock unable to execute command."),
+    WRONG_PARAMETER(325001, "云命令参数错误。机场无法执行命令。"),
 
     UNKNOWN(-1, "Unknown");
 

@@ -4,8 +4,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 /**
- * Used for paging display. These field names cannot be changed.
- * Because they need to be the same as the pilot.
+ * 用于分页显示。这些字段名称无法更改。
+ * 因为它们需要和pilot一样。
+ *
  * @author sean
  * @version 0.3
  * @date 2021/12/22
@@ -14,20 +15,20 @@ import io.swagger.v3.oas.annotations.media.Schema;
 public class Pagination {
 
     /**
-     * The current page number.
+     * 当前页码。
      */
     @Schema(description = "The current page number.", example = "1")
     private long page;
 
     /**
-     * The amount of data displayed per page.
+     * 每页显示的数据量。
      */
     @Schema(description = "The amount of data displayed per page.", example = "10")
     @JsonProperty("page_size")
     private long pageSize;
 
     /**
-     * The total amount of all data.
+     * 所有数据的总量。
      */
     @Schema(description = "The total amount of all data.", example = "10")
     private long total;

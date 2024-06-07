@@ -42,9 +42,10 @@ public abstract class AbstractControlService {
     private DrcDownPublish drcDownPublish;
 
     /**
-     * Event notification of flyto result
-     * @param request  data
-     * @param headers   The headers for a {@link Message}.
+     * 飞行结果事件通知
+     *
+     * @param request data
+     * @param headers The headers for a {@link Message}.
      * @return events_reply
      */
     @ServiceActivator(inputChannel = ChannelName.INBOUND_EVENTS_FLY_TO_POINT_PROGRESS, outputChannel = ChannelName.OUTBOUND_EVENTS)
@@ -53,9 +54,10 @@ public abstract class AbstractControlService {
     }
 
     /**
-     * Event notification of one-key taking off result
-     * @param request  data
-     * @param headers   The headers for a {@link Message}.
+     * 一键起飞结果事件通知
+     *
+     * @param request data
+     * @param headers The headers for a {@link Message}.
      * @return events_reply
      */
     @ServiceActivator(inputChannel = ChannelName.INBOUND_EVENTS_TAKEOFF_TO_POINT_PROGRESS, outputChannel = ChannelName.OUTBOUND_EVENTS)
@@ -64,9 +66,10 @@ public abstract class AbstractControlService {
     }
 
     /**
-     * Notification of DRC link state
-     * @param request  data
-     * @param headers   The headers for a {@link Message}.
+     * DRC链路状态通知
+     *
+     * @param request data
+     * @param headers The headers for a {@link Message}.
      * @return events_reply
      */
     @ServiceActivator(inputChannel = ChannelName.INBOUND_EVENTS_DRC_STATUS_NOTIFY, outputChannel = ChannelName.OUTBOUND_EVENTS)
@@ -75,9 +78,10 @@ public abstract class AbstractControlService {
     }
 
     /**
-     * Reason notification of invalid Joystick control
-     * @param request  data
-     * @param headers   The headers for a {@link Message}.
+     * 操纵手柄控制无效的原因通知
+     *
+     * @param request data
+     * @param headers The headers for a {@link Message}.
      * @return events_reply
      */
     @ServiceActivator(inputChannel = ChannelName.INBOUND_EVENTS_JOYSTICK_INVALID_NOTIFY, outputChannel = ChannelName.OUTBOUND_EVENTS)
@@ -86,9 +90,10 @@ public abstract class AbstractControlService {
     }
 
     /**
-     * Flight control authority grabbing
+     * 夺取飞行控制权
+     *
      * @param gateway
-     * @return  services_reply
+     * @return services_reply
      */
     @CloudSDKVersion(exclude = GatewayTypeEnum.RC)
     public TopicServicesResponse<ServicesReplyData> flightAuthorityGrab(GatewayManager gateway) {
@@ -98,10 +103,11 @@ public abstract class AbstractControlService {
     }
 
     /**
-     * Payload control authority grabbing
+     * 有效载荷控制权限抢夺
+     *
      * @param gateway
-     * @param request   data
-     * @return  services_reply
+     * @param request data
+     * @return services_reply
      */
     @CloudSDKVersion(exclude = GatewayTypeEnum.RC)
     public TopicServicesResponse<ServicesReplyData> payloadAuthorityGrab(GatewayManager gateway, PayloadAuthorityGrabRequest request) {
@@ -112,10 +118,11 @@ public abstract class AbstractControlService {
     }
 
     /**
-     * Enter the live flight controls mode
+     * 进入实时飞行控制模式
+     *
      * @param gateway
-     * @param request   data
-     * @return  services_reply
+     * @param request data
+     * @return services_reply
      */
     @CloudSDKVersion(exclude = GatewayTypeEnum.RC)
     public TopicServicesResponse<ServicesReplyData> drcModeEnter(GatewayManager gateway, DrcModeEnterRequest request) {
@@ -126,9 +133,10 @@ public abstract class AbstractControlService {
     }
 
     /**
-     * Exit the live flight controls mode
+     * 退出实时飞行控制模式
+     *
      * @param gateway
-     * @return  services_reply
+     * @return services_reply
      */
     @CloudSDKVersion(exclude = GatewayTypeEnum.RC)
     public TopicServicesResponse<ServicesReplyData> drcModeExit(GatewayManager gateway) {
@@ -138,10 +146,11 @@ public abstract class AbstractControlService {
     }
 
     /**
-     * One-key taking off
+     * 一键起飞
+     *
      * @param gateway
-     * @param request   data
-     * @return  services_reply
+     * @param request data
+     * @return services_reply
      */
     @CloudSDKVersion(exclude = GatewayTypeEnum.RC)
     public TopicServicesResponse<ServicesReplyData> takeoffToPoint(GatewayManager gateway, TakeoffToPointRequest request) {
@@ -152,10 +161,11 @@ public abstract class AbstractControlService {
     }
 
     /**
-     * flyto target point
+     * 飞向目标点
+     *
      * @param gateway
-     * @param request   data
-     * @return  services_reply
+     * @param request data
+     * @return services_reply
      */
     @CloudSDKVersion(exclude = GatewayTypeEnum.RC)
     public TopicServicesResponse<ServicesReplyData> flyToPoint(GatewayManager gateway, FlyToPointRequest request) {
@@ -166,10 +176,11 @@ public abstract class AbstractControlService {
     }
 
     /**
-     * Quickly update target points
+     * 快速更新目标点
+     *
      * @param gateway
-     * @param request   data
-     * @return  services_reply
+     * @param request data
+     * @return services_reply
      */
     @CloudSDKVersion(since = CloudSDKVersionEnum.V1_0_2, exclude = GatewayTypeEnum.RC, include = GatewayTypeEnum.DOCK)
     public TopicServicesResponse<ServicesReplyData> flyToPointUpdate(GatewayManager gateway, FlyToPointUpdateRequest request) {
@@ -180,9 +191,10 @@ public abstract class AbstractControlService {
     }
 
     /**
-     * End the task of flying to target point
+     * 结束飞往目标点的任务
+     *
      * @param gateway
-     * @return  services_reply
+     * @return services_reply
      */
     @CloudSDKVersion(exclude = GatewayTypeEnum.RC)
     public TopicServicesResponse<ServicesReplyData> flyToPointStop(GatewayManager gateway) {
@@ -192,10 +204,11 @@ public abstract class AbstractControlService {
     }
 
     /**
-     * Payload control - switch the camera mode
+     * 有效负载控制-切换摄像头模式
+     *
      * @param gateway
-     * @param request   data
-     * @return  services_reply
+     * @param request data
+     * @return services_reply
      */
     @CloudSDKVersion(exclude = GatewayTypeEnum.RC)
     public TopicServicesResponse<ServicesReplyData> cameraModeSwitch(GatewayManager gateway, CameraModeSwitchRequest request) {
@@ -206,10 +219,11 @@ public abstract class AbstractControlService {
     }
 
     /**
-     * Payload control - take single photo
+     * 有效载荷控制-拍摄一张照片
+     *
      * @param gateway
-     * @param request   data
-     * @return  services_reply
+     * @param request data
+     * @return services_reply
      */
     @CloudSDKVersion(exclude = GatewayTypeEnum.RC)
     public TopicServicesResponse<ServicesReplyData> cameraPhotoTake(GatewayManager gateway, CameraPhotoTakeRequest request) {
@@ -220,11 +234,12 @@ public abstract class AbstractControlService {
     }
 
     /**
-     * Payload control - stop taking photo
-     * Currently only panoramic photo mode is supported.
+     * 有效载荷控制-停止拍照
+     * 目前仅支持全景照片模式。
+     *
      * @param gateway
-     * @param request   data
-     * @return  services_reply
+     * @param request data
+     * @return services_reply
      */
     @CloudSDKVersion(since = CloudSDKVersionEnum.V1_0_2, exclude = GatewayTypeEnum.RC, include = GatewayTypeEnum.DOCK)
     public TopicServicesResponse<ServicesReplyData> cameraPhotoStop(GatewayManager gateway, CameraPhotoStopRequest request) {
@@ -235,10 +250,11 @@ public abstract class AbstractControlService {
     }
 
     /**
-     * Event notification of camera photo progress information
-     * Currently only panoramic photo mode is supported.
-     * @param request  data
-     * @param headers   The headers for a {@link Message}.
+     * 摄像头拍照进度信息事件通知
+     * 目前仅支持全景照片模式。
+     *
+     * @param request data
+     * @param headers The headers for a {@link Message}.
      * @return events_reply
      */
     @ServiceActivator(inputChannel = ChannelName.INBOUND_EVENTS_CAMERA_PHOTO_TAKE_PROGRESS, outputChannel = ChannelName.OUTBOUND_EVENTS)
@@ -247,10 +263,11 @@ public abstract class AbstractControlService {
     }
 
     /**
-     * Payload control - start recording
+     * 有效负载控制-开始记录
+     *
      * @param gateway
-     * @param request   data
-     * @return  services_reply
+     * @param request data
+     * @return services_reply
      */
     @CloudSDKVersion(exclude = GatewayTypeEnum.RC)
     public TopicServicesResponse<ServicesReplyData> cameraRecordingStart(GatewayManager gateway, CameraRecordingStartRequest request) {
@@ -261,10 +278,11 @@ public abstract class AbstractControlService {
     }
 
     /**
-     * Payload control - stop recording
+     * 有效负载控制-停止记录
+     *
      * @param gateway
-     * @param request   data
-     * @return  services_reply
+     * @param request data
+     * @return services_reply
      */
     @CloudSDKVersion(exclude = GatewayTypeEnum.RC)
     public TopicServicesResponse<ServicesReplyData> cameraRecordingStop(GatewayManager gateway, CameraRecordingStopRequest request) {
@@ -275,10 +293,11 @@ public abstract class AbstractControlService {
     }
 
     /**
-     * Payload control - double tab to become AIM
+     * 有效负载控制-双选项卡变为AIM
+     *
      * @param gateway
-     * @param request   data
-     * @return  services_reply
+     * @param request data
+     * @return services_reply
      */
     @CloudSDKVersion(exclude = GatewayTypeEnum.RC)
     public TopicServicesResponse<ServicesReplyData> cameraAim(GatewayManager gateway, CameraAimRequest request) {
@@ -289,10 +308,11 @@ public abstract class AbstractControlService {
     }
 
     /**
-     * Payload control - zoom
+     * 有效负载控制-缩放
+     *
      * @param gateway
-     * @param request   data
-     * @return  services_reply
+     * @param request data
+     * @return services_reply
      */
     @CloudSDKVersion(exclude = GatewayTypeEnum.RC)
     public TopicServicesResponse<ServicesReplyData> cameraFocalLengthSet(GatewayManager gateway, CameraFocalLengthSetRequest request) {
@@ -303,10 +323,11 @@ public abstract class AbstractControlService {
     }
 
     /**
-     * Payload control - reset the gimbal
+     * 有效负载控制-重置万向节
+     *
      * @param gateway
-     * @param request   data
-     * @return  services_reply
+     * @param request data
+     * @return services_reply
      */
     @CloudSDKVersion(exclude = GatewayTypeEnum.RC)
     public TopicServicesResponse<ServicesReplyData> gimbalReset(GatewayManager gateway, GimbalResetRequest request) {
@@ -317,12 +338,15 @@ public abstract class AbstractControlService {
     }
 
     /**
-     * The `lookat` function refers to the aircraft turning itself from its current heading to point at a specified location of actual latitude, longitude, and altitude.
-     * For M30/M30T models, it is recommended to use a method that locks the gimbal when using the `lookat` function.
-     * When the gimbal reaches its limits, the `lookat` function may behave abnormally.
+     * “lookat”功能是指飞机从当前航向转向实际纬度、经度和高度的指定位置。
+     * <p>
+     * 对于M30/M30T型号，建议在使用“lookat”功能时使用锁定万向节的方法。
+     * <p>
+     * 当万向节达到极限时，“观察”功能可能表现异常。
+     *
      * @param gateway
-     * @param request   data
-     * @return  services_reply
+     * @param request data
+     * @return services_reply
      */
     @CloudSDKVersion(since = CloudSDKVersionEnum.V1_0_0, exclude = GatewayTypeEnum.RC)
     public TopicServicesResponse<ServicesReplyData> cameraLookAt(GatewayManager gateway, CameraLookAtRequest request) {
@@ -333,10 +357,11 @@ public abstract class AbstractControlService {
     }
 
     /**
-     * Payload control - screen split
+     * 有效负载控制-屏幕拆分
+     *
      * @param gateway
-     * @param request   data
-     * @return  services_reply
+     * @param request data
+     * @return services_reply
      */
     @CloudSDKVersion(since = CloudSDKVersionEnum.V1_0_0, exclude = GatewayTypeEnum.RC)
     public TopicServicesResponse<ServicesReplyData> cameraScreenSplit(GatewayManager gateway, CameraScreenSplitRequest request) {
@@ -347,10 +372,11 @@ public abstract class AbstractControlService {
     }
 
     /**
-     * Payload control - photo storage setting
+     * 有效载荷控制-照片存储设置
+     *
      * @param gateway
-     * @param request   data
-     * @return  services_reply
+     * @param request data
+     * @return services_reply
      */
     @CloudSDKVersion(since = CloudSDKVersionEnum.V1_0_0, exclude = GatewayTypeEnum.RC)
     public TopicServicesResponse<ServicesReplyData> photoStorageSet(GatewayManager gateway, PhotoStorageSetRequest request) {
@@ -361,10 +387,11 @@ public abstract class AbstractControlService {
     }
 
     /**
-     * Payload control - video storage setting
+     * 有效负载控制-视频存储设置
+     *
      * @param gateway
-     * @param request   data
-     * @return  services_reply
+     * @param request data
+     * @return services_reply
      */
     @CloudSDKVersion(since = CloudSDKVersionEnum.V1_0_0, exclude = GatewayTypeEnum.RC)
     public TopicServicesResponse<ServicesReplyData> videoStorageSet(GatewayManager gateway, VideoStorageSetRequest request) {
@@ -375,10 +402,11 @@ public abstract class AbstractControlService {
     }
 
     /**
-     * Payload control - camera exposure setting
+     * 有效负载控制-摄像头曝光设置
+     *
      * @param gateway
-     * @param request   data
-     * @return  services_reply
+     * @param request data
+     * @return services_reply
      */
     @CloudSDKVersion(since = CloudSDKVersionEnum.V1_0_2, include = GatewayTypeEnum.DOCK)
     public TopicServicesResponse<ServicesReplyData> cameraExposureSet(GatewayManager gateway, CameraExposureSetRequest request) {
@@ -389,10 +417,11 @@ public abstract class AbstractControlService {
     }
 
     /**
-     * Payload control - camera exposure mode setting
+     * 有效负载控制-摄像头曝光模式设置
+     *
      * @param gateway
-     * @param request   data
-     * @return  services_reply
+     * @param request data
+     * @return services_reply
      */
     @CloudSDKVersion(since = CloudSDKVersionEnum.V1_0_2, include = GatewayTypeEnum.DOCK)
     public TopicServicesResponse<ServicesReplyData> cameraExposureModeSet(GatewayManager gateway, CameraExposureModeSetRequest request) {
@@ -403,10 +432,11 @@ public abstract class AbstractControlService {
     }
 
     /**
-     * Payload control - camera focus mode setting
+     * 有效负载控制-摄像头聚焦模式设置
+     *
      * @param gateway
-     * @param request   data
-     * @return  services_reply
+     * @param request data
+     * @return services_reply
      */
     @CloudSDKVersion(since = CloudSDKVersionEnum.V1_0_2, include = GatewayTypeEnum.DOCK)
     public TopicServicesResponse<ServicesReplyData> cameraFocusModeSet(GatewayManager gateway, CameraFocusModeSetRequest request) {
@@ -417,10 +447,11 @@ public abstract class AbstractControlService {
     }
 
     /**
-     * Payload control - camera focus value setting
+     * 有效负载控制-摄像头焦点值设置
+     *
      * @param gateway
-     * @param request   data
-     * @return  services_reply
+     * @param request data
+     * @return services_reply
      */
     @CloudSDKVersion(since = CloudSDKVersionEnum.V1_0_2, include = GatewayTypeEnum.DOCK)
     public TopicServicesResponse<ServicesReplyData> cameraFocusValueSet(GatewayManager gateway, CameraFocusValueSetRequest request) {
@@ -431,10 +462,11 @@ public abstract class AbstractControlService {
     }
 
     /**
-     * Payload control - ir metering mode setting
+     * 有效负载控制-空气计量模式设置
+     *
      * @param gateway
-     * @param request   data
-     * @return  services_reply
+     * @param request data
+     * @return services_reply
      */
     @CloudSDKVersion(since = CloudSDKVersionEnum.V1_0_2, include = GatewayTypeEnum.DOCK)
     public TopicServicesResponse<ServicesReplyData> irMeteringModeSet(GatewayManager gateway, IrMeteringModeSetRequest request) {
@@ -445,10 +477,11 @@ public abstract class AbstractControlService {
     }
 
     /**
-     * Payload control - ir metering point setting
+     * 有效负载控制-红外线测量点设置
+     *
      * @param gateway
-     * @param request   data
-     * @return  services_reply
+     * @param request data
+     * @return services_reply
      */
     @CloudSDKVersion(since = CloudSDKVersionEnum.V1_0_2, include = GatewayTypeEnum.DOCK)
     public TopicServicesResponse<ServicesReplyData> irMeteringPointSet(GatewayManager gateway, IrMeteringPointSetRequest request) {
@@ -459,10 +492,11 @@ public abstract class AbstractControlService {
     }
 
     /**
-     * Payload control - ir metering area setting
+     * 有效负载控制-红外线测量区域设置
+     *
      * @param gateway
-     * @param request   data
-     * @return  services_reply
+     * @param request data
+     * @return services_reply
      */
     @CloudSDKVersion(since = CloudSDKVersionEnum.V1_0_2, include = GatewayTypeEnum.DOCK)
     public TopicServicesResponse<ServicesReplyData> irMeteringAreaSet(GatewayManager gateway, IrMeteringAreaSetRequest request) {
@@ -473,10 +507,11 @@ public abstract class AbstractControlService {
     }
 
     /**
-     * Payload control - camera point focus
+     * 有效负载控制-摄像头点对焦点
+     *
      * @param gateway
-     * @param request   data
-     * @return  services_reply
+     * @param request data
+     * @return services_reply
      */
     @CloudSDKVersion(since = CloudSDKVersionEnum.V1_0_2, include = GatewayTypeEnum.DOCK)
     public TopicServicesResponse<ServicesReplyData> cameraPointFocusAction(GatewayManager gateway, CameraPointFocusActionRequest request) {
@@ -487,16 +522,17 @@ public abstract class AbstractControlService {
     }
 
     /**
-     * Payload control
+     * 有效载荷控制
+     *
      * @param gateway
-     * @param request   data
-     * @return  services_reply
+     * @param request data
+     * @return services_reply
      */
     public TopicServicesResponse<ServicesReplyData> payloadControl(GatewayManager gateway, PayloadControlMethodEnum methodEnum, BaseModel request) {
         try {
             AbstractControlService abstractControlService = SpringBeanUtils.getBean(this.getClass());
             Method method = abstractControlService.getClass().getDeclaredMethod(
-                    Common.convertSnake(methodEnum.getPayloadMethod().getMethod()),GatewayManager.class, methodEnum.getClazz());
+                    Common.convertSnake(methodEnum.getPayloadMethod().getMethod()), GatewayManager.class, methodEnum.getClazz());
             return (TopicServicesResponse<ServicesReplyData>) method.invoke(abstractControlService, gateway, request);
         } catch (NoSuchMethodException | IllegalAccessException e) {
             throw new CloudSDKException(e);
@@ -506,9 +542,10 @@ public abstract class AbstractControlService {
     }
 
     /**
-     * Event notification of poi surround information
-     * @param request  data
-     * @param headers   The headers for a {@link Message}.
+     * poi环绕信息的事件通知
+     *
+     * @param request data
+     * @param headers The headers for a {@link Message}.
      * @return events_reply
      */
     @ServiceActivator(inputChannel = ChannelName.INBOUND_EVENTS_POI_STATUS_NOTIFY, outputChannel = ChannelName.OUTBOUND_EVENTS)
@@ -518,10 +555,11 @@ public abstract class AbstractControlService {
     }
 
     /**
-     * Enter the poi surround mode
+     * 进入poi环绕模式
+     *
      * @param gateway
-     * @param request   data
-     * @return  services_reply
+     * @param request data
+     * @return services_reply
      */
     @CloudSDKVersion(since = CloudSDKVersionEnum.V1_0_2, exclude = GatewayTypeEnum.RC, include = GatewayTypeEnum.DOCK)
     public TopicServicesResponse<ServicesReplyData> poiModeEnter(GatewayManager gateway, PoiModeEnterRequest request) {
@@ -532,9 +570,10 @@ public abstract class AbstractControlService {
     }
 
     /**
-     * Exit the poi surround mode
+     * 退出poi环绕模式
+     *
      * @param gateway
-     * @return  services_reply
+     * @return services_reply
      */
     @CloudSDKVersion(since = CloudSDKVersionEnum.V1_0_2, exclude = GatewayTypeEnum.RC, include = GatewayTypeEnum.DOCK)
     public TopicServicesResponse<ServicesReplyData> poiModeExit(GatewayManager gateway) {
@@ -544,10 +583,11 @@ public abstract class AbstractControlService {
     }
 
     /**
-     * poi speed setting
+     * 然后设置速度
+     *
      * @param gateway
-     * @param request   data
-     * @return  services_reply
+     * @param request data
+     * @return services_reply
      */
     @CloudSDKVersion(since = CloudSDKVersionEnum.V1_0_2, exclude = GatewayTypeEnum.RC, include = GatewayTypeEnum.DOCK)
     public TopicServicesResponse<ServicesReplyData> poiCircleSpeedSet(GatewayManager gateway, PoiCircleSpeedSetRequest request) {
@@ -558,9 +598,10 @@ public abstract class AbstractControlService {
     }
 
     /**
-     * DRC-flight control
+     * DRC飞行控制
+     *
      * @param gateway
-     * @param request   data
+     * @param request data
      */
     @CloudSDKVersion(exclude = GatewayTypeEnum.RC)
     protected void droneControlDown(GatewayManager gateway, DroneControlRequest request) {
@@ -571,9 +612,10 @@ public abstract class AbstractControlService {
     }
 
     /**
-     * Drc up notification of drone control result
-     * @param request  data
-     * @param headers   The headers for a {@link Message}.
+     * Drc-up无人机控制结果通知
+     *
+     * @param request data
+     * @param headers The headers for a {@link Message}.
      * @return events_reply
      */
     @ServiceActivator(inputChannel = ChannelName.INBOUND_DRC_UP_DRONE_CONTROL)
@@ -582,7 +624,8 @@ public abstract class AbstractControlService {
     }
 
     /**
-     * DRC-drone emergency stop
+     * DRC无人机紧急停止
+     *
      * @param gateway
      */
     @CloudSDKVersion(exclude = GatewayTypeEnum.RC)
@@ -593,9 +636,10 @@ public abstract class AbstractControlService {
     }
 
     /**
-     * Drc up notification of drone emergency stop result
-     * @param request  data
-     * @param headers   The headers for a {@link Message}.
+     * Drc-up无人机紧急停止结果通知
+     *
+     * @param request data
+     * @param headers The headers for a {@link Message}.
      * @return events_reply
      */
     @ServiceActivator(inputChannel = ChannelName.INBOUND_DRC_UP_DRONE_EMERGENCY_STOP)
@@ -605,9 +649,10 @@ public abstract class AbstractControlService {
 
 
     /**
-     * DRC-heart beat
+     * DRC心跳
+     *
      * @param gateway
-     * @param request   data
+     * @param request data
      */
     @CloudSDKVersion(exclude = GatewayTypeEnum.RC)
     public void heartBeatDown(GatewayManager gateway, HeartBeatRequest request) {
@@ -618,9 +663,10 @@ public abstract class AbstractControlService {
     }
 
     /**
-     * Drc up notification of heart beat result
-     * @param request  data
-     * @param headers   The headers for a {@link Message}.
+     * 心跳结果提示
+     *
+     * @param request data
+     * @param headers The headers for a {@link Message}.
      * @return events_reply
      */
     @ServiceActivator(inputChannel = ChannelName.INBOUND_DRC_UP_HEART_BEAT)
@@ -629,9 +675,10 @@ public abstract class AbstractControlService {
     }
 
     /**
-     * DRC-obstacle avoidance information pushing
-     * @param request  data
-     * @param headers   The headers for a {@link Message}.
+     * DRC避障信息推送
+     *
+     * @param request data
+     * @param headers The headers for a {@link Message}.
      * @return events_reply
      */
     @ServiceActivator(inputChannel = ChannelName.INBOUND_DRC_UP_HSI_INFO_PUSH)
@@ -640,9 +687,10 @@ public abstract class AbstractControlService {
     }
 
     /**
-     * DRC-delay information pushing of image transmission link
-     * @param request  data
-     * @param headers   The headers for a {@link Message}.
+     * 图像传输链路DRC延时信息推送
+     *
+     * @param request data
+     * @param headers The headers for a {@link Message}.
      * @return events_reply
      */
     @ServiceActivator(inputChannel = ChannelName.INBOUND_DRC_UP_DELAY_INFO_PUSH)
@@ -651,9 +699,10 @@ public abstract class AbstractControlService {
     }
 
     /**
-     * DRC-high frequency osd information pushing
-     * @param request  data
-     * @param headers   The headers for a {@link Message}.
+     * DRC高频osd信息推送
+     *
+     * @param request data
+     * @param headers The headers for a {@link Message}.
      * @return events_reply
      */
     @ServiceActivator(inputChannel = ChannelName.INBOUND_DRC_UP_OSD_INFO_PUSH)

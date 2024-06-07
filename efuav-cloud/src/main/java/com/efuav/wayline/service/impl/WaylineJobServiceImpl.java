@@ -122,6 +122,7 @@ public class WaylineJobServiceImpl implements IWaylineJobService {
         return this.insertWaylineJob(jobEntity);
     }
 
+    @Override
     public List<WaylineJobDTO> getJobsByConditions(String workspaceId, Collection<String> jobIds, WaylineJobStatusEnum status) {
         return mapper.selectList(
                 new LambdaQueryWrapper<WaylineJobEntity>()
@@ -284,7 +285,7 @@ public class WaylineJobServiceImpl implements IWaylineJobService {
         }
 
         int uploadedSize = fileService.getFilesByWorkspaceAndJobId(entity.getWorkspaceId(), entity.getJobId()).size();
-        // 此作业的所有媒体都已上载。
+        // 此作业的所有媒体都已上传。
         if (uploadedSize >= entity.getMediaCount()) {
             return builder.uploadedCount(uploadedSize).build();
         }

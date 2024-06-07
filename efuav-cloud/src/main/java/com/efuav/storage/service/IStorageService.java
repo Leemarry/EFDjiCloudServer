@@ -10,7 +10,7 @@ import com.efuav.sdk.cloudapi.storage.StsCredentialsResponse;
 public interface IStorageService {
 
     /**
-     * 获取用于上载媒体和路线的自定义临时凭据对象。
+     * 获取用于上传媒体和路线的自定义临时凭据对象。
      *
      * @return 临时凭据对象
      */

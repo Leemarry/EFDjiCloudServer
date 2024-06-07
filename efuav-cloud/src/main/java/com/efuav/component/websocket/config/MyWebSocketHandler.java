@@ -32,7 +32,7 @@ public class MyWebSocketHandler extends WebSocketDefaultHandler {
         Principal principal = session.getPrincipal();
         if (StringUtils.hasText(principal.getName())) {
             webSocketManageService.put(principal.getName(), new MyConcurrentWebSocketSession(session));
-            log.debug("{} is connected. ID: {}. WebSocketSession[current count: {}]",
+            log.debug("{} 已连接。 ID: {}. WebSocketSession[当前计数: {}]",
                     principal.getName(), session.getId(), webSocketManageService.getConnectedCount());
             return;
         }
@@ -44,7 +44,7 @@ public class MyWebSocketHandler extends WebSocketDefaultHandler {
         Principal principal = session.getPrincipal();
         if (StringUtils.hasText(principal.getName())) {
             webSocketManageService.remove(principal.getName(), session.getId());
-            log.debug("{} is disconnected. ID: {}. WebSocketSession[current count: {}]",
+            log.debug("{} 已断开连接。 ID: {}. WebSocketSession[当前计数: {}]",
                     principal.getName(), session.getId(), webSocketManageService.getConnectedCount());
         }
 
@@ -52,7 +52,7 @@ public class MyWebSocketHandler extends WebSocketDefaultHandler {
 
     @Override
     public void handleMessage(WebSocketSession session, WebSocketMessage<?> message) throws Exception {
-        log.debug("received message: {}", message.getPayload());
+        log.debug("接收信息: {}", message.getPayload());
     }
 
 }

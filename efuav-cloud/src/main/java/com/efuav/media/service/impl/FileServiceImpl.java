@@ -101,7 +101,7 @@ public class FileServiceImpl implements IFileService {
     public URL getObjectUrl(String workspaceId, String fileId) {
         Optional<MediaFileEntity> mediaFileOpt = getMediaByFileId(workspaceId, fileId);
         if (mediaFileOpt.isEmpty()) {
-            throw new IllegalArgumentException("{} doesn't exist.");
+            throw new IllegalArgumentException("{} 不存在。");
         }
 
         return ossService.getObjectUrl(OssConfiguration.bucket, mediaFileOpt.get().getObjectKey());

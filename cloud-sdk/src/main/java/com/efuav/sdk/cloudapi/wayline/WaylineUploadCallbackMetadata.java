@@ -17,7 +17,7 @@ import java.util.List;
 public class WaylineUploadCallbackMetadata {
 
     /**
-     * drone device product enum
+     * 无人机设备产品枚举
      */
     @NotNull
     @Schema(description = "drone device product enum", example = "0-67-0")
@@ -25,7 +25,7 @@ public class WaylineUploadCallbackMetadata {
     private DeviceEnum droneModelKey;
 
     /**
-     * payload device product enum
+     * 有效载荷设备产品枚举
      */
     @NotNull
     @Size(min = 1)
@@ -34,7 +34,7 @@ public class WaylineUploadCallbackMetadata {
     private List<DeviceEnum> payloadModelKeys;
 
     /**
-     * wayline template collection
+     * 航线模板集合
      */
     @NotNull
     @Size(min = 1)

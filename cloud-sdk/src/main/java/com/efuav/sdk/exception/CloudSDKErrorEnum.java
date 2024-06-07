@@ -9,23 +9,23 @@ import com.efuav.sdk.common.IErrorInfo;
  */
 public enum CloudSDKErrorEnum implements IErrorInfo {
 
-    NOT_REGISTERED(210001, "Device is not registered."),
+    NOT_REGISTERED(210001, "设备未注册。"),
 
-    INVALID_PARAMETER(210002, "Invalid parameter."),
+    INVALID_PARAMETER(210002, "无效参数。"),
 
-    DEVICE_TYPE_NOT_SUPPORT(210003, "The current type of the device does not support this function."),
+    DEVICE_TYPE_NOT_SUPPORT(210003, "当前类型的设备不支持此功能。"),
 
-    DEVICE_VERSION_NOT_SUPPORT(210004, "The current version of the device does not support this function."),
+    DEVICE_VERSION_NOT_SUPPORT(210004, "设备的当前版本不支持此功能。"),
 
-    DEVICE_PROPERTY_NOT_SUPPORT(210005, "The current device does not support this feature."),
+    DEVICE_PROPERTY_NOT_SUPPORT(210005, "当前设备不支持此功能。"),
 
-    MQTT_PUBLISH_ABNORMAL(211001, "The sending of mqtt message is abnormal."),
+    MQTT_PUBLISH_ABNORMAL(211001, "MQTT消息发送异常。"),
 
-    WEBSOCKET_PUBLISH_ABNORMAL(212001, "The sending of webSocket message is abnormal."),
+    WEBSOCKET_PUBLISH_ABNORMAL(212001, "webSocket消息发送异常。"),
 
-    WRONG_DATA(220001, "Data exceeds limit."),
+    WRONG_DATA(220001, "数据超出限制。"),
 
-    UNKNOWN(299999, "sdk unknown"),
+    UNKNOWN(299999, "SDK未知"),
     ;
 
     private final int code;

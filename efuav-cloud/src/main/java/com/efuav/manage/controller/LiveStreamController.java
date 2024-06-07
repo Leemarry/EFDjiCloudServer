@@ -34,13 +34,14 @@ public class LiveStreamController {
 
     /**
      * 从数据库中获取当前用户工作空间中所有无人机的实时能力数据。
+     *
      * @param request
-     * @return  live capability
+     * @return live capability
      */
     @GetMapping("/capacity")
     public HttpResultResponse<List<CapacityDeviceDTO>> getLiveCapacity(HttpServletRequest request) {
         // 获取有关当前用户的信息。
-        CustomClaim customClaim = (CustomClaim)request.getAttribute(TOKEN_CLAIM);
+        CustomClaim customClaim = (CustomClaim) request.getAttribute(TOKEN_CLAIM);
 
         List<CapacityDeviceDTO> liveCapacity = liveStreamService.getLiveCapacity(customClaim.getWorkspaceId());
 
@@ -49,6 +50,7 @@ public class LiveStreamController {
 
     /**
      * 根据从web端传入的参数进行直播。
+     *
      * @param liveParam 直播参数。
      * @return
      */
@@ -59,16 +61,21 @@ public class LiveStreamController {
 
     /**
      * 根据web端传入的参数停止直播。
+     *
      * @param liveParam 直播参数。
      * @return
      */
     @PostMapping("/streams/stop")
     public HttpResultResponse liveStop(@RequestBody LiveTypeDTO liveParam) {
+        if (liveParam.getVideoId() == null) {
+            return HttpResultResponse.error("videoId不能为空！");
+        }
         return liveStreamService.liveStop(liveParam.getVideoId());
     }
 
     /**
      * 根据从web端传入的参数设置直播的质量。
+     *
      * @param liveParam 直播参数。
      * @return
      */

@@ -13,48 +13,48 @@ import java.util.Arrays;
  */
 public enum ControlErrorCodeEnum implements IServicesErrorCode, IEventsErrorCode, IErrorInfo {
 
-    SETTING_RTH_FAILED(327000, "Height of return to home setting failed."),
+    SETTING_RTH_FAILED(327000, "返回原点的高度设置失败。"),
 
-    SETTING_LOST_ACTION_FAILED(327001, "Signal lost action setting failed."),
+    SETTING_LOST_ACTION_FAILED(327001, "信号丢失操作设置失败。"),
 
-    OBTAIN_CONTROL_FAILED(327002, "Failed to obtain control."),
+    OBTAIN_CONTROL_FAILED(327002, "未能获得控制权。"),
 
-    DEVICE_OFFLINE(327003, "Failed to obtain control. Device offline."),
+    DEVICE_OFFLINE(327003, "未能获得控制权。设备离线。"),
 
-    DRAG_LIVESTREAM_VIEW_FAILED(327004, "Failed to drag livestream view."),
+    DRAG_LIVESTREAM_VIEW_FAILED(327004, "未能拖动直播视图。"),
 
-    AIM_FAILED(327005, "Failed to double tab to be AIM."),
+    AIM_FAILED(327005, "无法将制表符双击为AIM。"),
 
-    TAKE_PHOTO_FAILED(327006, "Failed to take photo."),
+    TAKE_PHOTO_FAILED(327006, "拍照失败。"),
 
-    START_RECORDING_FAILED(327007, "Failed to start recording."),
+    START_RECORDING_FAILED(327007, "无法开始录制。"),
 
-    STOP_RECORDING_FAILED(327008, "Failed to stop recording."),
+    STOP_RECORDING_FAILED(327008, "无法停止录制。"),
 
-    SWITCH_CAMERA_MODE_FAILED(327009, "Failed to switch camera modes."),
+    SWITCH_CAMERA_MODE_FAILED(327009, "无法切换相机模式。"),
 
-    ZOOM_CAMERA_ZOOM_FAILED(327010, "Failed to zoom in/out with zoom camera."),
+    ZOOM_CAMERA_ZOOM_FAILED(327010, "无法使用变焦相机放大/缩小。"),
 
-    IR_CAMERA_ZOOM_FAILED(327011, "Failed to zoom in/out with IR camera."),
+    IR_CAMERA_ZOOM_FAILED(327011, "无法使用红外相机放大/缩小。"),
 
-    DEVICE_LOCK(327012, "Failed to obtain control. Device is locked."),
+    DEVICE_LOCK(327012, "未能获得控制权。设备已锁定。"),
 
-    SETTING_WAYLINE_LOST_ACTION_FAILED(327013, "Wayline signal lost action setting failed."),
+    SETTING_WAYLINE_LOST_ACTION_FAILED(327013, "航线信号丢失动作设置失败。"),
 
-    GIMBAL_REACH_LIMIT(327014, "Gimbal reached movement limit."),
+    GIMBAL_REACH_LIMIT(327014, "万向节达到移动极限。"),
 
-    WRONG_LENS_TYPE(327015, "Invalid camera lens type."),
+    WRONG_LENS_TYPE(327015, "相机镜头类型无效。"),
 
 
-    DRC_ABNORMAL(514300, "DRC abnormal."),
+    DRC_ABNORMAL(514300, "DRC异常。"),
 
-    DRC_HEARTBEAT_TIMED_OUT(514301, "DRC heartbeat timed out."),
+    DRC_HEARTBEAT_TIMED_OUT(514301, "DRC检测信号超时。"),
 
-    DRC_CERTIFICATE_ABNORMAL(514302, "DRC certificate is abnormal."),
+    DRC_CERTIFICATE_ABNORMAL(514302, "DRC证书异常。"),
 
-    DRC_LINK_LOST(514303, "DRC link is lost."),
+    DRC_LINK_LOST(514303, "DRC链接丢失。"),
 
-    DRC_LINK_REFUSED(514304, "DRC link is refused."),
+    DRC_LINK_REFUSED(514304, "DRC链接被拒绝。"),
 
     UNKNOWN(-1, "UNKNOWN"),
 

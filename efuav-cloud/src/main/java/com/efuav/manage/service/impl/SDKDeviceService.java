@@ -78,13 +78,13 @@ public class SDKDeviceService extends AbstractDeviceService {
         DeviceDTO gateway = deviceGatewayConvertToDevice(request.getFrom(), request.getData());
         Optional<DeviceDTO> gatewayEntityOpt = onlineSaveDevice(gateway, deviceSn, null);
         if (gatewayEntityOpt.isEmpty()) {
-            log.error("Failed to go online, please check the status data or code logic.");
+            log.error("无法上线，请检查状态数据或代码逻辑。");
             return null;
         }
         DeviceDTO subDevice = subDeviceConvertToDevice(updateTopoSubDevice);
         Optional<DeviceDTO> subDeviceEntityOpt = onlineSaveDevice(subDevice, null, gateway.getDeviceSn());
         if (subDeviceEntityOpt.isEmpty()) {
-            log.error("Failed to go online, please check the status data or code logic.");
+            log.error("无法上线，请检查状态数据或代码逻辑。");
             return null;
         }
         subDevice = subDeviceEntityOpt.get();
@@ -96,11 +96,11 @@ public class SDKDeviceService extends AbstractDeviceService {
             return new TopicStatusResponse<MqttReply>().setData(MqttReply.success());
         }
 
-        // Subscribe to topic related to drone devices.
+        // 订阅与无人机设备相关的主题。
         deviceService.subDeviceOnlineSubscribeTopic(gatewayManager);
         deviceService.pushDeviceOnlineTopo(gateway.getWorkspaceId(), gateway.getDeviceSn(), subDevice.getDeviceSn());
 
-        log.debug("{} online.", subDevice.getDeviceSn());
+        log.debug("{} 在线", subDevice.getDeviceSn());
         return new TopicStatusResponse<MqttReply>().setData(MqttReply.success());
     }
 
@@ -139,14 +139,14 @@ public class SDKDeviceService extends AbstractDeviceService {
         if (deviceOpt.isEmpty() || !StringUtils.hasText(deviceOpt.get().getWorkspaceId())) {
             deviceOpt = deviceService.getDeviceBySn(from);
             if (deviceOpt.isEmpty()) {
-                log.error("Please restart the drone.");
+                log.error("请重新启动无人机。");
                 return;
             }
         }
 
         DeviceDTO device = deviceOpt.get();
         if (!StringUtils.hasText(device.getWorkspaceId())) {
-            log.error("Please bind the dock first.");
+            log.error("请先绑定机场。");
         }
         if (StringUtils.hasText(device.getChildDeviceSn())) {
             deviceService.getDeviceBySn(device.getChildDeviceSn()).ifPresent(device::setChildren);
@@ -165,13 +165,13 @@ public class SDKDeviceService extends AbstractDeviceService {
         if (deviceOpt.isEmpty()) {
             deviceOpt = deviceService.getDeviceBySn(from);
             if (deviceOpt.isEmpty()) {
-                log.error("Please restart the drone.");
+                log.error("请重新启动无人机。");
                 return;
             }
         }
 
         if (!StringUtils.hasText(deviceOpt.get().getWorkspaceId())) {
-            log.error("Please restart the drone.");
+            log.error("请重新启动无人机。");
         }
 
         DeviceDTO device = deviceOpt.get();
@@ -188,7 +188,7 @@ public class SDKDeviceService extends AbstractDeviceService {
         if (deviceOpt.isEmpty()) {
             deviceOpt = deviceService.getDeviceBySn(from);
             if (deviceOpt.isEmpty()) {
-                log.error("Please restart the drone.");
+                log.error("请重新启动无人机。");
                 return;
             }
         }
@@ -215,13 +215,13 @@ public class SDKDeviceService extends AbstractDeviceService {
         if (deviceOpt.isEmpty()) {
             deviceOpt = deviceService.getDeviceBySn(from);
             if (deviceOpt.isEmpty()) {
-                log.error("Please restart the drone.");
+                log.error("请重新启动无人机。");
                 return;
             }
         }
         DeviceDTO device = deviceOpt.get();
         if (!StringUtils.hasText(device.getWorkspaceId())) {
-            log.error("Please bind the drone first.");
+            log.error("请先绑定无人机。");
         }
 
         deviceRedisService.setDeviceOnline(device);
@@ -255,7 +255,7 @@ public class SDKDeviceService extends AbstractDeviceService {
                 .build();
         boolean isUpd = deviceService.updateDevice(device);
         if (!isUpd) {
-            log.error("Data update of firmware version failed. SN: {}", request.getFrom());
+            log.error("固件版本的数据更新失败。 SN: {}", request.getFrom());
         }
     }
 
@@ -272,7 +272,7 @@ public class SDKDeviceService extends AbstractDeviceService {
                 .build();
         boolean isUpd = deviceService.updateDevice(device);
         if (!isUpd) {
-            log.error("Data update of firmware version failed. SN: {}", request.getFrom());
+            log.error("固件版本的数据更新失败。 SN: {}", request.getFrom());
         }
     }
 
@@ -285,7 +285,7 @@ public class SDKDeviceService extends AbstractDeviceService {
 
         boolean isUpd = devicePayloadService.updateFirmwareVersion(request.getFrom(), request.getData());
         if (!isUpd) {
-            log.error("Data update of payload firmware version failed. SN: {}", request.getFrom());
+            log.error("有效负载固件版本的数据更新失败。 SN: {}", request.getFrom());
         }
     }
 
@@ -346,7 +346,7 @@ public class SDKDeviceService extends AbstractDeviceService {
             return;
         }
         if (!StringUtils.hasText(gateway.getWorkspaceId())) {
-            log.error("The dock is not bound, please bind it first and then go online.");
+            log.error("机场未绑定，请先绑定，然后再联机。");
             return;
         }
         if (!Objects.requireNonNullElse(subDevice.getBoundStatus(), false)) {
@@ -398,7 +398,7 @@ public class SDKDeviceService extends AbstractDeviceService {
             deviceService.subDeviceOnlineSubscribeTopic(SDKManager.getDeviceSDK(gatewaySn));
         }
 
-        log.warn("{} is already online.", deviceSn);
+        log.warn("{} 已联机。", deviceSn);
     }
 
     /**

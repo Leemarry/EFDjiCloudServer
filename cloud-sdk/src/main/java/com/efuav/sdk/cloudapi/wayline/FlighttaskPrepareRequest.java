@@ -20,63 +20,63 @@ import javax.validation.constraints.Pattern;
 public class FlighttaskPrepareRequest extends BaseModel {
 
     /**
-     * Task ID
+     * 任务ID
      */
     @NotNull
     @Pattern(regexp = "^[^<>:\"/|?*._\\\\]+$")
     private String flightId;
 
     /**
-     * Time to execute
-     * Millisecond timestamp of task execution time. Optional field.
-     * When the `task_type` is 0 or 1, it is required. When the `task_type` is 2, it is not required.
+     * 执行时间
+     * 任务执行时间的毫秒时间戳。可选字段。
+     * 当“task_type”为0或1时，它是必需的。当“task_type”为2时，它不是必需的。
      */
     @Min(123456789012L)
     private Long executeTime;
 
     /**
-     * Task type
-     * The execution time of immediate task and timed task are defined by `execute_time`.
-     * The conditional task supports the task readiness condition defined by `ready_conditions`.
-     * The task can be executed if conditions are satisfied within a specified period.
-     * Immediate task has the highest priority. Timed task and conditional task have the same priority.
+     * 任务类型
+     * 即时任务和定时任务的执行时间由“execute_time”定义。
+     * 条件任务支持由“ready_conditions”定义的任务准备状态条件。
+     * 如果在指定的时间段内满足条件，则可以执行该任务。
+     * 即时任务具有最高优先级。定时任务和条件任务具有相同的优先级。
      */
     @NotNull
     private TaskTypeEnum taskType;
 
     /**
-     * Wayline type
+     * 航线类型
      */
     @NotNull
     private WaylineTypeEnum waylineType;
 
     /**
-     * Wayline file object
+     * 航线文件对象
      */
     @NotNull
     @Valid
     private FlighttaskFile file;
 
     /**
-     * Task readiness condition
+     * 任务准备情况
      */
     @Valid
     private ReadyConditions readyConditions;
 
     /**
-     * Task executable condition
+     * 任务可执行条件
      */
     @Valid
     private ExecutableConditions executableConditions;
 
     /**
-     * Wayline breakpoint information
+     * 线路断点信息
      */
     @Valid
     private FlighttaskBreakPoint breakPoint;
 
     /**
-     * Height for RTH
+     * RTH的高度
      */
     @NotNull
     @Min(20)
@@ -84,17 +84,17 @@ public class FlighttaskPrepareRequest extends BaseModel {
     private Integer rthAltitude;
 
     /**
-     * Remote controller out of control action
-     * Out of control action: the current fixed transmitted value is 0, meaning Return-to-Home (RTH).
-     * Note that this enumeration value definition is inconsistent with the flight control and dock definitions,
-     * and a conversion exists at the dock end.
+     * 遥控器失控动作
+     * 失控动作：当前固定传输值为0，表示返回原位（RTH）。
+     * 注意，该枚举值定义与飞行控制和码头定义不一致，
+     * 并且在码头端存在转换。
      */
     @NotNull
     private OutOfControlActionEnum outOfControlAction;
 
     /**
-     * wayline out of control action
-     * consistent with the KMZ file
+     * 航线失控动作
+     * 与KMZ文件一致
      */
     @NotNull
     private ExitWaylineWhenRcLostEnum exitWaylineWhenRcLost;
@@ -110,7 +110,8 @@ public class FlighttaskPrepareRequest extends BaseModel {
     @CloudSDKVersion(since = CloudSDKVersionEnum.V1_0_1, include = GatewayTypeEnum.DOCK2)
     private WaylinePrecisionTypeEnum waylinePrecisionType;
 
-    public FlighttaskPrepareRequest() {}
+    public FlighttaskPrepareRequest() {
+    }
 
     @Override
     public String toString() {

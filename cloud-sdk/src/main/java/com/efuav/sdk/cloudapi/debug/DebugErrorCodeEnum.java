@@ -13,127 +13,127 @@ import java.util.Arrays;
  */
 public enum DebugErrorCodeEnum implements IServicesErrorCode, IEventsErrorCode, IErrorInfo {
 
-    AIRCRAFT_NO_DONGLE(326002, "The DJI Cellular module is not installed on the aircraft."),
+    AIRCRAFT_NO_DONGLE(326002, "DJI Cellular模块未安装在飞机上。"),
 
-    AIRCRAFT_DONGLE_NO_SIM(326003, "There is no SIM card installed in the DJI Cellular module of the aircraft."),
+    AIRCRAFT_DONGLE_NO_SIM(326003, "飞机的DJI Cellular模块中没有安装SIM卡。"),
 
-    AIRCRAFT_DONGLE_NEED_UPGRADE(326004, "The DJI Cellular module of the aircraft needs to be upgraded, otherwise it cannot be used."),
+    AIRCRAFT_DONGLE_NEED_UPGRADE(326004, "飞机的DJI Cellular模块需要升级，否则无法使用。"),
 
-    ESTABLISH_CONNECTION_FAILED(326005, "The 4G transmission of the aircraft fails to be enabled, and the 4G transmission cannot establish a connection. Please check the 4G signal strength, or consult the operator to check the package traffic and APN settings."),
+    ESTABLISH_CONNECTION_FAILED(326005, "飞机的4G传输无法启用，4G传输无法建立连接。请检查4G信号强度，或咨询运营商检查套餐流量和APN设置。"),
 
-    SDR_SWITCH_FAILED(326006, "The 4G transmission switch failed, please try again later."),
+    SDR_SWITCH_FAILED(326006, "4G传输开关出现故障，请稍后再试。"),
 
-    WRONG_COMMAND_FORMAT(326007, "The command format is wrong."),
+    WRONG_COMMAND_FORMAT(326007, "命令格式错误。"),
 
-    DOCK_NO_DONGLE(326008, "The DJI Cellular module is not installed on the dock."),
+    DOCK_NO_DONGLE(326008, "DJI Cellular模块未安装在底座上。"),
 
-    DOCK_DONGLE_NO_SIM(326009, "There is no SIM card installed in the DJI Cellular module of the dock."),
+    DOCK_DONGLE_NO_SIM(326009, "机场的DJI Cellular模块中没有安装SIM卡。"),
 
-    DOCK_DONGLE_NEED_UPGRADE(326010, "The DJI Cellular module of the dock needs to be upgraded, otherwise it cannot be used."),
+    DOCK_DONGLE_NEED_UPGRADE(326010, "机场的DJI Cellular模块需要升级，否则无法使用。"),
 
-    COMMAND_NOT_SUPPORTED(514100, "Dock error. Restart dock and try again."),
+    COMMAND_NOT_SUPPORTED(514100, "机场错误。重新启动机场，然后重试。"),
 
-    PUSH_DRIVING_RODS_FAILED(514101, "Failed to push driving rods into place."),
+    PUSH_DRIVING_RODS_FAILED(514101, "未能将传动杆推入到位。"),
 
-    PULL_DRIVING_RODS_FAILED(514102, "Failed to pull driving rods back."),
+    PULL_DRIVING_RODS_FAILED(514102, "未能将驱动杆拉回。"),
 
-    LOW_POWER_1(514103, "Aircraft battery level low. Unable to perform task. Wait until aircraft is charged up to 50% and try again."),
+    LOW_POWER_1(514103, "飞机电池电量低。无法执行任务。等待飞机充电至50%，然后重试。"),
 
-    CHARGE_FAILED(514104, "Failed to charge battery."),
+    CHARGE_FAILED(514104, "电池充电失败。"),
 
-    STOP_CHARGING_FAILED(514105, "Failed to stop charging battery."),
+    STOP_CHARGING_FAILED(514105, "无法停止对电池充电。"),
 
-    REBOOT_DRONE_FAILED(514106, "Failed to reboot drone."),
+    REBOOT_DRONE_FAILED(514106, "无法重新启动无人机。"),
 
-    OPEN_DOCK_COVER_FAILED(514107, "Failed to open dock cover."),
+    OPEN_DOCK_COVER_FAILED(514107, "无法打开机场舱盖。"),
 
-    CLOSE_DOCK_COVER_FAILED(514108, "Failed to close dock cover."),
+    CLOSE_DOCK_COVER_FAILED(514108, "无法关闭机场舱盖。"),
 
-    POWER_ON_AIRCRAFT_FAILED(514109, "Failed to power on aircraft."),
+    POWER_ON_AIRCRAFT_FAILED(514109, "未能接通飞机电源。"),
 
-    POWER_OFF_AIRCRAFT_FAILED(514110, "Failed to power off aircraft."),
+    POWER_OFF_AIRCRAFT_FAILED(514110, "未能关闭飞机电源。"),
 
-    OPEN_SLOW_MOTION_FAILED(514111, "Propeller error in opening slow motion mode"),
+    OPEN_SLOW_MOTION_FAILED(514111, "打开慢动作模式时螺旋桨错误"),
 
-    CLOSE_SLOW_MOTION_FAILED(514112, "Propeller error in closing slow motion mode"),
+    CLOSE_SLOW_MOTION_FAILED(514112, "关闭慢动作模式时螺旋桨错误"),
 
-    AIRCRAFT_NOT_FOUND_1(514113, "Connection error between driving rod and aircraft. Check if aircraft is inside dock, driving rods are stuck, or charging connector is stained or damaged."),
+    AIRCRAFT_NOT_FOUND_1(514113, "驱动杆和飞机之间的连接错误。检查飞机是否在机场内，驱动杆是否卡住，充电连接器是否脏污或损坏。"),
 
-    OBTAIN_BATTERY_FAILED(514114, "Failed to obtain aircraft battery status. Restart dock and try again."),
+    OBTAIN_BATTERY_FAILED(514114, "无法获取飞机电池状态。重新启动机场，然后重试。"),
 
-    DOCK_BUSY(514116, "Unable to perform operation. Dock is executing other command. Try again later."),
+    DOCK_BUSY(514116, "无法执行操作。机场正在执行其他命令。请稍后再试。"),
 
-    OBTAIN_DOCK_COVER_FAILED(514117, "Dock cover is open or not fully closed. Restart dock and try again"),
+    OBTAIN_DOCK_COVER_FAILED(514117, "机场舱盖打开或未完全关闭。重新启动机场并重试。"),
 
-    OBTAIN_DRIVING_RODS_FAILED(514118, "Driving rods pulled back or not pushed into place. Restart dock and try again."),
+    OBTAIN_DRIVING_RODS_FAILED(514118, "驱动杆向后拉或未推入到位。重新启动机场，然后重试。"),
 
-    TRANSMISSION_ERROR(514120, "Dock and aircraft disconnected. Restart dock and try again or relink dock and aircraft."),
+    TRANSMISSION_ERROR(514120, "机场和飞机断开连接。重新启动机场并重试，或者重新连接机场和飞机。"),
 
-    EMERGENCY_BUTTON_PRESSED_DOWN(514121, "Emergency stop button pressed down. Release button."),
+    EMERGENCY_BUTTON_PRESSED_DOWN(514121, "紧急停止按钮按下。松开按钮。"),
 
-    OBTAIN_CHARGING_STATUS_FAILED(514122, "Failed to obtain aircraft charging status. Restart dock and try again."),
+    OBTAIN_CHARGING_STATUS_FAILED(514122, "无法获取飞机充电状态。重新启动机场，然后重试。"),
 
-    LOW_POWER_2(514123, "Aircraft battery level too low. Unable to power on aircraft."),
+    LOW_POWER_2(514123, "飞机电池电量过低。无法接通飞机电源。"),
 
-    OBTAIN_BATTERY_STATUS_FAILED(514124, "Failed to obtain aircraft battery information."),
+    OBTAIN_BATTERY_STATUS_FAILED(514124, "无法获取飞机电池信息。"),
 
-    BATTERY_FULL(514125, "Aircraft battery level almost full. Unable to start charging. Charge battery when battery level is lower than 95%."),
+    BATTERY_FULL(514125, "飞机电池电量几乎已满。无法开始充电。当电池电量低于95%时给电池充电。"),
 
-    HEAVY_RAINFALL(514134, "Heavy rainfall. Unable to perform task. Try again later."),
+    HEAVY_RAINFALL(514134, "强降雨。无法执行任务。请稍后再试。"),
 
-    HIGH_WIND(514135, "Wind speed too high (≥12 m/s). Unable to perform task. Try again later."),
+    HIGH_WIND(514135, "风速过高（≥12 m/s），无法执行任务，请稍后再试。"),
 
-    POWER_SUPPLY_ERROR(514136, "Dock power supply error. Unable to perform task. Resume power supply and try again."),
+    POWER_SUPPLY_ERROR(514136, "对接电源错误。无法执行任务。请恢复供电，然后重试。"),
 
-    LOW_ENVIRONMENT_TEMPERATURE(514137, "Environment temperature too low (lower than -20° C). Unable to perform task. Try again later."),
+    LOW_ENVIRONMENT_TEMPERATURE(514137, "环境温度过低（低于-20°C）。无法执行任务。请稍后再试。"),
 
-    BATTERY_MAINTAINING(514138, "Maintaining aircraft battery. Unable to perform task. Wait until maintenance is complete."),
+    BATTERY_MAINTAINING(514138, "维护飞机电池。无法执行任务。等待维护完成。"),
 
-    MAINTAIN_BATTERY_FAILED(514139, "Failed to maintain aircraft battery. No maintenance required."),
+    MAINTAIN_BATTERY_FAILED(514139, "未能维护飞机电池。无需维护。"),
 
-    SETTING_BATTERY_STORAGE_FAILED(514140, "Failed to set battery storage mode."),
+    SETTING_BATTERY_STORAGE_FAILED(514140, "无法设置电池存储模式。"),
 
-    DOCK_SYSTEM_ERROR(514141, "Dock system error. Restart dock and try again."),
+    DOCK_SYSTEM_ERROR(514141, "机场系统错误。重新启动机场，然后重试。"),
 
-    AIRCRAFT_NOT_FOUND_2(514142, "Connection error between driving rod and aircraft before takeoff. Check if aircraft is inside dock, driving rods are stuck, or charging connector is stained or damaged."),
+    AIRCRAFT_NOT_FOUND_2(514142, "起飞前驱动杆与飞机的连接错误。检查飞机是否在机场内，驱动杆是否卡住，充电连接器是否脏污或损坏。"),
 
-    DRIVING_RODS_ERROR(514143, "Driving rods pulled back or not pushed into place. Try again later or restart dock and try again."),
+    DRIVING_RODS_ERROR(514143, "驱动杆向后拉或未推入到位。请稍后再试，或者重新启动机场然后再试。"),
 
-    DOCK_COVER_ERROR(514144, "Dock cover is open or not fully closed."),
+    DOCK_COVER_ERROR(514144, "机场舱盖打开或未完全关闭。"),
 
-    ONSITE_DEBUGGING_MODE(514145, "Dock in onsite debugging mode. Unable to perform current operation or task."),
+    ONSITE_DEBUGGING_MODE(514145, "以现场调试模式对接。无法执行当前操作或任务。"),
 
-    REMOTE_DEBUGGING_MODE(514146, "Dock in remote debugging mode. Unable to perform task."),
+    REMOTE_DEBUGGING_MODE(514146, "在远程调试模式下停靠。无法执行任务。"),
 
-    FIRMWARE_UPDATING(514147, "Updating device firmware. Unable to perform task."),
+    FIRMWARE_UPDATING(514147, "正在更新设备固件。无法执行任务。"),
 
-    WORKING(514148, "Task in progress. Dock unable to enter remote debugging mode or perform task again. "),
+    WORKING(514148, "任务正在进行中。机场无法进入远程调试模式或再次执行任务。"),
 
-    WRONG_STATUS(514149, "The airport is not in operation mode, but an operation mode-related command has been issued."),
+    WRONG_STATUS(514149, "机场未处于运行模式，但已发出与运行模式相关的命令。"),
 
-    RESTARTING(514150, "Restarting device."),
+    RESTARTING(514150, "正在重新启动设备。"),
 
-    UPDATING(514151, "Updating device firmware."),
+    UPDATING(514151, "正在更新设备固件。"),
 
-    NOT_REMOTE_DEBUGGING_MODE(514153, "Dock exited remote debugging mode. Unable to perform current operation."),
+    NOT_REMOTE_DEBUGGING_MODE(514153, "机场已退出远程调试模式。无法执行当前操作。"),
 
-    INITIALIZING(514170, "Initializing dock. Unable to perform operation. Wait until initialization completes."),
+    INITIALIZING(514170, "正在初始化机场。无法执行操作。等待初始化完成。"),
 
-    WRONG_PARAMETER(514171, "Cloud command parameter error. Dock unable to execute command."),
+    WRONG_PARAMETER(514171, "Cloud命令参数错误。机场无法执行命令。"),
 
-    DISABLE_AC_FAILED(514180, "Failed to disable AC cooling or heating."),
+    DISABLE_AC_FAILED(514180, "无法禁用空调制冷或加热。"),
 
-    ENABLE_AC_COOLING_FAILED(514181, "Failed to enable AC cooling."),
+    ENABLE_AC_COOLING_FAILED(514181, "无法启用空调制冷。"),
 
-    ENABLE_AC_HEATING_FAILED(514182, "Failed to enable AC heating."),
+    ENABLE_AC_HEATING_FAILED(514182, "无法启用交流加热。"),
 
-    ENABLE_AC_DEHUMIDIFYING_FAILED(514183, "Failed to enable AC dehumidifying."),
+    ENABLE_AC_DEHUMIDIFYING_FAILED(514183, "无法启用空调除湿。"),
 
-    LOW_TEMPERATURE(514184, "Ambient temperature below 0° C. Unable to enable AC cooling."),
+    LOW_TEMPERATURE(514184, "环境温度低于0°C。无法启用交流冷却。"),
 
-    HIGH_TEMPERATURE(514185, "Ambient temperature above 45° C. Unable to enable AC heating"),
+    HIGH_TEMPERATURE(514185, "环境温度高于45°C。无法启用交流加热。"),
 
-    UNKNOWN(-1, "UNKNOWN"),
+    UNKNOWN(-1, "未知"),
 
     ;
 

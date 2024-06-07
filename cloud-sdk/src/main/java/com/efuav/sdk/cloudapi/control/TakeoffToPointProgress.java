@@ -24,21 +24,21 @@ public class TakeoffToPointProgress {
     private Integer wayPointIndex;
 
     /**
-     * Remaining mission distance
-     * unit: m
+     * 剩余任务距离
+     * 单位：m
      */
     @CloudSDKVersion(since = CloudSDKVersionEnum.V1_0_0)
     private Float remainingDistance;
 
     /**
-     * Remaining mission time
-     * unit: s
+     * 剩余任务时间
+     * 单位：s
      */
     @CloudSDKVersion(since = CloudSDKVersionEnum.V1_0_0)
     private Integer remainingTime;
 
     /**
-     * Planned trajectory point list
+     * 计划轨迹点列表
      */
     @CloudSDKVersion(since = CloudSDKVersionEnum.V1_0_0)
     private List<Point> plannedPathPoints;

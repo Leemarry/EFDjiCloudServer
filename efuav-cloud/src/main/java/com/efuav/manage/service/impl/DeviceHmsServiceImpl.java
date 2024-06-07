@@ -194,9 +194,8 @@ public class DeviceHmsServiceImpl extends AbstractHmsService implements IDeviceH
      */
     private void fillMessage(DeviceHmsEntity dto, DeviceHmsArgs args) {
         HmsMessage hmsMessage = HmsJsonUtil.get(dto.getHmsKey());
-        String zh = StringUtils.hasText(hmsMessage.getZh()) ? hmsMessage.getZh() : String.format("未知错误（%s）", dto.getHmsKey());
-        String en = StringUtils.hasText(hmsMessage.getEn()) ? hmsMessage.getEn() : String.format("Unknown(%s)", dto.getHmsKey());//
-
+        String zh = StringUtils.hasText(hmsMessage.getZh()) ? hmsMessage.getZh() : String.format("未知错误(%s)", dto.getHmsKey());
+        String en = StringUtils.hasText(hmsMessage.getEn()) ? hmsMessage.getEn() : String.format("未知错误(%s)", dto.getHmsKey());
         dto.setMessageZh(format(Locale.CHINESE.getLanguage(), zh, args));
         dto.setMessageEn(format(Locale.ENGLISH.getLanguage(), en, args));
     }

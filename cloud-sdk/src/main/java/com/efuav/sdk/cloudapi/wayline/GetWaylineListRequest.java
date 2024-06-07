@@ -20,14 +20,14 @@ import java.util.List;
 public class GetWaylineListRequest {
 
     /**
-     * Is the wayline file favorited?
+     * 路线文件是否被收藏？
      */
     @Parameter(name = "favorited", description = "Is the wayline file favorited?")
     private Boolean favorited;
 
     /**
-     * order（xxx_column desc or xxx_column asc)
-     * Pilot2 optional value: <span>name</span><span>update_time</span><span>create_time</span>
+     * 顺序（xxx_column-desc或xxx_column asc）
+     * Pilot2可选值：<span>name</span><span>update_time</span></span>create_time</span>
      */
     @NotNull
     @JsonProperty("order_by")
@@ -37,14 +37,14 @@ public class GetWaylineListRequest {
     private GetWaylineListOrderBy orderBy;
 
     /**
-     * current page
+     * 当前页面
      */
     @Min(1)
     @Parameter(name = "page", description = "current page", schema = @Schema(defaultValue = "1", type = "int"))
     private int page = 1;
 
     /**
-     * page size
+     * 页面数量
      */
     @Min(1)
     @JsonProperty("page_size")
@@ -52,7 +52,7 @@ public class GetWaylineListRequest {
     private int pageSize = 10;
 
     /**
-     * wayline template type collection
+     * 路线模板类型集合
      */
     @Size(min = 1)
     @JsonProperty("template_type")
@@ -60,28 +60,28 @@ public class GetWaylineListRequest {
     private List<WaylineTypeEnum> templateType;
 
     /**
-     * 1: Enable AI Spot-Check wayline. Without this field means all waylines.
+     * 1：启用AI抽查路线。没有此字段意味着所有路线。
      */
     @JsonProperty("action_type")
     @Parameter(name = "action_type", description = "wayline template type collection", example = "1")
     private ActionTypeEnum actionType;
 
     /**
-     * Selected aircraft models
+     * 选定的飞机型号
      */
     @JsonProperty("drone_model_keys")
     @Schema(name = "drone_model_keys", description = "drone device product enum", example = "[\"0-67-0\"]")
     private List<DeviceEnum> droneModelKeys;
 
     /**
-     * Selected payload models
+     * 选定的有效载荷型号
      */
     @JsonProperty("payload_model_key")
     @Schema(name = "payload_model_key", description = "payload device product enum", example = "[\"1-53-0\"]")
     private List<DeviceEnum> payloadModelKey;
 
     /**
-     * Filter by wayline name
+     * 按路线名称筛选
      */
     @JsonProperty("key")
     @Schema(name = "key", description = "wayline file name", example = "waypoint")

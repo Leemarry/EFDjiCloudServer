@@ -7,6 +7,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
 
 /**
+ * 警告级别枚举
+ *
  * @author sean
  * @version 1.7
  * @date 2023/10/16
@@ -39,7 +41,7 @@ public enum WarningLevelEnum {
     @JsonCreator
     public static WarningLevelEnum find(int level) {
         return Arrays.stream(values()).filter(levelEnum -> levelEnum.level == level).findAny()
-            .orElseThrow(() -> new CloudSDKException(WarningLevelEnum.class, level));
+                .orElseThrow(() -> new CloudSDKException(WarningLevelEnum.class, level));
     }
 
 }

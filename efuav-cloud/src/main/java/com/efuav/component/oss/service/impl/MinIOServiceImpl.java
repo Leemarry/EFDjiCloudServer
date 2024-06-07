@@ -45,7 +45,7 @@ public class MinIOServiceImpl implements IOssService {
             Credentials credential = provider.fetch();
             return new CredentialsToken(credential.accessKey(), credential.secretKey(), credential.sessionToken(), OssConfiguration.expire);
         } catch (NoSuchAlgorithmException e) {
-            log.debug("Failed to obtain sts.");
+            log.debug("无法获取sts。");
             e.printStackTrace();
         }
         return null;
@@ -65,7 +65,7 @@ public class MinIOServiceImpl implements IOssService {
         } catch (ErrorResponseException | InsufficientDataException | InternalException |
                 InvalidKeyException | InvalidResponseException | IOException |
                 NoSuchAlgorithmException | XmlParserException | ServerException e) {
-            throw new RuntimeException("The file does not exist on the OssConfiguration.");
+            throw new RuntimeException("OssConfiguration上不存在该文件。");
         }
     }
 
@@ -74,7 +74,7 @@ public class MinIOServiceImpl implements IOssService {
         try {
             client.removeObject(RemoveObjectArgs.builder().bucket(bucket).object(objectKey).build());
         } catch (MinioException | NoSuchAlgorithmException | IOException | InvalidKeyException e) {
-            log.error("Failed to delete file.");
+            log.error("未能删除文件。");
             e.printStackTrace();
             return false;
         }
@@ -96,24 +96,25 @@ public class MinIOServiceImpl implements IOssService {
     public void putObject(String bucket, String objectKey, InputStream input) {
         try {
             client.statObject(StatObjectArgs.builder().bucket(bucket).object(objectKey).build());
-            throw new RuntimeException("The filename already exists.");
+            throw new RuntimeException("文件名已存在。");
         } catch (MinioException | InvalidKeyException | IOException | NoSuchAlgorithmException e) {
-            log.info("The file does not exist, start uploading.");
+            log.info("文件不存在，请开始上传。");
             try {
                 ObjectWriteResponse response = client.putObject(
                         PutObjectArgs.builder().bucket(bucket).object(objectKey).stream(input, input.available(), 0).build());
-                log.info("Upload FlighttaskCreateFile: {}", response.etag());
+                log.info("上传FlighttaskCreateFile： {}", response.etag());
             } catch (MinioException | IOException | InvalidKeyException | NoSuchAlgorithmException ex) {
-                log.error("Failed to upload FlighttaskCreateFile {}.", objectKey);
+                log.error("未能上传FlighttaskCreateFile {}.", objectKey);
                 ex.printStackTrace();
             }
         }
     }
 
+    @Override
     public void createClient() {
-        if (Objects.nonNull(this.client)) {
-            return;
-        }
+//        if (Objects.nonNull(this.client)) {
+//            return;
+//        }
         this.client = MinioClient.builder()
                 .endpoint(OssConfiguration.endpoint)
                 .credentials(OssConfiguration.accessKey, OssConfiguration.secretKey)

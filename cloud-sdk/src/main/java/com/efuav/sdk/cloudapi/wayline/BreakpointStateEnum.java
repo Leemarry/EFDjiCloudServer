@@ -13,9 +13,9 @@ import java.util.Arrays;
  */
 public enum BreakpointStateEnum {
 
-    WAYLINE_SEGMENT(0, "On the wayline segment"),
+    WAYLINE_SEGMENT(0, "在航线段上"),
 
-    WAYPOINT(1, "On the waypoint");
+    WAYPOINT(1, "在航路点上");
 
     private final int state;
 

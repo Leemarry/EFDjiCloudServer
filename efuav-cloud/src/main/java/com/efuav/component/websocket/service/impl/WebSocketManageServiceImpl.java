@@ -30,7 +30,7 @@ public class WebSocketManageServiceImpl implements IWebSocketManageService {
     public void put(String key, MyConcurrentWebSocketSession val) {
         String[] name = key.split("/");
         if (name.length != 3) {
-            log.debug("The key is out of format. [{workspaceId}/{userType}/{userId}]");
+            log.debug("密钥格式错误。 [{workspaceId}/{userType}/{userId}]");
             return;
         }
         String sessionId = val.getId();
@@ -47,7 +47,7 @@ public class WebSocketManageServiceImpl implements IWebSocketManageService {
     public void remove(String key, String sessionId) {
         String[] name = key.split("/");
         if (name.length != 3) {
-            log.debug("The key is out of format. [{workspaceId}/{userType}/{userId}]");
+            log.debug("密钥格式错误。 [{workspaceId}/{userType}/{userId}]");
             return;
         }
         RedisOpsUtils.hashDel(RedisConst.WEBSOCKET_PREFIX + name[0], new String[] {sessionId});

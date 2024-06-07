@@ -49,7 +49,7 @@ public class AuthPrincipalHandler extends DefaultHandshakeHandler {
     }
 
     /**
-     * The principal's name: {workspaceId}/{userType}/{userId}
+     * 主体的名称：｛workspaceId｝/｛userType｝/{userId｝
      * @param request
      * @param wsHandler
      * @param attributes
@@ -59,7 +59,7 @@ public class AuthPrincipalHandler extends DefaultHandshakeHandler {
     protected Principal determineUser(ServerHttpRequest request, WebSocketHandler wsHandler, Map<String, Object> attributes) {
         if (request instanceof ServletServerHttpRequest) {
 
-            // get the custom claim
+            // 获取自定义索赔
             CustomClaim claim = (CustomClaim) ((ServletServerHttpRequest) request).getServletRequest()
                     .getAttribute(AuthInterceptor.TOKEN_CLAIM);
 

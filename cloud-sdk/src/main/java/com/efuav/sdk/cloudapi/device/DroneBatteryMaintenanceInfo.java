@@ -14,14 +14,14 @@ public class DroneBatteryMaintenanceInfo {
     private MaintenanceStateEnum maintenanceState;
 
     /**
-     * Remaining time of battery maintenance
-     * Round down
-     * unit: hour
+     * 电池维护剩余时间
+     * 四舍五入
+     * 单位：小时
      */
     private Integer maintenanceTimeLeft;
 
     /**
-     * When the drone is powered off in the dock, this property will report the heating and insulation information of the drone battery.
+     * 当无人机在机场断电时，将报告无人机电池的加热和绝缘信息。
      */
     private HeatStateEnum heatState;
 

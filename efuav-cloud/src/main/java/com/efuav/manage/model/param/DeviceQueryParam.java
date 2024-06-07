@@ -6,7 +6,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * The object of the device query field.
+ * 设备查询字段的对象。
  *
  * @author sean.zhou
  * @date 2021/11/16

@@ -23,7 +23,8 @@ public interface IHttpTsaService {
     String PREFIX = "manage/api/v1";
 
     /**
-     * Get the topology list of all devices in the current user workspace for pilot display.
+     * 获取当前用户工作空间中所有设备的拓扑列表，以便进行试点显示。
+     *
      * @param workspaceId
      * @param req
      * @param rsp

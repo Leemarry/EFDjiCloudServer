@@ -13,6 +13,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -33,29 +34,33 @@ public class GlobalScheduleService {
     @Autowired
     private ObjectMapper mapper;
     /**
-     * Check the status of the devices every 30 seconds. It is recommended to use cache.
+     * 每30秒检查一次设备的状态。建议使用缓存。
      */
     @Scheduled(initialDelay = 10, fixedRate = 30, timeUnit = TimeUnit.SECONDS)
     private void deviceStatusListen() {
-        int start = RedisConst.DEVICE_ONLINE_PREFIX.length();
+        String deviceOnlinePrefix = RedisConst.DEVICE_ONLINE_PREFIX + "*";
 
-        RedisOpsUtils.getAllKeys(RedisConst.DEVICE_ONLINE_PREFIX + "*").forEach(key -> {
-            long expire = RedisOpsUtils.getExpire(key);
-            if (expire <= 30) {
-                DeviceDTO device = (DeviceDTO) RedisOpsUtils.get(key);
-                if (null == device) {
-                    return;
+        // 获取所有设备状态信息的键
+        Set<String> deviceKeys = RedisOpsUtils.getAllKeys(deviceOnlinePrefix);
+        for (String key : deviceKeys) {
+            // 获取设备状态信息
+            DeviceDTO device = (DeviceDTO) RedisOpsUtils.get(key);
+            if (device != null) {
+                long expire = RedisOpsUtils.getExpire(key);
+                if (expire <= 30) {
+                    // 设备状态变更，进行相应处理
+                    if (DeviceDomainEnum.DRONE == device.getDomain()) {
+                        deviceService.subDeviceOffline(key.substring(RedisConst.DEVICE_ONLINE_PREFIX.length()));
+                    } else {
+                        deviceService.gatewayOffline(key.substring(RedisConst.DEVICE_ONLINE_PREFIX.length()));
+                    }
+                    // 删除缓存中的设备状态信息
+                    RedisOpsUtils.del(key);
                 }
-                if (DeviceDomainEnum.DRONE == device.getDomain()) {
-                    deviceService.subDeviceOffline(key.substring(start));
-                } else {
-                    deviceService.gatewayOffline(key.substring(start));
-                }
-                RedisOpsUtils.del(key);
             }
-        });
+        }
 
-        log.info("Subscriptions: {}", Arrays.toString(topicService.getSubscribedTopic()));
+        log.info("订阅: {}", Arrays.toString(topicService.getSubscribedTopic()));
     }
 
 }

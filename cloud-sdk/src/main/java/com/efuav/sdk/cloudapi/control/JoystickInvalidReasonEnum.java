@@ -13,15 +13,15 @@ import java.util.Arrays;
  */
 public enum JoystickInvalidReasonEnum {
 
-    RC_LOST(0, "The remote controller is lost."),
+    RC_LOST(0, "遥控器丢失。"),
 
-    BATTERY_LOW_GO_HOME(1, "Due to low battery, the drone automatically returned home."),
+    BATTERY_LOW_GO_HOME(1, "由于电池电量不足，无人机自动返回起始点。"),
 
-    BATTERY_SUPER_LOW_LANDING(2, "Due to the serious low battery, the drone landed automatically."),
+    BATTERY_SUPER_LOW_LANDING(2, "由于电池电量严重不足，无人机自动降落。"),
 
-    NEAR_BOUNDARY(3, "The drone is near a not-fly zone."),
+    NEAR_BOUNDARY(3, "无人机在禁飞区附近。"),
 
-    RC_AUTHORITY(4, "The remote controller grabs control authority.");
+    RC_AUTHORITY(4, "遥控器获取控制权限。");
 
     private final int reason;
 

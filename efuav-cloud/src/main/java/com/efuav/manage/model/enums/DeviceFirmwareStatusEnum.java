@@ -14,22 +14,22 @@ import java.util.Arrays;
 public enum DeviceFirmwareStatusEnum {
 
     /**
-     * no need to upgrade
+     * 无需升级
      */
     NOT_UPGRADE(1),
 
     /**
-     *  to upgraded
+     *  升级到
      */
     NORMAL_UPGRADE(2),
 
     /**
-     * A consistency upgrade is required.
+     * 需要进行一致性升级。
      */
     CONSISTENT_UPGRADE(3),
 
     /**
-     * during upgrade
+     * 升级期间
      */
     UPGRADING(4),
 

@@ -23,7 +23,7 @@ public class PropertySetReplyHandler {
     private static final String RESULT_KEY = "result";
 
     /**
-     * Handle the reply message from topic "/property/set_reply".
+     * 处理来自主题“/property/set_reply”的回复消息。
      * @param message   reply message
      * @throws IOException
      */
@@ -38,7 +38,7 @@ public class PropertySetReplyHandler {
         }
         receiver.setData(PropertySetReplyResultEnum.find(
                 Common.getObjectMapper().convertValue(receiver.getData(), JsonNode.class).findValue(RESULT_KEY).intValue()));
-        // Put the message to the chan object.
+        //将消息放入chan对象。
         chan.put(receiver);
     }
 }

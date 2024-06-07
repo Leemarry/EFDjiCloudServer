@@ -8,52 +8,52 @@ package com.efuav.sdk.cloudapi.wayline;
 public class ProgressExtBreakPoint {
 
     /**
-     * Breakpoint index
+     * 断点索引
      */
     private Integer index;
 
     /**
-     * Breakpoint state
+     * 断点状态
      */
     private BreakpointStateEnum state;
 
     /**
-     * Current wayline segment process
+     * 当前路线段流程
      */
     private Float progress;
 
     /**
-     * Wayline ID
+     * 路线ID
      */
     private Integer waylineId;
 
     /**
-     * Break reason
+     * 中断原因
      */
     private FlighttaskBreakReasonEnum breakReason;
 
     /**
-     * Breakpoint latitude
+     * 断点纬度
      */
     private Float latitude;
 
     /**
-     * Breakpoint longitude
+     * 断点经度
      */
     private Float longitude;
 
     /**
-     * Breakpoint altitude relative to the Earth's ellipsoid surface
-     *
+     * 相对于地球椭球面的断点高度
      */
     private Float height;
 
     /**
-     * Yaw angle relative to true north (meridian), with positive values from 0 to 6 o'clock direction and negative values from 6 to 12 o'clock direction
+     * 相对于正北（子午线）的偏航角，0至6点钟方向为正值，6至12点钟方向为负值
      */
     private Integer attitudeHead;
 
-    public ProgressExtBreakPoint() {}
+    public ProgressExtBreakPoint() {
+    }
 
     @Override
     public String toString() {

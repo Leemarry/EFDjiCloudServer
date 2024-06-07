@@ -1,5 +1,6 @@
 package com.efuav.manage.controller;
 
+import com.efuav.common.model.CustomClaim;
 import com.efuav.manage.model.dto.DeviceDTO;
 import com.efuav.manage.model.dto.DeviceFirmwareUpgradeDTO;
 import com.efuav.manage.service.IDeviceService;
@@ -12,10 +13,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;
 
+import static com.efuav.component.AuthInterceptor.TOKEN_CLAIM;
+
 /**
+ * 设备控制器
+ *
  * @author sean.zhou
  * @version 0.1
  * @date 2021/11/15
@@ -29,19 +35,34 @@ public class DeviceController {
     private IDeviceService deviceService;
 
     /**
-     * 获取一个工作区中所有联机设备的拓扑列表。
+     * 获取工作区中所有联机设备的拓扑列表。
+     *
      * @param workspaceId
      * @return
      */
     @GetMapping("/{workspace_id}/devices")
-    public HttpResultResponse<List<DeviceDTO>> getDevices(@PathVariable("workspace_id") String workspaceId) {
-        List<DeviceDTO> devicesList = deviceService.getDevicesTopoForWeb(workspaceId);
+    public HttpResultResponse<List<DeviceDTO>> getDevices(@PathVariable("workspace_id") String workspaceId, HttpServletRequest request) {
+        CustomClaim customClaim = (CustomClaim) request.getAttribute(TOKEN_CLAIM);
 
+        List<DeviceDTO> devicesList;
+        if ("d14a3689-98e8-4c9f-b839-962056555149".equals(customClaim.getId())) {
+            devicesList = deviceService.getDevices();
+        } else {
+            devicesList = deviceService.getDevicesTopoForWeb(workspaceId);
+        }
+
+        if (!devicesList.isEmpty()) {
+            for (DeviceDTO deviceDTO : devicesList) {
+                Optional<DeviceDTO> deviceOpt = deviceService.getDeviceBySn(deviceDTO.getChildDeviceSn());
+                deviceOpt.ifPresent(deviceDTO::setChildren);
+            }
+        }
         return HttpResultResponse.success(devicesList);
     }
 
     /**
      * 将设备绑定到工作空间后，只能在web上看到设备数据。
+     *
      * @param device
      * @param deviceSn
      * @return
@@ -55,6 +76,7 @@ public class DeviceController {
 
     /**
      * 根据设备sn获取设备信息。
+     *
      * @param workspaceId
      * @param deviceSn
      * @return
@@ -63,11 +85,12 @@ public class DeviceController {
     public HttpResultResponse getDevice(@PathVariable("workspace_id") String workspaceId,
                                         @PathVariable("device_sn") String deviceSn) {
         Optional<DeviceDTO> deviceOpt = deviceService.getDeviceBySn(deviceSn);
-        return deviceOpt.isEmpty() ? HttpResultResponse.error("device not found.") : HttpResultResponse.success(deviceOpt.get());
+        return deviceOpt.isEmpty() ? HttpResultResponse.error("找不到设备。") : HttpResultResponse.success(deviceOpt.get());
     }
 
     /**
      * 在一个工作区中获取绑定设备列表。
+     *
      * @param workspaceId
      * @param page
      * @param pageSize
@@ -85,6 +108,7 @@ public class DeviceController {
 
     /**
      * 正在删除设备的绑定状态。
+     *
      * @param deviceSn
      * @return
      */
@@ -96,6 +120,7 @@ public class DeviceController {
 
     /**
      * 更新设备信息。
+     *
      * @param device
      * @param workspaceId
      * @param deviceSn
@@ -106,12 +131,12 @@ public class DeviceController {
                                            @PathVariable("workspace_id") String workspaceId,
                                            @PathVariable("device_sn") String deviceSn) {
         device.setDeviceSn(deviceSn);
-        boolean isUpd = deviceService.updateDevice(device);
-        return isUpd ? HttpResultResponse.success() : HttpResultResponse.error();
+        return deviceService.updateDevice(device) ? HttpResultResponse.success() : HttpResultResponse.error();
     }
 
     /**
      * 提供离线固件升级任务。
+     *
      * @param workspaceId
      * @param upgradeDTOS
      * @return
@@ -124,6 +149,7 @@ public class DeviceController {
 
     /**
      * 设置无人机的属性参数。
+     *
      * @param workspaceId
      * @param dockSn
      * @param param

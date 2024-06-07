@@ -29,7 +29,7 @@ public class WebSocketMessageSend {
         try {
             if (!session.isOpen()) {
                 session.close();
-                log.info("This session is closed.");
+                log.info("此会话已关闭。");
                 return;
             }
 
@@ -51,7 +51,7 @@ public class WebSocketMessageSend {
             for (ConcurrentWebSocketSession session : sessions) {
                 if (!session.isOpen()) {
                     session.close();
-                    log.info("This session is closed.");
+                    log.info("此会话已关闭。");
                     return;
                 }
                 session.sendMessage(data);

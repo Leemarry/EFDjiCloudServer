@@ -13,19 +13,19 @@ import javax.validation.constraints.NotNull;
 public class SimSlotSwitchRequest extends BaseModel {
 
     /**
-     * Identifies the dongle to be operated on.
+     * 标识要操作的加密狗。
      */
     @NotNull
     private String imei;
 
     /**
-     * Identifies the target device to operate on.
+     * 标识要操作的目标设备。
      */
     @NotNull
     private DongleDeviceTypeEnum deviceType;
 
     /**
-     * Switch between using physical sim card and using esim.
+     * 在使用物理sim卡和使用esim之间切换。
      */
     @NotNull
     private SimSlotEnum simSlot;

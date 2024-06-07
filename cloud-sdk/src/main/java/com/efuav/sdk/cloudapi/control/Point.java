@@ -23,7 +23,7 @@ public class Point {
 
     /**
      * WGS84
-     * The M30 series are ellipsoidal heights.
+     * M30系列为椭圆形高度。
      */
     @NotNull
     @Min(2)

@@ -31,11 +31,12 @@ public abstract class AbstractPropertyService {
     private PropertySetPublish propertySetPublish;
 
     /**
-     * Device property set
+     * 设备属性集
+     *
      * @param gateway
      * @param propertyEnum
      * @param request
-     * @return  services_reply
+     * @return services_reply
      */
     @CloudSDKVersion(exclude = GatewayTypeEnum.RC)
     public PropertySetReplyResultEnum propertySet(GatewayManager gateway, PropertySetEnum propertyEnum, BaseModel request) {

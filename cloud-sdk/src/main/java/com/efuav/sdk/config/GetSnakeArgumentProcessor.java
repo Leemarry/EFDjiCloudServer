@@ -12,11 +12,11 @@ import org.springframework.web.servlet.mvc.method.annotation.ServletModelAttribu
 public class GetSnakeArgumentProcessor extends ServletModelAttributeMethodProcessor {
 
     /**
-     * Class constructor.
+     * 类构造函数。
      *
-     * @param annotationNotRequired if "true", non-simple method arguments and
-     *                              return values are considered model attributes with or without a
-     *                              {@code @ModelAttribute} annotation
+     * @param annotationNotRequired 如果为“true”，则非简单方法参数和
+     *                              返回值被视为具有或不具有的模型属性
+     *                              ｛@code@ModelAttribute｝注释
      */
     public GetSnakeArgumentProcessor(boolean annotationNotRequired) {
         super(annotationNotRequired);

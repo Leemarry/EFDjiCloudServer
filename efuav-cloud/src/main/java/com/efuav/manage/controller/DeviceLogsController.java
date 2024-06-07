@@ -34,6 +34,7 @@ public class DeviceLogsController {
 
     /**
      * 根据查询参数进行分页，得到设备上传日志列表。
+     *
      * @param workspaceId
      * @param deviceSn
      * @param param
@@ -48,6 +49,7 @@ public class DeviceLogsController {
 
     /**
      * 获取可以实时上传的日志文件列表。
+     *
      * @param workspaceId
      * @param deviceSn
      * @param param
@@ -62,6 +64,7 @@ public class DeviceLogsController {
 
     /**
      * 向网关发起日志上传请求。
+     *
      * @return
      */
     @PostMapping("/{workspace_id}/devices/{device_sn}/logs")
@@ -69,13 +72,14 @@ public class DeviceLogsController {
                                          @PathVariable("device_sn") String deviceSn,
                                          HttpServletRequest request, @RequestBody DeviceLogsCreateParam param) {
 
-        CustomClaim customClaim = (CustomClaim)request.getAttribute(TOKEN_CLAIM);
+        CustomClaim customClaim = (CustomClaim) request.getAttribute(TOKEN_CLAIM);
 
         return deviceLogsService.pushFileUpload(customClaim.getUsername(), deviceSn, param);
     }
 
     /**
-     * 取消日志文件上载。
+     * 取消日志文件上传。
+     *
      * @return
      */
     @DeleteMapping("/{workspace_id}/devices/{device_sn}/logs")
@@ -88,6 +92,7 @@ public class DeviceLogsController {
 
     /**
      * 删除上传历史记录。
+     *
      * @return
      */
     @DeleteMapping("/{workspace_id}/devices/{device_sn}/logs/{logs_id}")
@@ -97,9 +102,11 @@ public class DeviceLogsController {
         deviceLogsService.deleteLogs(deviceSn, logsId);
         return HttpResultResponse.success();
     }
+
     /**
      * 根据路线文件id查询文件的下载地址，
      * 并直接重定向到此地址进行下载。
+     *
      * @param workspaceId
      * @param fileId
      * @param logsId
@@ -109,14 +116,13 @@ public class DeviceLogsController {
     public HttpResultResponse getFileUrl(@PathVariable(name = "workspace_id") String workspaceId,
                                          @PathVariable(name = "file_id") String fileId,
                                          @PathVariable(name = "logs_id") String logsId, HttpServletResponse response) {
-
         try {
             URL url = deviceLogsService.getLogsFileUrl(logsId, fileId);
             return HttpResultResponse.success(url.toString());
         } catch (Exception e) {
-            log.error("Failed to get the logs file download address.");
+            log.error("无法获取日志文件下载地址。");
             e.printStackTrace();
         }
-        return HttpResultResponse.error("Failed to get the logs file download address.");
+        return HttpResultResponse.error("无法获取日志文件下载地址。");
     }
 }

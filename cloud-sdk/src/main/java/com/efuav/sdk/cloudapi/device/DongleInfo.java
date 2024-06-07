@@ -10,42 +10,42 @@ import java.util.List;
 public class DongleInfo {
 
     /**
-     * Dongle’s unique identification mark
+     * 加密狗独有的识别标志
      */
     private String imei;
 
     /**
-     * dongle type
+     * 加密狗类型
      */
     private DongleTypeEnum dongleType;
 
     /**
-     * The unique identification mark of eSIM is used for public account query packages and purchase services.
+     * esim的唯一标识用于公众账号查询包和购买服务。
      */
     private String eid;
 
     /**
-     * esim activation status
+     * esim激活状态
      */
     private EsimActivateStateEnum esimActivateState;
 
     /**
-     * The status of the physical sim card in the dongle.
+     * 加密狗中物理sim卡的状态。
      */
     private SimCardStateEnum simCardState;
 
     /**
-     * Identifies the sim card slot currently being used by the dongle.
+     * 标识加密狗当前正在使用的sim卡插槽。
      */
     private SimSlotEnum simSlot;
 
     /**
-     * esim information
+     * esim信息
      */
     private List<EsimInfo> esimInfos;
 
     /**
-     * Physical sim card information that can be inserted into the dongle.
+     * 可以插入加密狗的物理sim卡信息。
      */
     private SimInfo simInfo;
 

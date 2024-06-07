@@ -28,7 +28,7 @@ public class FlyToPointParam {
     private Integer maxSpeed;
 
     /**
-     * The M30 series only support one point.
+     * M30系列仅支持一个点。
      */
     @Size(min = 1)
     @NotNull

@@ -28,9 +28,10 @@ public abstract class AbstractLogService {
     private ServicesPublish servicesPublish;
 
     /**
-     * Inform of file uploading progress
-     * @param request  data
-     * @param headers   The headers for a {@link Message}.
+     * 通知文件上传进度
+     *
+     * @param request data
+     * @param headers The headers for a {@link Message}.
      * @return events_reply
      */
     @ServiceActivator(inputChannel = ChannelName.INBOUND_EVENTS_FILEUPLOAD_PROGRESS, outputChannel = ChannelName.OUTBOUND_EVENTS)
@@ -39,24 +40,27 @@ public abstract class AbstractLogService {
     }
 
     /**
-     * Get file list of uploadable device
+     * 获取可上传设备的文件列表
+     *
      * @param gateway
-     * @param request   data
-     * @return  services_reply
+     * @param request data
+     * @return services_reply
      */
     public TopicServicesResponse<ServicesReplyData<FileUploadListResponse>> fileuploadList(GatewayManager gateway, FileUploadListRequest request) {
         return servicesPublish.publish(
-                new TypeReference<FileUploadListResponse>() {},
+                new TypeReference<FileUploadListResponse>() {
+                },
                 gateway.getGatewaySn(),
                 LogMethodEnum.FILE_UPLOAD_LIST.getMethod(),
                 request);
     }
 
     /**
-     * Start the log file uploading
+     * 启动日志文件上传
+     *
      * @param gateway
-     * @param request   data
-     * @return  services_reply
+     * @param request data
+     * @return services_reply
      */
     public TopicServicesResponse<ServicesReplyData> fileuploadStart(GatewayManager gateway, FileUploadStartRequest request) {
         return servicesPublish.publish(
@@ -66,10 +70,11 @@ public abstract class AbstractLogService {
     }
 
     /**
-     * Update the uploding state
+     * 更新上传状态
+     *
      * @param gateway
-     * @param request   data
-     * @return  services_reply
+     * @param request data
+     * @return services_reply
      */
     public TopicServicesResponse<ServicesReplyData> fileuploadUpdate(GatewayManager gateway, FileUploadUpdateRequest request) {
         return servicesPublish.publish(

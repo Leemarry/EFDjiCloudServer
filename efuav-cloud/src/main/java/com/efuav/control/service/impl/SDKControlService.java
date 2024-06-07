@@ -43,7 +43,7 @@ public class SDKControlService extends AbstractControlService {
 
         Optional<DeviceDTO> deviceOpt = deviceRedisService.getDeviceOnline(dockSn);
         if (deviceOpt.isEmpty()) {
-            log.error("The dock is offline.");
+            log.error("机场处于离线状态。");
             return null;
         }
 
@@ -63,7 +63,7 @@ public class SDKControlService extends AbstractControlService {
 
         Optional<DeviceDTO> deviceOpt = deviceRedisService.getDeviceOnline(dockSn);
         if (deviceOpt.isEmpty()) {
-            log.error("The dock is offline.");
+            log.error("机场处于离线状态。");
             return null;
         }
 

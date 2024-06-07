@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * SDK information corresponding to the gateway device
+ * 网关设备对应的SDK信息
  * @author sean
  * @version 1.7
  * @date 2023/5/19

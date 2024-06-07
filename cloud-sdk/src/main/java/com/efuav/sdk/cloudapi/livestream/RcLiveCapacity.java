@@ -10,18 +10,18 @@ import java.util.List;
 public class RcLiveCapacity {
 
     /**
-     * Total number of video streams available for livestreaming.
-     * Indicates the total number of all available live video streams owned by the aircraft or device.
+     * 可用于直播的视频流总数。
+     * 指示飞机或设备拥有的所有可用实时视频流的总数。
      */
     private Integer availableVideoNumber;
 
     /**
-     * Maximum total number of video streams that can be lived stream simultaneously.
+     * 可以同时作为实时流的最大视频流总数。
      */
     private Integer coexistVideoNumberMax;
 
     /**
-     * Device live streaming capability list
+     * 设备直播功能列表
      */
     private List<RcLiveCapacityDevice> deviceList;
 

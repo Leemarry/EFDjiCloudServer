@@ -56,7 +56,7 @@ public interface ILogsFileService {
     void updateFile(String logsId, FileUploadProgressFile fileReceiver);
 
     /**
-     * 更新文件上载状态。
+     * 更新文件上传状态。
      *
      * @param logsId
      * @param isUploaded

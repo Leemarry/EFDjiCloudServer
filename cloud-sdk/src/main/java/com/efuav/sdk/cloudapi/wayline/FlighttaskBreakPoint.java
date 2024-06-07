@@ -12,20 +12,20 @@ import javax.validation.constraints.NotNull;
 public class FlighttaskBreakPoint {
 
     /**
-     * Breakpoint index
+     * 断点索引
      */
     @NotNull
     @Min(0)
     private Integer index;
 
     /**
-     * Breakpoint state
+     * 断点状态
      */
     @NotNull
     private BreakpointStateEnum state;
 
     /**
-     * Current wayline segment process
+     * 当前航线段流程
      */
     @NotNull
     @Min(0)
@@ -33,12 +33,13 @@ public class FlighttaskBreakPoint {
     private Float progress;
 
     /**
-     * Wayline ID
+     * 航线ID
      */
     @NotNull
     private Integer waylineId;
 
-    public FlighttaskBreakPoint() {}
+    public FlighttaskBreakPoint() {
+    }
 
     @Override
     public String toString() {

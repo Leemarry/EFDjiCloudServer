@@ -14,7 +14,7 @@ import java.util.List;
 public class FlightAreasGetResponse extends BaseModel {
 
     /**
-     * File list
+     * 文件列表
      */
     @NotNull
     private List<@Valid FlightAreaGetFile> files;

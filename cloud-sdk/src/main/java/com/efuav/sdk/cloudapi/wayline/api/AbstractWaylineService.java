@@ -35,7 +35,7 @@ public abstract class AbstractWaylineService {
     private ServicesPublish servicesPublish;
 
     /**
-     * Notification of device exits the Return to Home (RTH) state
+     * 设备退出返回主页（RTH）状态的通知
      * @param request  data
      * @param headers   The headers for a {@link Message}.
      * @return events_reply
@@ -46,7 +46,7 @@ public abstract class AbstractWaylineService {
     }
 
     /**
-     * Report wayline task progress
+     * 报告航线任务进度
      * @param request  data
      * @param headers   The headers for a {@link Message}.
      * @return events_reply
@@ -57,7 +57,7 @@ public abstract class AbstractWaylineService {
     }
 
     /**
-     * Notification of task readiness
+     * 任务准备就绪通知
      * @param request  data
      * @param headers   The headers for a {@link Message}.
      * @return events_reply
@@ -68,7 +68,7 @@ public abstract class AbstractWaylineService {
     }
 
     /**
-     * Create wayline task (Deprecated)
+     * 创建航线任务（不推荐）
      * @param gateway
      * @return  services_reply
      */
@@ -81,7 +81,7 @@ public abstract class AbstractWaylineService {
     }
 
     /**
-     * Issue wayline task
+     * 发布航线任务
      * @param gateway
      * @return  services_reply
      */
@@ -96,7 +96,7 @@ public abstract class AbstractWaylineService {
     }
 
     /**
-     * Execute wayline task
+     * 执行航线任务
      * @param gateway
      * @return  services_reply
      */
@@ -110,7 +110,7 @@ public abstract class AbstractWaylineService {
     }
 
     /**
-     * Cancel wayline task
+     * 取消航线任务
      * @param gateway
      * @return  services_reply
      */
@@ -123,7 +123,7 @@ public abstract class AbstractWaylineService {
     }
 
     /**
-     * Pause wayline task
+     * 暂停航线任务
      * @param gateway
      * @return  services_reply
      */
@@ -135,7 +135,7 @@ public abstract class AbstractWaylineService {
     }
 
     /**
-     * Resume wayline task
+     * 恢复航线任务
      * @param gateway
      * @return  services_reply
      */
@@ -147,7 +147,7 @@ public abstract class AbstractWaylineService {
     }
 
     /**
-     * Return to Home (RTH)
+     * 返回起始点（RTH）
      * @param gateway
      * @return  services_reply
      */
@@ -159,7 +159,7 @@ public abstract class AbstractWaylineService {
     }
 
     /**
-     * Cancel return to home
+     * 取消返航
      * @param gateway
      * @return  services_reply
      */
@@ -171,7 +171,7 @@ public abstract class AbstractWaylineService {
     }
 
     /**
-     * Get the wayline task resource
+     * 获取航线任务资源
      * @param request  data
      * @param headers   The headers for a {@link Message}.
      * @return events_reply
@@ -182,7 +182,7 @@ public abstract class AbstractWaylineService {
     }
 
     /**
-     * Return-to-home information
+     * 返回主页信息
      * @param request  data
      * @param headers   The headers for a {@link Message}.
      * @return events_reply

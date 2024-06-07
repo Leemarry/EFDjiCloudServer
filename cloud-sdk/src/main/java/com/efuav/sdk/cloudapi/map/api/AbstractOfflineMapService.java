@@ -35,9 +35,10 @@ public abstract class AbstractOfflineMapService {
     private ServicesPublish servicesPublish;
 
     /**
-     * When the offline map is closed, offline map synchronization will no longer automatically synchronize.
-     * @param request  data
-     * @param headers  The headers for a {@link Message}.
+     * 关闭离线映射后，离线映射同步将不再自动同步。
+     *
+     * @param request data
+     * @param headers The headers for a {@link Message}.
      */
     @CloudSDKVersion(since = CloudSDKVersionEnum.V1_0_1, include = GatewayTypeEnum.DOCK2)
     @ServiceActivator(inputChannel = ChannelName.INBOUND_STATE_DOCK_DRONE_OFFLINE_MAP_ENABLE, outputChannel = ChannelName.OUTBOUND_STATE)
@@ -46,10 +47,11 @@ public abstract class AbstractOfflineMapService {
     }
 
     /**
-     * Actively trigger offline map updates.
-     * After receiving the message, the airport will actively pull offline map information at the appropriate time and trigger the offline map synchronization mechanism.
-     * @param gateway   gateway device
-     * @return  services_reply
+     * 主动触发离线地图更新。
+     * 机场收到消息后，会在适当的时候主动拉取离线地图信息，并触发离线地图同步机制。
+     *
+     * @param gateway gateway device
+     * @return services_reply
      */
     @CloudSDKVersion(since = CloudSDKVersionEnum.V1_0_1, include = GatewayTypeEnum.DOCK2)
     public TopicServicesResponse<ServicesReplyData> offlineMapUpdate(GatewayManager gateway) {
@@ -59,9 +61,10 @@ public abstract class AbstractOfflineMapService {
     }
 
     /**
-     * Offline map file synchronization status
-     * @param request  data
-     * @param headers   The headers for a {@link Message}.
+     * 离线映射文件同步状态
+     *
+     * @param request data
+     * @param headers The headers for a {@link Message}.
      * @return events_reply
      */
     @ServiceActivator(inputChannel = ChannelName.INBOUND_EVENTS_OFFLINE_MAP_SYNC_PROGRESS, outputChannel = ChannelName.OUTBOUND_EVENTS)
@@ -71,12 +74,13 @@ public abstract class AbstractOfflineMapService {
     }
 
     /**
-     * The dock will actively pull the latest offline map file information.
-     * From this information, it will check whether the aircraft's offline map file name or checksum has changed.
-     * Once a change is found, offline map synchronization will be triggered.
-     * Otherwise, synchronization will not be triggered.
-     * @param request  data
-     * @param headers  The headers for a {@link Message}.
+     * 机场会主动拉取最新的离线地图文件信息。
+     * 根据这些信息，它将检查飞机的离线地图文件名或校验和是否已更改。
+     * 一旦发现更改，将触发离线地图同步。
+     * 否则，将不会触发同步。
+     *
+     * @param request data
+     * @param headers The headers for a {@link Message}.
      * @return events_reply
      */
     @ServiceActivator(inputChannel = ChannelName.INBOUND_REQUESTS_OFFLINE_MAP_GET, outputChannel = ChannelName.OUTBOUND_REQUESTS)

@@ -10,17 +10,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class DroneLocation {
 
     /**
-     * Region unique ID
+     * 区域唯一ID
      */
     private String areaId;
 
     /**
-     * Distance to the custom flight area boundary
+     * 到自定义飞行区域边界的距离
      */
     private Float areaDistance;
 
     /**
-     * Whether in custom flight area
+     * 是否在定制飞行区
      */
     @JsonProperty("is_in_area")
     private Boolean inArea;

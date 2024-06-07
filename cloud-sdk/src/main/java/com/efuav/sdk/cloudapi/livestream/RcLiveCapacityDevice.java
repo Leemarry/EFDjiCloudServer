@@ -4,29 +4,29 @@ import java.util.List;
 
 /**
  * @author sean.zhou
- * @date 2021/11/18
  * @version 0.1
+ * @date 2021/11/18
  */
 public class RcLiveCapacityDevice {
 
     /**
-     * Device serial number
+     * 设备序列号
      */
     private String sn;
 
     /**
-     * Total number of video streams that can be used for livestreaming
-     * Total number of video streams used for livestreaming that belongs to devices.
+     * 可用于直播的视频流总数
+     * 用于属于设备的直播的视频流总数。
      */
     private Integer availableVideoNumber;
 
     /**
-     * Maximum number of video streams that can be used for livestreaming at the same time
+     * 可同时用于直播的最大视频流数量
      */
     private Integer coexistVideoNumberMax;
 
     /**
-     * Camera list on the device
+     * 设备上的摄像头列表
      */
     private List<RcLiveCapacityCamera> cameraList;
 

@@ -93,7 +93,7 @@ public class MediaServiceImpl extends AbstractMediaService implements IMediaServ
         FileUploadCallback callback = request.getData();
 
         if (MqttReply.CODE_SUCCESS != callback.getResult()) {
-            log.error("Media file upload failed!");
+            log.error("媒体文件上传失败！");
             return null;
         }
 
@@ -111,7 +111,7 @@ public class MediaServiceImpl extends AbstractMediaService implements IMediaServ
         DeviceDTO device = deviceOpt.get();
         boolean isSave = parseMediaFile(callback, device);
         if (!isSave) {
-            log.error("Failed to save the file to the database, please check the data manually.");
+            log.error("将文件保存到数据库失败，请手动检查数据。");
             return null;
         }
 

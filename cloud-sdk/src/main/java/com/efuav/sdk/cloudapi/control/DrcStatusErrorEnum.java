@@ -15,15 +15,15 @@ public enum DrcStatusErrorEnum implements IErrorInfo {
 
     SUCCESS(0, "success"),
 
-    MQTT_ERR(514300, "The mqtt connection error."),
+    MQTT_ERR(514300, "MQTT连接错误。"),
 
-    HEARTBEAT_TIMEOUT(514301, "The heartbeat times out and the dock disconnects."),
+    HEARTBEAT_TIMEOUT(514301, "心跳超时，机场断开连接。"),
 
-    MQTT_CERTIFICATE_ERR(514302, "The mqtt certificate is abnormal and the connection fails."),
+    MQTT_CERTIFICATE_ERR(514302, "MQTT证书异常，连接失败。"),
 
-    MQTT_LOST(514303, "The dock network is abnormal and the mqtt connection is lost."),
+    MQTT_LOST(514303, "机场网络异常，MQTT连接丢失。"),
 
-    MQTT_REFUSE(514304, "The dock connection to mqtt server was refused.");
+    MQTT_REFUSE(514304, "与MQTT服务器的对接连接被拒绝。");
 
     private final String msg;
 

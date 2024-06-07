@@ -26,7 +26,7 @@ public interface ILogsFileIndexService {
     Boolean insertFileIndex(LogFileIndex file, String deviceSn, Integer domain, String fileId);
 
     /**
-     * 查询基于文件id记录文件上载信息。
+     * 查询基于文件id记录文件上传信息。
      *
      * @param fileId
      * @return

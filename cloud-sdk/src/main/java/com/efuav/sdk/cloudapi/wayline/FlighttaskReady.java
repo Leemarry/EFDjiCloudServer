@@ -10,7 +10,7 @@ import java.util.List;
 public class FlighttaskReady {
 
     /**
-     * The task ID set that currently satisfies the task readiness conditions
+     * 当前满足任务准备条件的任务ID集
      */
     private List<String> flightIds;
 

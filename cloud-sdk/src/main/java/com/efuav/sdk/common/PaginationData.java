@@ -5,7 +5,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.List;
 
 /**
- * The format of the data response when a paginated display is required.
+ * 当需要分页显示时，数据响应的格式。
  * @author sean
  * @version 0.3
  * @date 2021/12/22
@@ -14,7 +14,7 @@ import java.util.List;
 public class PaginationData<T> {
 
     /**
-     * The collection in which the data list is stored.
+     * 存储数据列表的集合。
      */
     @Schema(description = "The collection in which the data list is stored.")
     private List<T> list;

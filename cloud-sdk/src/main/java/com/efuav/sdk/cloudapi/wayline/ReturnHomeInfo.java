@@ -12,24 +12,24 @@ import java.util.List;
 public class ReturnHomeInfo {
 
     /**
-     * The real-time planned return route for the aircraft.
-     * Each push is a complete update of the route.
-     * There is an complete return path in the array.
+     * 飞机的实时计划返回航线。
+     * 每次推送都是对航线的完整更新。
+     * 数组中有一个完整的返回路径。
      */
     private List<Point> plannedPathPoints;
 
     /**
-     * You can use this field to determine the display mode of the last point in the trajectory.
-     * 0 means the last point of the trajectory is located above the return point on the ground.
-     * The terminal can display a line connecting the last point of the trajectory to the return point.
-     * 1 means the last point of the trajectory is not the return point.
-     * The terminal should not display a line connecting the last point of the trajectory to the return point.
-     * The reason for not being able to reach the return point could be that the return point is in a restricted zones or inside an obstacle.
+     * 可以使用此字段来确定轨迹中最后一个点的显示模式。
+     * 0表示轨迹的最后一个点位于地面上的返回点上方。
+     * 终端可以显示将轨迹的最后一点连接到返回点的线。
+     * 1表示轨迹的最后一个点不是返回点。
+     * 终端不应显示将轨迹的最后一点连接到返回点的线。
+     * 无法到达返回点的原因可能是返回点位于禁区内或障碍物内。
      */
     private LastPointTypeEnum lastPointType;
 
     /**
-     * Currently working wayline mission ID
+     * 当前工作航线任务ID
      */
     private String flightId;
 

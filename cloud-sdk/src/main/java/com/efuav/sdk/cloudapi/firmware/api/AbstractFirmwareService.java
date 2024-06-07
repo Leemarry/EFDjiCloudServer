@@ -31,9 +31,10 @@ public abstract class AbstractFirmwareService {
     private ServicesPublish servicesPublish;
 
     /**
-     * Firmware upgrade progress
-     * @param request  data
-     * @param headers   The headers for a {@link Message}.
+     * 固件升级进度
+     *
+     * @param request data
+     * @param headers The headers for a {@link Message}.
      */
     @ServiceActivator(inputChannel = ChannelName.INBOUND_EVENTS_OTA_PROGRESS, outputChannel = ChannelName.OUTBOUND_EVENTS)
     public TopicEventsResponse<MqttReply> otaProgress(TopicEventsRequest<EventsDataRequest<OtaProgress>> request, MessageHeaders headers) {
@@ -41,14 +42,16 @@ public abstract class AbstractFirmwareService {
     }
 
     /**
-     * Firmware upgrade
+     * 固件升级
+     *
      * @param gateway
-     * @param request   data
-     * @return  services_reply
+     * @param request data
+     * @return services_reply
      */
     public TopicServicesResponse<ServicesReplyData<OtaCreateResponse>> otaCreate(GatewayManager gateway, OtaCreateRequest request) {
         return servicesPublish.publish(
-                new TypeReference<OtaCreateResponse>() {},
+                new TypeReference<OtaCreateResponse>() {
+                },
                 gateway.getGatewaySn(),
                 FirmwareMethodEnum.OTA_CREATE.getMethod(),
                 request);

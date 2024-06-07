@@ -79,6 +79,8 @@ public enum BizCodeEnum {
 
     FLIGHT_AREAS_UPDATE("flight_areas_update"),
 
+    IMAGE_AIRCRAFT_DATA("image_aircraft_data"),
+
     ;
 
     private String code;

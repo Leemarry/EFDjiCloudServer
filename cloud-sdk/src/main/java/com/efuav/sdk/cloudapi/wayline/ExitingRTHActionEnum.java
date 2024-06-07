@@ -14,9 +14,9 @@ import java.util.Arrays;
  */
 public enum ExitingRTHActionEnum {
 
-    EXIT(0, "Exit exiting RTH state"),
+    EXIT(0, "退出RTH状态"),
 
-    Enter(1, "Enter exiting RTH state");
+    Enter(1, "进入退出RTH状态");
 
     private final int action;
 

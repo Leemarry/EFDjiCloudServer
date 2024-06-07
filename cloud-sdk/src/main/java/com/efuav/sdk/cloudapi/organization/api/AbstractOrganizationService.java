@@ -17,9 +17,10 @@ import org.springframework.messaging.MessageHeaders;
 public abstract class AbstractOrganizationService {
 
     /**
-     * Obtain organization binding information
-     * @param request  data
-     * @param headers   The headers for a {@link Message}.
+     * 获取组织绑定信息
+     *
+     * @param request data
+     * @param headers The headers for a {@link Message}.
      * @return events_reply
      */
     @ServiceActivator(inputChannel = ChannelName.INBOUND_REQUESTS_AIRPORT_BIND_STATUS, outputChannel = ChannelName.OUTBOUND_REQUESTS)
@@ -29,9 +30,10 @@ public abstract class AbstractOrganizationService {
     }
 
     /**
-     * Search for the organization information that device bound to
-     * @param request  data
-     * @param headers   The headers for a {@link Message}.
+     * 搜索设备绑定到的组织信息
+     *
+     * @param request data
+     * @param headers The headers for a {@link Message}.
      * @return events_reply
      */
     @ServiceActivator(inputChannel = ChannelName.INBOUND_REQUESTS_AIRPORT_ORGANIZATION_GET, outputChannel = ChannelName.OUTBOUND_REQUESTS)
@@ -41,9 +43,10 @@ public abstract class AbstractOrganizationService {
     }
 
     /**
-     * Device bind to organization
-     * @param request  data
-     * @param headers   The headers for a {@link Message}.
+     * 设备绑定到组织
+     *
+     * @param request data
+     * @param headers The headers for a {@link Message}.
      * @return events_reply
      */
     @ServiceActivator(inputChannel = ChannelName.INBOUND_REQUESTS_AIRPORT_ORGANIZATION_BIND, outputChannel = ChannelName.OUTBOUND_REQUESTS)

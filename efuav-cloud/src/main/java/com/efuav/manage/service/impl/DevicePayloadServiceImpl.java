@@ -78,7 +78,7 @@ public class DevicePayloadServiceImpl implements IDevicePayloadService {
             payloadReceiver.setDeviceSn(device.getDeviceSn());
             int payloadId = this.saveOnePayloadDTO(payloadReceiver);
             if (payloadId <= 0) {
-                log.error("Payload data saving failed.");
+                log.error("有效负载数据保存失败。");
                 return false;
             }
             if (controlMap.get(payloadReceiver.getSn()) != payloadReceiver.getControlSource()) {
@@ -138,6 +138,7 @@ public class DevicePayloadServiceImpl implements IDevicePayloadService {
      * @param drone
      * @param payloads
      */
+    @Override
     public void updatePayloadControl(DeviceDTO drone, List<DevicePayloadReceiver> payloads) {
         boolean match = payloads.stream().peek(p -> p.setSn(Objects.requireNonNullElse(p.getSn(),
                 p.getDeviceSn() + "-" + p.getPayloadIndex().getPosition().getPosition())))
@@ -163,7 +164,7 @@ public class DevicePayloadServiceImpl implements IDevicePayloadService {
 
         // 保存新的有效载荷信息。
         boolean isSave = this.savePayloadDTOs(drone, payloads);
-        log.debug("The result of saving the payloads is {}.", isSave);
+        log.debug("保存有效载荷的结果是 {}.", isSave);
     }
 
     @Override

@@ -1,6 +1,8 @@
 package com.efuav.sdk.cloudapi.airsense;
 
 /**
+ * 空气传感器警告
+ *
  * @author sean
  * @version 1.7
  * @date 2023/10/16
@@ -13,57 +15,57 @@ public class AirsenseWarning {
     private String icao;
 
     /**
-     * The higher the danger level, the more dangerous it is.
-     * For levels greater than or equal to 3, it is recommended for aircraft to take evasive action.
+     * 危险程度越高，就越危险。
+     * 对于大于或等于3的水平，建议飞机采取规避行动。
      */
     private WarningLevelEnum warningLevel;
 
     /**
-     * The latitude of aircraft location is angular values.
-     * Negative values for south latitude and positive values for north latitude.
-     * It is accurate to six decimal places.
+     * 飞机位置的纬度是角度值。
+     * 南纬为负值，北纬为正值。
+     * 它精确到小数点后六位。
      */
     private Float latitude;
 
     /**
-     * The longitude of aircraft location is angular values.
-     * Negative values for west longitude and positive values for east longitude.
-     * It is accurate to six decimal places.
+     * 飞机位置的经度是角度值。
+     * 负值表示西经度，正值表示东经度。
+     * 它精确到小数点后六位。
      */
     private Float longitude;
 
     /**
-     * Absolute height of flight.
-     * Unit: meter
+     * 绝对飞行高度。
+     * 单位：米
      */
     private Integer altitude;
 
     /**
-     * Absolute height type
+     * 绝对高度类型
      */
     private AltitudeTypeEnum altitudeType;
 
     /**
-     * The angle of heading is angular values.
-     * 0 is north. 90 is east.
-     * It is accurate to one decimal places.
+     * 航向的角度是角度值。
+     * 0是北方。90在东边。
+     * 它精确到小数点后一位。
      */
     private Float heading;
 
     /**
-     * Relative height of flight to aircraft.
-     * Unit: meter
+     * 飞行到飞机的相对高度。
+     * 单位：米
      */
     private Integer relativeAltitude;
 
     /**
-     * Relative height change trend
+     * 相对高度变化趋势
      */
     private VertTrendEnum vertTrend;
 
     /**
-     * Horizontal distance to aircraft.
-     * Unit: meter
+     * 到飞机的水平距离。
+     * 单位：米
      */
     private Integer distance;
 

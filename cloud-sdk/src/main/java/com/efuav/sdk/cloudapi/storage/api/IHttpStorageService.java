@@ -21,16 +21,17 @@ public interface IHttpStorageService {
     String PREFIX = "storage/api/v1";
 
     /**
-     * Get temporary credentials for uploading the media and wayline in DJI Pilot.
-     * @param workspaceId   workspace id
+     * 获取用于在DJI Pilot中上传媒体和路线的临时凭据。
+     *
+     * @param workspaceId workspace id
      * @param req
      * @param rsp
      * @return
      */
     @Operation(summary = "Get STS Token", description = "Get temporary credentials for uploading the media and wayline in DJI Pilot.",
             parameters = {
-                @Parameter(name = "workspace_id", description = "workspace id", schema = @Schema(format = "uuid"))
-    })
+                    @Parameter(name = "workspace_id", description = "workspace id", schema = @Schema(format = "uuid"))
+            })
     @PostMapping(PREFIX + "/workspaces/{workspace_id}/sts")
     HttpResultResponse<StsCredentialsResponse> getTemporaryCredential(
             @PathVariable(name = "workspace_id") String workspaceId,

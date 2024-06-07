@@ -26,7 +26,7 @@ public class InboundMessageRouter extends AbstractMessageRouter {
     private static final Logger log = LoggerFactory.getLogger(InboundMessageRouter.class);
 
     /**
-     * All mqtt broker messages will arrive here before distributing them to different channels.
+     * 所有mqtt代理消息都将在将它们分发到不同通道之前到达此处。
      * @param message message from mqtt broker
      * @return channel
      */

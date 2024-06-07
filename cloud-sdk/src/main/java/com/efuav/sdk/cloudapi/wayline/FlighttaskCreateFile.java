@@ -10,18 +10,19 @@ import javax.validation.constraints.NotNull;
 public class FlighttaskCreateFile {
 
     /**
-     * File URL
+     * 文件URL
      */
     @NotNull
     private String url;
 
     /**
-     * MD5 signature
+     * MD5签名
      */
     @NotNull
     private String sign;
 
-    public FlighttaskCreateFile() {}
+    public FlighttaskCreateFile() {
+    }
 
     @Override
     public String toString() {

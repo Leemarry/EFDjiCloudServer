@@ -13,23 +13,23 @@ import java.util.Arrays;
  */
 public enum LogErrorCodeEnum implements IServicesErrorCode, IEventsErrorCode, IErrorInfo {
 
-    DEVICE_RESTART(324001, "Device restart interrupts log export."),
+    DEVICE_RESTART(324001, "设备重新启动会中断日志导出。"),
 
-    EXPORT_TIMEOUT(324012, "Compressing logs timed out. Too many logs selected. Unselect some logs and try again."),
+    EXPORT_TIMEOUT(324012, "压缩日志超时。选择的日志太多。取消选择一些日志，然后重试。"),
 
-    PULL_FAILED(324013, "Failed to obtain device log list. Try again later."),
+    PULL_FAILED(324013, "无法获取设备日志列表。请稍后再试。"),
 
-    EMPTY_LOG_LIST(324014, "Device log list is empty. Refresh page or restart dock and try again."),
+    EMPTY_LOG_LIST(324014, "设备日志列表为空。刷新页面或重新启动机场，然后重试。"),
 
-    AIRCRAFT_SHUTDOWN(324015, "Aircraft powered off or not connected. Unable to obtain log list. Make sure aircraft is inside dock. Remotely power on aircraft and try again."),
+    AIRCRAFT_SHUTDOWN(324015, "飞机断电或未连接。无法获取日志列表。确保飞机在机场内。远程接通飞机电源，然后再试一次。"),
 
-    INSUFFICIENT_STORAGE_SPACE(324016, "Insufficient dock storage space. Failed to compress logs. Clear space or try again later."),
+    INSUFFICIENT_STORAGE_SPACE(324016, "机场存储空间不足。无法压缩日志。请清除空间或稍后再试。"),
 
-    NO_LOG(324017, "Failed to compress logs. Unable to obtain logs of selected aircraft. Refresh page or restart dock and try again."),
+    NO_LOG(324017, "无法压缩日志。无法获取所选飞机的日志。刷新页面或重新启动机场，然后重试。"),
 
-    COMPRESSION_FAILED(324018, "Failed to compress logs and submit issue report. Try again later or restart dock and try again."),
+    COMPRESSION_FAILED(324018, "未能压缩日志并提交问题报告。请稍后再试，或者重新启动机场然后再试。"),
 
-    UPLOAD_FAILED(324019, "Due to network anomalies at the airport, the log upload has failed. Please retry later."),
+    UPLOAD_FAILED(324019, "由于机场网络异常，日志上传失败。请稍后重试。"),
 
     UNKNOWN(-1, "UNKNOWN"),
 

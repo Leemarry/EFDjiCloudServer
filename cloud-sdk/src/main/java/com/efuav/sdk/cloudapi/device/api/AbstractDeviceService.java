@@ -27,8 +27,9 @@ public class AbstractDeviceService {
 
     /**
      * osd dock
-     * @param request  data
-     * @param headers   The headers for a {@link Message}.
+     *
+     * @param request data
+     * @param headers The headers for a {@link Message}.
      * @return status_reply
      */
     @ServiceActivator(inputChannel = ChannelName.INBOUND_OSD_DOCK)
@@ -38,8 +39,9 @@ public class AbstractDeviceService {
 
     /**
      * osd dock drone
-     * @param request  data
-     * @param headers   The headers for a {@link Message}.
+     *
+     * @param request data
+     * @param headers The headers for a {@link Message}.
      * @return status_reply
      */
     @ServiceActivator(inputChannel = ChannelName.INBOUND_OSD_DOCK_DRONE)
@@ -48,9 +50,10 @@ public class AbstractDeviceService {
     }
 
     /**
-     * osd remote control
-     * @param request  data
-     * @param headers   The headers for a {@link Message}.
+     * osd远程控制
+     *
+     * @param request data
+     * @param headers The headers for a {@link Message}.
      * @return status_reply
      */
     @ServiceActivator(inputChannel = ChannelName.INBOUND_OSD_RC)
@@ -59,9 +62,10 @@ public class AbstractDeviceService {
     }
 
     /**
-     * osd remote control drone
-     * @param request  data
-     * @param headers   The headers for a {@link Message}.
+     * osd遥控无人机
+     *
+     * @param request data
+     * @param headers The headers for a {@link Message}.
      * @return status_reply
      */
     @ServiceActivator(inputChannel = ChannelName.INBOUND_OSD_RC_DRONE)
@@ -70,9 +74,10 @@ public class AbstractDeviceService {
     }
 
     /**
-     * Gateway device + sub device online
-     * @param request  data
-     * @param headers   The headers for a {@link Message}.
+     * 网关设备+子设备在线
+     *
+     * @param request data
+     * @param headers The headers for a {@link Message}.
      * @return status_reply
      */
     @ServiceActivator(inputChannel = ChannelName.INBOUND_STATUS_ONLINE, outputChannel = ChannelName.OUTBOUND_STATUS)
@@ -81,9 +86,10 @@ public class AbstractDeviceService {
     }
 
     /**
-     * Sub device offline
-     * @param request  data
-     * @param headers   The headers for a {@link Message}.
+     * 子设备脱机
+     *
+     * @param request data
+     * @param headers The headers for a {@link Message}.
      * @return status_reply
      */
     @ServiceActivator(inputChannel = ChannelName.INBOUND_STATUS_OFFLINE, outputChannel = ChannelName.OUTBOUND_STATUS)
@@ -92,9 +98,10 @@ public class AbstractDeviceService {
     }
 
     /**
-     * Firmware version update for dock and drone
-     * @param request  data
-     * @param headers   The headers for a {@link Message}.
+     * 机场和无人机的固件版本更新
+     *
+     * @param request data
+     * @param headers The headers for a {@link Message}.
      */
     @ServiceActivator(inputChannel = ChannelName.INBOUND_STATE_DOCK_FIRMWARE_VERSION)
     public void dockFirmwareVersionUpdate(TopicStateRequest<DockFirmwareVersion> request, MessageHeaders headers) {
@@ -102,9 +109,10 @@ public class AbstractDeviceService {
     }
 
     /**
-     * Firmware version update for remote control and drone
-     * @param request  data
-     * @param headers   The headers for a {@link Message}.
+     * 遥控器和无人机的固件版本更新
+     *
+     * @param request data
+     * @param headers The headers for a {@link Message}.
      */
     @ServiceActivator(inputChannel = ChannelName.INBOUND_STATE_RC_AND_DRONE_FIRMWARE_VERSION)
     public void rcAndDroneFirmwareVersionUpdate(TopicStateRequest<FirmwareVersion> request, MessageHeaders headers) {
@@ -112,9 +120,10 @@ public class AbstractDeviceService {
     }
 
     /**
-     * Drone control source update for dock and drone
-     * @param request  data
-     * @param headers   The headers for a {@link Message}.
+     * 机场和无人机的无人机控制源更新
+     *
+     * @param request data
+     * @param headers The headers for a {@link Message}.
      */
     @ServiceActivator(inputChannel = ChannelName.INBOUND_STATE_DOCK_DRONE_CONTROL_SOURCE)
     public void dockControlSourceUpdate(TopicStateRequest<DockDroneControlSource> request, MessageHeaders headers) {
@@ -122,9 +131,10 @@ public class AbstractDeviceService {
     }
 
     /**
-     * Drone control source update for remote control and drone
-     * @param request  data
-     * @param headers   The headers for a {@link Message}.
+     * 远程控制和无人机的无人机控制源更新
+     *
+     * @param request data
+     * @param headers The headers for a {@link Message}.
      */
     @ServiceActivator(inputChannel = ChannelName.INBOUND_STATE_RC_CONTROL_SOURCE)
     public void rcControlSourceUpdate(TopicStateRequest<RcDroneControlSource> request, MessageHeaders headers) {
@@ -132,9 +142,10 @@ public class AbstractDeviceService {
     }
 
     /**
-     * Live status update for dock and drone
-     * @param request  data
-     * @param headers   The headers for a {@link Message}.
+     * 机场和无人机的实时状态更新
+     *
+     * @param request data
+     * @param headers The headers for a {@link Message}.
      */
     @ServiceActivator(inputChannel = ChannelName.INBOUND_STATE_DOCK_LIVE_STATUS)
     public void dockLiveStatusUpdate(TopicStateRequest<DockLiveStatus> request, MessageHeaders headers) {
@@ -142,9 +153,10 @@ public class AbstractDeviceService {
     }
 
     /**
-     * Live status source update for remote control and drone
-     * @param request  data
-     * @param headers   The headers for a {@link Message}.
+     * 远程控制和无人机的实时状态源更新
+     *
+     * @param request 请求数据
+     * @param headers 消息头
      */
     @ServiceActivator(inputChannel = ChannelName.INBOUND_STATE_RC_LIVE_STATUS)
     public void rcLiveStatusUpdate(TopicStateRequest<RcLiveStatus> request, MessageHeaders headers) {
@@ -152,9 +164,10 @@ public class AbstractDeviceService {
     }
 
     /**
-     * Payload firmware version update for remote control and drone
-     * @param request  data
-     * @param headers   The headers for a {@link Message}.
+     * 远程控制和无人机的有效载荷固件版本更新
+     *
+     * @param request data
+     * @param headers The headers for a {@link Message}.
      */
     @ServiceActivator(inputChannel = ChannelName.INBOUND_STATE_RC_PAYLOAD_FIRMWARE)
     public void rcPayloadFirmwareVersionUpdate(TopicStateRequest<PayloadFirmwareVersion> request, MessageHeaders headers) {
@@ -162,9 +175,10 @@ public class AbstractDeviceService {
     }
 
     /**
-     * Wpmz firmware version update for drone
-     * @param request  data
-     * @param headers   The headers for a {@link Message}.
+     * 无人机的Wpmz固件版本更新
+     *
+     * @param request data
+     * @param headers The headers for a {@link Message}.
      */
     @ServiceActivator(inputChannel = ChannelName.INBOUND_STATE_DOCK_DRONE_WPMZ_VERSION)
     public void dockWpmzVersionUpdate(TopicStateRequest<DockDroneWpmzVersion> request, MessageHeaders headers) {
@@ -172,9 +186,10 @@ public class AbstractDeviceService {
     }
 
     /**
-     * Styles supported by the IR palette
-     * @param request  data
-     * @param headers   The headers for a {@link Message}.
+     * IR调色板支持的样式
+     *
+     * @param request data
+     * @param headers The headers for a {@link Message}.
      */
     @ServiceActivator(inputChannel = ChannelName.INBOUND_STATE_DOCK_DRONE_THERMAL_SUPPORTED_PALETTE_STYLE)
     public void dockThermalSupportedPaletteStyle(TopicStateRequest<DockDroneThermalSupportedPaletteStyle> request, MessageHeaders headers) {
@@ -182,10 +197,11 @@ public class AbstractDeviceService {
     }
 
     /**
-     * Under optimal RTH mode, aircraft will automatically plan the optimal return altitude.
-     * When the environment and lighting do not meet the requirements of the visual system (such as direct sunlight in the evening or no light at night), the aircraft will perform a straight-line return at the altitude you have set.
-     * @param request  data
-     * @param headers  The headers for a {@link Message}.
+     * 在最佳RTH模式下，飞机将自动规划最佳返回高度。
+     * 当环境和照明不符合视觉系统的要求时（例如晚上阳光直射或晚上没有光线），飞机将在您设定的高度进行直线返回。
+     *
+     * @param request data
+     * @param headers The headers for a {@link Message}.
      */
     @CloudSDKVersion(since = CloudSDKVersionEnum.V1_0_0)
     @ServiceActivator(inputChannel = ChannelName.INBOUND_STATE_DOCK_DRONE_RTH_MODE, outputChannel = ChannelName.OUTBOUND_STATE)
@@ -194,9 +210,10 @@ public class AbstractDeviceService {
     }
 
     /**
-     * Current RTH height mode
-     * @param request  data
-     * @param headers  The headers for a {@link Message}.
+     * 当前RTH高度模式
+     *
+     * @param request data
+     * @param headers The headers for a {@link Message}.
      */
     @CloudSDKVersion(since = CloudSDKVersionEnum.V1_0_0)
     @ServiceActivator(inputChannel = ChannelName.INBOUND_STATE_DOCK_DRONE_CURRENT_RTH_MODE, outputChannel = ChannelName.OUTBOUND_STATE)
@@ -205,9 +222,10 @@ public class AbstractDeviceService {
     }
 
     /**
-     * To-point flight mission out of control action
-     * @param request  data
-     * @param headers  The headers for a {@link Message}.
+     * 指向飞行任务失控动作
+     *
+     * @param request data
+     * @param headers The headers for a {@link Message}.
      */
     @CloudSDKVersion(since = CloudSDKVersionEnum.V1_0_0)
     @ServiceActivator(inputChannel = ChannelName.INBOUND_STATE_DOCK_DRONE_COMMANDER_MODE_LOST_ACTION, outputChannel = ChannelName.OUTBOUND_STATE)
@@ -216,9 +234,10 @@ public class AbstractDeviceService {
     }
 
     /**
-     * Current mode of to-point flight mission
-     * @param request  data
-     * @param headers  The headers for a {@link Message}.
+     * 点对点飞行任务的当前模式
+     *
+     * @param request data
+     * @param headers The headers for a {@link Message}.
      */
     @CloudSDKVersion(since = CloudSDKVersionEnum.V1_0_0)
     @ServiceActivator(inputChannel = ChannelName.INBOUND_STATE_DOCK_DRONE_CURRENT_COMMANDER_FLIGHT_MODE, outputChannel = ChannelName.OUTBOUND_STATE)
@@ -227,10 +246,10 @@ public class AbstractDeviceService {
     }
 
     /**
-     * Relative to (airport) takeoff point altitude.
-     * ALT.
-     * @param request  data
-     * @param headers  The headers for a {@link Message}.
+     * 相对于（机场）起飞点的高度。
+     *
+     * @param request data
+     * @param headers The headers for a {@link Message}.
      */
     @CloudSDKVersion(since = CloudSDKVersionEnum.V1_0_0)
     @ServiceActivator(inputChannel = ChannelName.INBOUND_STATE_DOCK_DRONE_COMMANDER_FLIGHT_HEIGHT, outputChannel = ChannelName.OUTBOUND_STATE)
@@ -239,9 +258,10 @@ public class AbstractDeviceService {
     }
 
     /**
-     * The reason why the drone enters current state
-     * @param request  data
-     * @param headers  The headers for a {@link Message}.
+     * 无人机进入当前状态的原因
+     *
+     * @param request data
+     * @param headers The headers for a {@link Message}.
      */
     @CloudSDKVersion(since = CloudSDKVersionEnum.V1_0_0)
     @ServiceActivator(inputChannel = ChannelName.INBOUND_STATE_DOCK_DRONE_MODE_CODE_REASON, outputChannel = ChannelName.OUTBOUND_STATE)
@@ -250,9 +270,10 @@ public class AbstractDeviceService {
     }
 
     /**
-     * 4g dongle information
-     * @param request  data
-     * @param headers  The headers for a {@link Message}.
+     * 4g加密狗信息
+     *
+     * @param request data
+     * @param headers The headers for a {@link Message}.
      */
     @CloudSDKVersion(since = CloudSDKVersionEnum.V1_0_1, include = GatewayTypeEnum.DOCK2)
     @ServiceActivator(inputChannel = ChannelName.INBOUND_STATE_DOCK_AND_DRONE_DONGLE_INFOS, outputChannel = ChannelName.OUTBOUND_STATE)
@@ -261,9 +282,10 @@ public class AbstractDeviceService {
     }
 
     /**
-     * silent mode
-     * @param request  data
-     * @param headers  The headers for a {@link Message}.
+     * 静音模式
+     *
+     * @param request data
+     * @param headers The headers for a {@link Message}.
      */
     @CloudSDKVersion(since = CloudSDKVersionEnum.V1_0_2, include = GatewayTypeEnum.DOCK)
     @ServiceActivator(inputChannel = ChannelName.INBOUND_STATE_DOCK_SILENT_MODE, outputChannel = ChannelName.OUTBOUND_STATE)

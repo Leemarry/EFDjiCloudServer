@@ -13,15 +13,15 @@ import java.util.Collection;
 public interface IWebSocketMessageService {
 
     /**
-     * Send a message to the specific connection.
-     * @param session   A WebSocket connection object
+     * 向特定连接发送消息。
+     * @param session   WebSocket连接对象的集合。
      * @param message   message
      */
     void sendMessage(MyConcurrentWebSocketSession session, WebSocketMessageResponse message);
 
     /**
-     * Send the same message to specific connection.
-     * @param sessions  A collection of WebSocket connection objects.
+     * 向特定连接发送相同的消息。
+     * @param sessions  WebSocket连接对象的集合。
      * @param message   message
      */
     void sendBatch(Collection<MyConcurrentWebSocketSession> sessions, WebSocketMessageResponse message);

@@ -8,8 +8,8 @@ package com.efuav.sdk.cloudapi.interconnection;
 public class CustomDataTransmissionFromPsdk {
 
     /**
-     * Data content
-     * length: Less than 256
+     * 数据内容
+     * 长度：小于256
      */
     private String value;
 

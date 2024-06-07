@@ -13,8 +13,8 @@ import javax.validation.constraints.NotNull;
 public class CustomDataTransmissionToPsdkRequest extends BaseModel {
 
     /**
-     * Data content
-     * length: Less than 256
+     * 数据内容
+     * 长度：小于256
      */
     @NotNull
     @Length(max = 256)

@@ -36,11 +36,11 @@ public class MediaController implements IHttpMediaService {
     public HttpResultResponse mediaFastUpload(String workspaceId, @Valid MediaFastUploadRequest request, HttpServletRequest req, HttpServletResponse rsp) {
         boolean isExist = mediaService.fastUpload(workspaceId, request.getFingerprint());
 
-        return isExist ? HttpResultResponse.success() : HttpResultResponse.error(request.getFingerprint() + "don't exist.");
+        return isExist ? HttpResultResponse.success() : HttpResultResponse.error(request.getFingerprint() + "不存在。");
     }
 
     /**
-     * 当通过导频将文件上载到存储服务器时，
+     * 当通过飞行员将文件上传到存储服务器时，
      * 文件的基本信息是通过这个接口报告的。
      *
      * @param workspaceId

@@ -37,22 +37,22 @@ public class MqttGatewayPublish {
 
     public void publish(String topic, int qos, CommonTopicRequest request) {
         try {
-            log.debug("send topic: {}, payload: {}", topic, request.toString());
+            log.debug("发送主题: {}, 有效载荷: {}", topic, request.toString());
             byte[] payload = Common.getObjectMapper().writeValueAsBytes(request);
             messageGateway.publish(topic, payload, qos);
         } catch (JsonProcessingException e) {
-            log.error("Failed to publish the message. {}", request.toString());
+            log.error("未能发布消息。 {}", request.toString());
             e.printStackTrace();
         }
     }
 
     public void publish(String topic, int qos, CommonTopicResponse response) {
         try {
-            log.debug("send topic: {}, payload: {}", topic, response.toString());
+            log.debug("发送主题: {}, 有效载荷: {}", topic, response.toString());
             byte[] payload = Common.getObjectMapper().writeValueAsBytes(response);
             messageGateway.publish(topic, payload, qos);
         } catch (JsonProcessingException e) {
-            log.error("Failed to publish the message. {}", response.toString());
+            log.error("未能发布消息。 {}", response.toString());
             e.printStackTrace();
         }
     }

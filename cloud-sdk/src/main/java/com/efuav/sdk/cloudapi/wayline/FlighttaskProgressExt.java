@@ -21,14 +21,14 @@ public class FlighttaskProgressExt {
     private ProgressExtBreakPoint breakPoint;
 
     /**
-     * Wayline mission state
+     * 线路任务状态
      */
     @CloudSDKVersion(since = CloudSDKVersionEnum.V1_0_0)
     private WaylineMissionStateEnum waylineMissionState;
 
     /**
-     * This includes the transitional phase of entering the flight path.
-     * For example, 0 indicates that the spacecraft is entering or already executing the first route.
+     * 这包括进入飞行路径的过渡阶段。
+     * 例如，0表示无人机正在进入或已经执行第一条路线。
      */
     @CloudSDKVersion(since = CloudSDKVersionEnum.V1_0_0)
     private Integer waylineId;

@@ -57,7 +57,7 @@ public class AliyunOssServiceImpl implements IOssService {
             return new CredentialsToken(response.getAccessKeyId(), response.getAccessKeySecret(), response.getSecurityToken(), OssConfiguration.expire);
 
         } catch (ClientException e) {
-            log.debug("Failed to obtain sts.");
+            log.debug("无法获取sts。");
             e.printStackTrace();
         }
         return null;
@@ -68,7 +68,7 @@ public class AliyunOssServiceImpl implements IOssService {
         // 首先检查对象是否可以提取。
         boolean isExist = ossClient.doesObjectExist(bucket, objectKey);
         if (!isExist) {
-            throw new OSSException("The object does not exist.");
+            throw new OSSException("对象不存在。");
         }
 
         return ossClient.generatePresignedUrl(bucket, objectKey,
@@ -92,12 +92,13 @@ public class AliyunOssServiceImpl implements IOssService {
     @Override
     public void putObject(String bucket, String objectKey, InputStream input) {
         if (ossClient.doesObjectExist(bucket, objectKey)) {
-            throw new RuntimeException("The filename already exists.");
+            throw new RuntimeException("文件名已存在。");
         }
         PutObjectResult objectResult = ossClient.putObject(new PutObjectRequest(bucket, objectKey, input, new ObjectMetadata()));
-        log.info("Upload FlighttaskCreateFile: {}", objectResult.getETag());
+        log.info("上传FlighttaskCreateFile： {}", objectResult.getETag());
     }
 
+    @Override
     public void createClient() {
         if (Objects.nonNull(this.ossClient)) {
             return;

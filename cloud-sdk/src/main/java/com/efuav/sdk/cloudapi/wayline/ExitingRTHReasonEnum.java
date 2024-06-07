@@ -13,27 +13,27 @@ import java.util.Arrays;
  */
 public enum ExitingRTHReasonEnum {
 
-    ADD_JOYSTICK_THROTTLE(0, "Add joystick throttle"),
+    ADD_JOYSTICK_THROTTLE(0, "添加操纵杆油门"),
 
-    ADD_JOYSTICK_PITCH(1, "Add joystick pitch"),
+    ADD_JOYSTICK_PITCH(1, "添加操纵杆俯仰"),
 
-    INITIALIZATION_FAILED(2, "The initialization of behavior tree is failed"),
+    INITIALIZATION_FAILED(2, "行为树初始化失败"),
 
-    SURROUNDED_BY_OBSTACLES(3, "Surrounded by obstacles"),
+    SURROUNDED_BY_OBSTACLES(3, "被障碍物包围"),
 
-    FLIGHT_RESTRICTION(4, "Flight restriction is triggered"),
+    FLIGHT_RESTRICTION(4, "触发飞行限制"),
 
-    OBSTACLE_IS_TOO_CLOSED(5, "Obstacle is too closed"),
+    OBSTACLE_IS_TOO_CLOSED(5, "障碍物太近"),
 
-    NO_GPS(6, "No GPS signal"),
+    NO_GPS(6, "无GPS信号"),
 
-    GPS_AND_VIO_ARE_FALSE(7, "The output flag of GPS and VIO location is false"),
+    GPS_AND_VIO_ARE_FALSE(7, "GPS和VIO位置的输出标志为假"),
 
-    ERROR_OF_GPS_AND_VIO(8, "The error of GPS and VIO fusion position is too large"),
+    ERROR_OF_GPS_AND_VIO(8, "GPS与VIO融合位置误差过大"),
 
-    SHORT_DISTANCE_BACKTRACKING(9, "Backtrack in a short distance"),
+    SHORT_DISTANCE_BACKTRACKING(9, "在短距离内回溯"),
 
-    TRIGGER_RTH(10, "Trigger the RTH in a short distanc");
+    TRIGGER_RTH(10, "短距离触发RTH");
 
     private final int reason;
 

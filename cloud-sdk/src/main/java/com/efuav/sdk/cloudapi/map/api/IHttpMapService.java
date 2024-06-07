@@ -27,9 +27,10 @@ public interface IHttpMapService {
     String PREFIX = "map/api/v1";
 
     /**
-     * In the first connection, pilot will send out this http request to get the group element list.
-     * Also, if pilot receives a group refresh instruction from WebSocket,
-     * it needs the same interface to request the group element list.
+     * 在第一个连接中，pilot将发送这个http请求以获取组元素列表。
+     * 如果pilot接收到来自WebSocket的组刷新指令，
+     * 它需要相同的接口来请求组元素列表。
+     *
      * @param workspaceId
      * @param groupId
      * @param isDistributed
@@ -57,7 +58,8 @@ public interface IHttpMapService {
             HttpServletRequest req, HttpServletResponse rsp);
 
     /**
-     * When user draws a point, line or polygon on the PILOT/Web side.
+     * 当用户在PILOT/Web侧绘制点、线或多边形时。
+     *
      * @param workspaceId
      * @param groupId
      * @param elementCreate
@@ -83,7 +85,8 @@ public interface IHttpMapService {
 
 
     /**
-     * When user edits a point, line or polygon on the PILOT/Web side.
+     * 当用户在PILOT/Web侧编辑点、线或多边形时。
+     *
      * @param workspaceId
      * @param elementId
      * @param elementUpdate
@@ -105,7 +108,8 @@ public interface IHttpMapService {
 
 
     /**
-     * When user delete a point, line or polygon on the PILOT/Web side.
+     * 当用户删除PILOT/Web侧上的点、线或多边形时。
+     *
      * @param workspaceId
      * @param elementId
      * @return

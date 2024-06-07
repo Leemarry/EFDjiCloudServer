@@ -21,7 +21,7 @@ import java.util.List;
 public class GetWaylineListResponse extends BaseModel {
 
     /**
-     * wayline file name
+     * 航线文件名
      */
     @NotNull
     @Schema(description = "wayline file name", example = "waylineFile")
@@ -29,7 +29,7 @@ public class GetWaylineListResponse extends BaseModel {
     private String name;
 
     /**
-     * wayline file id
+     * 航线文件id
      */
     @NotNull
     @Pattern(regexp = "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$")
@@ -37,7 +37,7 @@ public class GetWaylineListResponse extends BaseModel {
     private String id;
 
     /**
-     * drone device product enum
+     * 无人机设备产品枚举
      */
     @NotNull
     @JsonProperty("drone_model_key")
@@ -47,7 +47,7 @@ public class GetWaylineListResponse extends BaseModel {
     private String sign;
 
     /**
-     * payload device product enum
+     * 有效载荷设备产品枚举
      */
     @NotNull
     @Size(min = 1)
@@ -56,14 +56,14 @@ public class GetWaylineListResponse extends BaseModel {
     private List<DeviceEnum> payloadModelKeys;
 
     /**
-     * Is the wayline file favorited?
+     * 航线文件是否被收藏？
      */
     @NotNull
     @Schema(description = "Is the wayline file favorited?")
     private Boolean favorited;
 
     /**
-     * wayline template collection
+     * 航线模板集合
      */
     @NotNull
     @Size(min = 1)
@@ -77,7 +77,7 @@ public class GetWaylineListResponse extends BaseModel {
     private String objectKey;
 
     /**
-     * uploader
+     * 上传人
      */
     @NotNull
     @JsonProperty("user_name")
@@ -85,7 +85,7 @@ public class GetWaylineListResponse extends BaseModel {
     private String username;
 
     /**
-     * update time (millisecond)
+     * 更新时间（毫秒）
      */
     @NotNull
     @Min(123456789012L)
@@ -94,7 +94,7 @@ public class GetWaylineListResponse extends BaseModel {
     private Long updateTime;
 
     /**
-     * create time (millisecond)
+     * 创建时间（毫秒）
      */
     @NotNull
     @Min(123456789012L)

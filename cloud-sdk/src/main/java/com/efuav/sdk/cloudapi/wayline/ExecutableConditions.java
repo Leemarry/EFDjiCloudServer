@@ -11,15 +11,16 @@ import javax.validation.constraints.NotNull;
 public class ExecutableConditions {
 
     /**
-     * Storage capacity
-     * The minimum storage capacity of DJI dock or aircraft that can execute a task. Unit: MB.
-     * If the storage capacity doesn't satisfy the `storage_capacity`, task execution will fail.
+     * 存储容量
+     * 可以执行任务的DJI码头或飞机的最小存储容量。单位：MB。
+     * 如果存储容量不满足“storage_capacity”，则任务执行将失败。
      */
     @NotNull
     @Min(0)
     private Integer storageCapacity;
 
-    public ExecutableConditions() {}
+    public ExecutableConditions() {
+    }
 
     @Override
     public String toString() {

@@ -105,12 +105,12 @@ public class DeviceFirmwareServiceImpl extends AbstractFirmwareService implement
         upgradeDTOS.forEach(upgradeDevice -> {
             boolean exist = deviceRedisService.checkDeviceOnline(upgradeDevice.getSn());
             if (!exist) {
-                throw new IllegalArgumentException("Device is offline.");
+                throw new IllegalArgumentException("设备处于离线状态。");
             }
             Optional<DeviceFirmwareDTO> firmwareOpt = this.getFirmware(
                     workspaceId, upgradeDevice.getDeviceName(), upgradeDevice.getProductVersion());
             if (firmwareOpt.isEmpty()) {
-                throw new IllegalArgumentException("This firmware version does not exist or is not available.");
+                throw new IllegalArgumentException("此固件版本不存在或不可用。");
             }
             OtaCreateDevice ota = dto2OtaCreateDto(firmwareOpt.get());
             ota.setSn(upgradeDevice.getSn());
@@ -130,11 +130,11 @@ public class DeviceFirmwareServiceImpl extends AbstractFirmwareService implement
                 .setResult(request.getData().getResult());
 
 
-        log.info("SN: {}, {} ===> Upgrading progress: {}",
+        log.info("SN: {}, {} ===> 升级进度: {}",
                 sn, request.getMethod(), eventsReceiver.getOutput().getProgress());
 
         if (!eventsReceiver.getResult().isSuccess()) {
-            log.error("SN: {}, {} ===> Error: {}", sn, request.getMethod(), eventsReceiver.getResult());
+            log.error("SN: {}, {} ===> 错误: {}", sn, request.getMethod(), eventsReceiver.getResult());
         }
 
         Optional<DeviceDTO> deviceOpt = deviceRedisService.getDeviceOnline(sn);
@@ -194,7 +194,7 @@ public class DeviceFirmwareServiceImpl extends AbstractFirmwareService implement
         String key = RedisConst.FILE_UPLOADING_PREFIX + workspaceId;
         String existKey = key + file.getOriginalFilename();
         if (RedisOpsUtils.getExpire(existKey) > 0) {
-            throw new RuntimeException("Please try again later.");
+            throw new RuntimeException("请稍后再试。");
         }
         RedisOpsUtils.setWithExpire(existKey, true, RedisConst.DEVICE_ALIVE_SECOND);
         try (InputStream is = file.getInputStream()) {
@@ -203,19 +203,19 @@ public class DeviceFirmwareServiceImpl extends AbstractFirmwareService implement
             key += md5;
             boolean exist = checkFileExist(workspaceId, md5);
             if (exist) {
-                throw new RuntimeException("The file already exists.");
+                throw new RuntimeException("该文件已存在。");
             }
             RedisOpsUtils.set(key, System.currentTimeMillis());
             Optional<DeviceFirmwareDTO> firmwareOpt = verifyFirmwareFile(file);
             if (firmwareOpt.isEmpty()) {
-                throw new RuntimeException("The file format is incorrect.");
+                throw new RuntimeException("文件格式不正确。");
             }
 
             String firmwareId = UUID.randomUUID().toString();
             String objectKey = OssConfiguration.objectDirPrefix + File.separator + firmwareId + FirmwareFileProperties.FIRMWARE_FILE_SUFFIX;
 
             ossServiceContext.putObject(OssConfiguration.bucket, objectKey, file.getInputStream());
-            log.info("upload success. {}", file.getOriginalFilename());
+            log.info("上传成功。 {}", file.getOriginalFilename());
             DeviceFirmwareDTO firmware = DeviceFirmwareDTO.builder()
                     .releaseNote(param.getReleaseNote())
                     .firmwareStatus(param.getStatus())

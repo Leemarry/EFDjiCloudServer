@@ -14,9 +14,9 @@ import javax.validation.constraints.NotNull;
 public class ReadyConditions extends BaseModel {
 
     /**
-     * Battery capacity
-     * The aircraft battery percentage threshold of the executable task.
-     * The aircraft battery must be greater than the `battery_capacity` when the task starts.
+     * 电池容量
+     * 可执行任务的飞机电池百分比阈值。
+     * 任务开始时，飞机电池必须大于“电池容量”。
      */
     @NotNull
     @Min(0)
@@ -24,20 +24,21 @@ public class ReadyConditions extends BaseModel {
     private Integer batteryCapacity;
 
     /**
-     * Start time of the task executable period
-     * Start millisecond timestamp of the task executable period. The task execution time should be later than the `begin_time`.
+     * 任务可执行期的开始时间
+     * 任务可执行周期的起始毫秒时间戳。任务执行时间应晚于“begin_time”。
      */
     @NotNull
     private Long beginTime;
 
     /**
-     * End time of the task executable period
-     * End millisecond timestamp of the task executable period. The task execution time should be earlier than the `end_time`.
+     * 任务可执行期的结束时间
+     * 任务可执行周期的结束毫秒时间戳。任务执行时间应早于“end_time”。
      */
     @NotNull
     private Long endTime;
 
-    public ReadyConditions() {}
+    public ReadyConditions() {
+    }
 
     @Override
     public String toString() {

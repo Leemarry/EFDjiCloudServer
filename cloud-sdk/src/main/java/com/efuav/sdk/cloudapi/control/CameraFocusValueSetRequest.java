@@ -13,10 +13,10 @@ import javax.validation.constraints.NotNull;
 public class CameraFocusValueSetRequest extends BaseModel {
 
     /**
-     * Camera enumeration.
-     * It is unofficial device_mode_key.
-     * The format is *{type-subtype-gimbalindex}*.
-     * Please read [Product Supported](https://developer.dji.com/doc/cloud-api-tutorial/en/overview/product-support.html)
+     * 摄像机枚举。
+     * 它是非官方的device_mode_key。
+     * 格式为*｛type subtype gimbalindex｝*。
+     * 请阅读[支持的产品]（https://developer.di.com/doc/cloud-api-tutorial/en/overview/Product-support.html）
      */
     @NotNull
     private PayloadIndex payloadIndex;

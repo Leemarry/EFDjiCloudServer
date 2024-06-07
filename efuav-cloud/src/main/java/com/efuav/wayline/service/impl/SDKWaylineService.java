@@ -76,9 +76,9 @@ public class SDKWaylineService extends AbstractWaylineService {
         eventsReceiver.setSn(response.getGateway());
 
         FlighttaskProgress output = eventsReceiver.getOutput();
-        log.info("Task progress: {}", output.getProgress().toString());
+        log.info("任务进度: {}", output.getProgress().toString());
         if (!eventsReceiver.getResult().isSuccess()) {
-            log.error("Task progress ===> Error: " + eventsReceiver.getResult());
+            log.error("任务进度 ===> Error: " + eventsReceiver.getResult());
         }
 
         Optional<DeviceDTO> deviceOpt = deviceRedisService.getDeviceOnline(response.getGateway());
@@ -126,12 +126,12 @@ public class SDKWaylineService extends AbstractWaylineService {
 
         Optional<DeviceDTO> deviceOpt = deviceRedisService.getDeviceOnline(response.getGateway());
         if (deviceOpt.isEmpty()) {
-            log.error("The device is offline, please try again later.");
+            log.error("设备处于离线状态，请稍后再试。");
             return new TopicRequestsResponse().setData(MqttReply.error(CommonErrorEnum.DEVICE_OFFLINE));
         }
         Optional<WaylineJobDTO> waylineJobOpt = waylineJobService.getJobByJobId(deviceOpt.get().getWorkspaceId(), jobId);
         if (waylineJobOpt.isEmpty()) {
-            log.error("The wayline job does not exist.");
+            log.error("航线任务文件不存在。");
             return new TopicRequestsResponse().setData(MqttReply.error(CommonErrorEnum.ILLEGAL_ARGUMENT));
         }
 
@@ -140,7 +140,7 @@ public class SDKWaylineService extends AbstractWaylineService {
         // 获取航线文件
         Optional<GetWaylineListResponse> waylineFile = waylineFileService.getWaylineByWaylineId(waylineJob.getWorkspaceId(), waylineJob.getFileId());
         if (waylineFile.isEmpty()) {
-            log.error("The wayline file does not exist.");
+            log.error("航线任务文件为空。");
             return new TopicRequestsResponse().setData(MqttReply.error(CommonErrorEnum.ILLEGAL_ARGUMENT));
         }
         // 获取文件url

@@ -56,7 +56,7 @@ public class ElementCoordinateServiceImpl implements IElementCoordinateService {
     }
 
     /**
-     * Convert database entity objects into coordinate data transfer object.
+     * 将数据库实体对象转换为坐标数据传输对象。
      * @param entity
      * @return
      */
@@ -72,7 +72,7 @@ public class ElementCoordinateServiceImpl implements IElementCoordinateService {
     }
 
     /**
-     * Convert the received coordinate object into a database entity object.
+     * 将接收到的坐标对象转换为数据库实体对象。
      * @param coordinate
      * @return
      */

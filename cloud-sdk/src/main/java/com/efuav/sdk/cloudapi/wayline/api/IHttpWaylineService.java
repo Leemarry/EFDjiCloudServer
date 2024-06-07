@@ -30,18 +30,19 @@ public interface IHttpWaylineService {
     String PREFIX = "wayline/api/v1";
 
     /**
-     * Query the basic data of the wayline file according to the query conditions.
-     * The query condition field in pilot is fixed.
+     * 根据查询条件查询航线文件的基础数据。
+     * pilot中的查询条件字段是固定的。
+     *
      * @param workspaceId workspace id
-     * @param request   get waylines params
+     * @param request     get waylines params
      * @param req
      * @param rsp
-     * @return  wayline list
+     * @return wayline list
      */
     @Operation(summary = "get wayline list", description = "Query the basic data of the wayline file according to " +
             "the query conditions. The query condition field in pilot is fixed.",
             parameters = {
-                @Parameter(name = "workspace_id", description = "workspace id", schema = @Schema(format = "uuid"))
+                    @Parameter(name = "workspace_id", description = "workspace id", schema = @Schema(format = "uuid"))
             })
     @GetMapping(PREFIX + "/workspaces/{workspace_id}/waylines")
     HttpResultResponse<PaginationData<GetWaylineListResponse>> getWaylineList(
@@ -50,18 +51,19 @@ public interface IHttpWaylineService {
             HttpServletRequest req, HttpServletResponse rsp);
 
     /**
-     * Query the download address of the file according to the wayline file id,
-     * and redirect to this address directly for download.
-     * @param workspaceId   workspace id
-     * @param waylineId     wayline file id
+     * 根据航线文件id查询文件的下载地址，
+     * 并直接重定向到此地址进行下载。
+     *
+     * @param workspaceId workspace id
+     * @param waylineId   wayline file id
      * @param req
      * @param rsp
      */
     @Operation(summary = "get wayline file download address", description = "Query the download address of the file " +
             "according to the wayline file id, and redirect to this address directly for download.",
             parameters = {
-                @Parameter(name = "workspace_id", description = "workspace id", schema = @Schema(format = "uuid")),
-                @Parameter(name = "wayline_id", description = "wayline id", schema = @Schema(format = "uuid"))
+                    @Parameter(name = "workspace_id", description = "workspace id", schema = @Schema(format = "uuid")),
+                    @Parameter(name = "wayline_id", description = "wayline id", schema = @Schema(format = "uuid"))
             })
     @GetMapping(PREFIX + "/workspaces/{workspace_id}/waylines/{wayline_id}/url")
     void getWaylineFileDownloadAddress(
@@ -70,20 +72,21 @@ public interface IHttpWaylineService {
             HttpServletRequest req, HttpServletResponse rsp);
 
     /**
-     * Checking whether the name already exists according to the wayline name must ensure the uniqueness of the wayline name.
-     * This interface will be called when uploading waylines and must be available.
+     * 根据航线名称检查名称是否已存在，必须确保航线名称的唯一性。
+     * 此接口将在上传航线时调用，并且必须可用。
+     *
      * @param workspaceId workspace id
-     * @param names  wayline file name collection
+     * @param names       wayline file name collection
      * @param req
      * @param rsp
-     * @return  already existing wayline name
+     * @return already existing wayline name
      */
     @Operation(summary = "get duplicated wayline name", description = "Checking whether the name already exists " +
             "according to the wayline name must ensure the uniqueness of the wayline name. " +
             "This interface will be called when uploading waylines and must be available.",
             parameters = {
-                @Parameter(name = "workspace_id", description = "workspace id", required = true),
-                @Parameter(name = "name", description = "wayline file name", required = true)
+                    @Parameter(name = "workspace_id", description = "workspace id", required = true),
+                    @Parameter(name = "name", description = "wayline file name", required = true)
             })
     @GetMapping(PREFIX + "/workspaces/{workspace_id}/waylines/duplicate-names")
     HttpResultResponse<List<String>> getDuplicatedWaylineName(
@@ -92,18 +95,19 @@ public interface IHttpWaylineService {
             HttpServletRequest req, HttpServletResponse rsp);
 
     /**
-     * When the wayline file is uploaded to the storage server by pilot,
-     * the basic information of the file is reported through this interface.
-     * @param workspaceId   workspace id
-     * @param request   upload callback params
+     * 当航线文件通过飞行员上传到存储服务器时，
+     * 文件的基本信息是通过这个接口报告的。
+     *
+     * @param workspaceId workspace id
+     * @param request     upload callback params
      * @param req
      * @param rsp
-     * @return  success
+     * @return success
      */
     @Operation(summary = "file upload result report", description = "When the wayline file is uploaded to the " +
             "storage server by pilot, the basic information of the file is reported through this interface.",
             parameters = {
-                @Parameter(name = "workspace_id", description = "workspace id", required = true)
+                    @Parameter(name = "workspace_id", description = "workspace id", required = true)
             })
     @PostMapping(PREFIX + "/workspaces/{workspace_id}/upload-callback")
     HttpResultResponse fileUploadResultReport(
@@ -112,17 +116,18 @@ public interface IHttpWaylineService {
             HttpServletRequest req, HttpServletResponse rsp);
 
     /**
-     * Favorite the wayline file according to the wayline file id.
-     * @param workspaceId   workspace id
-     * @param ids   wayline file id
+     * 根据航线文件id收藏航线文件。
+     *
+     * @param workspaceId workspace id
+     * @param ids         wayline file id
      * @param req
      * @param rsp
-     * @return  success
+     * @return success
      */
     @Operation(summary = "batch favorites wayline", description = "Favorite the wayline file according to the wayline file id.",
             parameters = {
-                @Parameter(name = "workspace_id", description = "workspace id", required = true),
-                @Parameter(name = "id", description = "wayline id", required = true)
+                    @Parameter(name = "workspace_id", description = "workspace id", required = true),
+                    @Parameter(name = "id", description = "wayline id", required = true)
             })
     @PostMapping(PREFIX + "/workspaces/{workspace_id}/favorites")
     HttpResultResponse batchFavoritesWayline(
@@ -131,17 +136,18 @@ public interface IHttpWaylineService {
             HttpServletRequest req, HttpServletResponse rsp);
 
     /**
-     * Delete the favorites of this wayline file based on the wayline file id.
-     * @param workspaceId   workspace id
-     * @param ids   wayline file id
+     * 根据航线文件id删除此航线文件的收藏夹。
+     *
+     * @param workspaceId workspace id
+     * @param ids         wayline file id
      * @param req
      * @param rsp
-     * @return  success
+     * @return success
      */
     @Operation(summary = "batch unfavorites wayline", description = "Delete the favorites of this wayline file based on the wayline file id.",
             parameters = {
-                @Parameter(name = "workspace_id", description = "workspace id", required = true),
-                @Parameter(name = "id", description = "wayline id", required = true)
+                    @Parameter(name = "workspace_id", description = "workspace id", required = true),
+                    @Parameter(name = "id", description = "wayline id", required = true)
             })
     @DeleteMapping(PREFIX + "/workspaces/{workspace_id}/favorites")
     HttpResultResponse batchUnfavoritesWayline(

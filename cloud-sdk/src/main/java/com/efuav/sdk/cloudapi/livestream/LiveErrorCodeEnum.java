@@ -14,39 +14,39 @@ public enum LiveErrorCodeEnum implements IServicesErrorCode, IErrorInfo {
 
     SUCCESS(0, "Success"),
 
-    NO_AIRCRAFT(13001, "No aircraft."),
+    NO_AIRCRAFT(13001, "没有飞机。"),
 
-    NO_CAMERA(13002, "No camera."),
+    NO_CAMERA(13002, "没有摄像头。"),
 
-    LIVE_STREAM_ALREADY_STARTED(13003, "The camera has started live streaming."),
+    LIVE_STREAM_ALREADY_STARTED(13003, "摄像机已开始直播。"),
 
-    FUNCTION_NOT_SUPPORT(13004, "The function is not supported."),
+    FUNCTION_NOT_SUPPORT(13004, "不支持该功能。"),
 
-    STRATEGY_NOT_SUPPORT(13005, "The strategy is not supported."),
+    STRATEGY_NOT_SUPPORT(13005, "该策略不受支持。"),
 
-    NOT_IN_CAMERA_INTERFACE(13006, "The current app is not in the camera interface."),
+    NOT_IN_CAMERA_INTERFACE(13006, "当前应用程序不在相机界面中。"),
 
-    NO_FLIGHT_CONTROL(13007, "The remote control has no flight control rights and cannot respond to control commands"),
+    NO_FLIGHT_CONTROL(13007, "遥控器没有飞行控制权，无法响应控制命令"),
 
-    NO_STREAM_DATA(13008, "The current app has no stream data."),
+    NO_STREAM_DATA(13008, "当前应用程序没有流数据。"),
 
-    TOO_FREQUENT(13009, "The operation is too frequent."),
+    TOO_FREQUENT(13009, "操作过于频繁。"),
 
-    ENABLE_FAILED(13010, "Please check whether the live stream service is normal."),
+    ENABLE_FAILED(13010, "请检查直播服务是否正常。"),
 
-    NO_LIVE_STREAM(13011, "There are no live stream currently."),
+    NO_LIVE_STREAM(13011, "目前没有直播。"),
 
-    SWITCH_NOT_SUPPORT(13012, "There is already another camera in the live stream. It's not support to switch the stream directly."),
+    SWITCH_NOT_SUPPORT(13012, "直播中已经有另一台摄像机。不支持直接切换流。"),
 
-    URL_TYPE_NOT_SUPPORTED(13013, "This url type is not supported."),
+    URL_TYPE_NOT_SUPPORTED(13013, "不支持此url类型。"),
 
-    ERROR_PARAMETERS(13014, "The live stream parameters are abnormal or incomplete."),
+    ERROR_PARAMETERS(13014, "直播参数异常或不完整。"),
 
-    NETWORK_CONGESTION(13015, "Please check the network."),
+    NETWORK_CONGESTION(13015, "请检查网络。"),
 
-    ERROR_FRAME(13016, "Live decoding failed."),
+    ERROR_FRAME(13016, "实时解码失败。"),
 
-    DEVICE_UNKNOWN(13099, "Unknown error inside the device."),
+    DEVICE_UNKNOWN(13099, "设备内部出现未知错误。"),
 
     UNKNOWN(-1, "UNKNOWN"),
     ;

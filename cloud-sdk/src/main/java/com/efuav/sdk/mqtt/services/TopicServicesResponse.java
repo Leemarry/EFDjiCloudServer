@@ -3,7 +3,7 @@ package com.efuav.sdk.mqtt.services;
 import com.efuav.sdk.mqtt.CommonTopicResponse;
 
 /**
- * Unified Topic request format
+ * 统一主题请求格式
  * @author sean.zhou
  * @date 2021/11/15
  * @version 0.1

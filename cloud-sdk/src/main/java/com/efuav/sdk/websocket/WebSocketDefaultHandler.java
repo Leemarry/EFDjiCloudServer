@@ -24,17 +24,17 @@ public class WebSocketDefaultHandler extends WebSocketHandlerDecorator {
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-        log.debug("{} is connected.", session.getId());
+        log.debug("{} 已连接。", session.getId());
     }
 
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus closeStatus) throws Exception {
-        log.debug("{} is disconnected.", session.getId());
+        log.debug("{} 已断开连接。", session.getId());
     }
 
     @Override
     public void handleMessage(WebSocketSession session, WebSocketMessage<?> message) throws Exception {
-        log.info("received message: {}, from: {}", message.getPayload(), session.getId());
+        log.info("接收信息: {}, 来自: {}", message.getPayload(), session.getId());
     }
 
 }
